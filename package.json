@@ -1,0 +1,39 @@
+{
+  "name": "topokna",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/gulp",
+    "production": "NODE_ENV=production ./node_modules/.bin/gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Sergey Kuklin",
+  "license": "ISC",
+  "homepage": "",
+  "config": {
+    "directories": {
+      "source": "./src",
+      "build": "./build"
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-newer": "^1.2.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4"
+  }
+}
