@@ -15,14 +15,21 @@
 		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
     <link rel="stylesheet" href="styles/bootstrap.css" />
-
+		<link rel="stylesheet" href="styles/add.css" />
 	</head>
 
 	<body class="main-wrapper" ng-controller="Shell as vm">
 		<header class="clearfix">
         <div ng-include="'app/layout/topnav.html'"></div>
     </header>
-		<div ng-view class="container"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div ng-include="'app/layout/sidebar.html'"></div>
+				</div>
+				<div ng-view class="col-md-9"></div>
+			</div>
+		</div>
 
 	</body>
 
@@ -37,6 +44,8 @@
   <script src="app/layout/layout.module.js"></script>
   <script src="app/layout/shell.js"></script>
   <script src="app/layout/topnav.js"></script>
+	<script src="app/layout/sidebar.js"></script>
+
 
 	<script type="text/javascript" src="app/home/home.module.js"></script>
 	<script type="text/javascript" src="app/home/home.route.js"></script>

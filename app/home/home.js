@@ -12,7 +12,10 @@
     activate();
 
     function activate() {
-
+      vm.couponSettings = {
+        siteAddress: 'https://vk.com',
+        secretKey: 123
+      }
     }
   }
 })();

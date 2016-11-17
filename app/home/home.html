@@ -1,1 +1,84 @@
-<p>{{vm.title}}</p>
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="add-site">Добавить сайт</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="add-site" placeholder="Добавить сайт">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    </div>
+  </div>
+</form>
+<hr />
+<uib-tabset>
+  <uib-tab index="0" heading="Купон">
+    <div class="row margin-top-10">
+      <div class="col-md-10">
+        <form>
+          <div class="form-group">
+            <label for="site-address">Адрес сайта</label>
+            <input type="text" class="form-control" id="site-address" placeholder="" ng-model="vm.couponSettings.siteAddress">
+          </div>
+          <div class="form-group">
+            <label for="site-title">Заголовок</label>
+            <input type="text" class="form-control" id="site-title" placeholder="" ng-model="vm.couponSettings.siteTitle">
+          </div>
+          <div class="form-group">
+            <label for="site-icon">Адрес иконки</label>
+            <input type="text" class="form-control" id="site-icon" placeholder="" ng-model="vm.couponSettings.siteIcon">
+          </div>
+          <div class="form-group">
+            <label for="secret-key">Секретный ключ</label>
+            <input type="text" class="form-control" id="secret-key" placeholder="" readonly ng-model="vm.couponSettings.secretKey">
+          </div>
+          <div class="form-group">
+            <label for="color-theme">Цветовая тема</label>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="window-position">Расположение окна</label>
+            <div>
+              <label class="radio-inline">
+                <input type="radio" name="position" id="position-1" value="position-1" checked> Снизу
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="position" id="position-2" value="position-2"> Сбоку
+              </label>              
+            </div>
+          </div>
+          <hr />
+          <div class="form-group">
+            <label for="site-theme">Тематики сайтов на которых показывать мой купон</label>
+            <div>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="theme-1" value="theme-1"> Тема 1
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="theme-2" value="theme-2"> Тема 2
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="theme-3" value="theme-3"> Тема 3
+              </label>
+            </div>         
+          </div>
+          <div class="margin-top-20">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="button" class="btn btn-default">Отмена</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-2">
+        <img alt="" width="125" height="125" class="img-thumbnail" ng-src="{{vm.couponSettings.siteIcon}}" ng-if="vm.couponSettings.siteIcon">
+      </div>
+    </div>
+   
+
+  </uib-tab>
+  <uib-tab index="1" heading="Статистика">Short Labeled Justified content</uib-tab>
+</uib-tabset>
