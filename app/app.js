@@ -5,7 +5,9 @@
     'ngRoute',
     'ngTouch',
     'ngAnimate',
+    'ngSanitize',
     'ui.bootstrap',
+    'chart.js',
 
     'app.layout',
     'app.home',
