@@ -35,3 +35,9 @@
   min-width: 160px;
   background-color: transparent;
 }
+
+.uib-datepicker-popup.dropdown-menu {
+  display: block;
+  float: none;
+  margin: 0;
+}
