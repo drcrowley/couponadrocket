@@ -31,8 +31,42 @@
       }
     }
 
-    vm.labels = ["1995-12-21", "1995-12-22", "1995-12-23", "1995-12-25", "1995-12-26", "1995-12-27"];
+    // Статистика
 
+    vm.open1 = function() {
+      vm.popup1.opened = true;
+      console.log(vm.popup1.opened);
+    };
+
+    vm.open2 = function() {
+      vm.popup2.opened = true;
+      console.log(vm.popup2.opened);
+    };
+
+    vm.setDate = function(year, month, day) {
+      $scope.dt = new Date(year, month, day);
+    };
+
+    vm.dateOptions = {
+      formatYear: 'yy',
+      maxDate: new Date(2020, 5, 22),
+      minDate: new Date(),
+      startingDay: 1
+    };
+
+    vm.format = 'dd-MMMM-yyyy',
+    vm.altInputFormats = ['M!/d!/yyyy'];
+
+    vm.popup1 = {
+      opened: false
+    };
+
+    vm.popup2 = {
+      opened: false
+    };
+
+
+    vm.labels = ["1995-12-21", "1995-12-22", "1995-12-23", "1995-12-25", "1995-12-26", "1995-12-27"];
 
     vm.series = ['Показ купона', 'Посещаемость', 'Продажа купона'];
     vm.data = [
@@ -40,23 +74,13 @@
       [28, 48, 40, 19, 86, 27, 90],
       [10, 15, 20, 10, 19, 11, 12]
     ];
+
     vm.options = { 
       legend: { display: true },
       scales: {
         xAxes: [{
           type: 'time',
           time: {
-            displayFormats: {
-              'millisecond': 'MMM DD',
-              'second': 'MMM DD',
-              'minute': 'MMM DD',
-              'hour': 'MMM DD',
-              'day': 'MMM DD',
-              'week': 'MMM DD',
-              'month': 'MMM DD',
-              'quarter': 'MMM DD',
-              'year': 'MMM DD',
-            },
             unit: 'day',
             unitStepSize: 1
           }
