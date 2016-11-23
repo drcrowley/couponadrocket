@@ -3,13 +3,12 @@
 
   angular
     .module('app.settings')
-    .controller('Settings', Settings);
+    .controller('Integration', Integration);
 
-    Settings.$inject = [];  
-
-    function Settings() {
+    Integration.$inject = [];
+    
+    function Integration() {
       var vm = this;
-      vm.title = 'Настройки';
       activate();
 
       function activate() {
