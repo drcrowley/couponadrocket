@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.settings')
+    .module('app.integration')
     .controller('Integration', Integration);
 
     Integration.$inject = [];
@@ -12,7 +12,7 @@
       activate();
 
       function activate() {
-
+        console.log(123);
       }
     }
 })();

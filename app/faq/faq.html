@@ -1,0 +1,31 @@
+<button type="button" class="btn btn-primary margin-bottom-15" ng-click="vm.open()">Задать вопрос</button>
+<uib-accordion close-others="true">
+  <div uib-accordion-group class="panel-default" is-open="item.open" ng-repeat="item in vm.list">
+    <uib-accordion-heading>
+      {{$index+1}}. {{item.question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': item.open, 'glyphicon-chevron-right': !item.open}"></i>
+    </uib-accordion-heading>
+    {{item.answer}}
+  </div>
+</uib-accordion>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Задать вопрос</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <p>Ответ на ваш вопрос вы получите по емайлу. Не забудьте просматривать спам папку на случай если наш емайл туда попадет.</p>
+      <form id="feedback" ng-submit="vm.submit()">
+        <div class="form-group">
+          <label for="title">Заголовок</label>
+          <input type="text" id="title" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="question">Вопрос</label>
+          <textarea class="form-control" rows="3"></textarea>
+        </div>
+      </form>     
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" form="feedback" ng-click="vm.ok()">Отправить</button>
+        <button class="btn btn-default" type="button" ng-click="vm.cancel()">Отмена</button>
+    </div>
+</script>

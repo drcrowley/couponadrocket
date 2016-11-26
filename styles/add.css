@@ -61,3 +61,7 @@
 .uib-datepicker .uib-title {
     width: 100%;
 }
+
+.faq .panel-title a {
+  display: block;
+}

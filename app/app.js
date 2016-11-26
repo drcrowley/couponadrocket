@@ -11,7 +11,9 @@
 
     'app.layout',
     'app.home',
-    'app.settings'
+    'app.settings',
+    'app.faq',
+    'app.integration'
   ]).config(routeConfig);
 
   routeConfig.$inject = ['$routeProvider'];
