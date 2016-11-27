@@ -9,7 +9,8 @@
     
     function Faq($uibModal) {
       var vm = this;
-      var modalInstance;
+
+      vm.modalInstance = null;
 
       vm.list = [
         {
@@ -29,20 +30,15 @@
         }
       ];
 
-      vm.submit = function() {
-        modalInstance.close();
-      }
-
       vm.open = function (size, parentSelector) {
-        modalInstance = $uibModal.open({
+        vm.modalInstance = $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
           templateUrl: 'myModalContent.html',
-          controller: 'Faq',
-          controllerAs: 'vm',
+          controller: 'FaqFeedback', 
+          controllerAs: 'vm'
         });
-        modalInstance.close();
       };
 
       activate();
@@ -52,3 +48,16 @@
       }
     }
 })();
+
+angular.module('app.faq').controller('FaqFeedback', function ($uibModalInstance) {
+  var vm = this;
+
+  vm.submit = function () {
+    console.log(vm.title, vm.question);
+    $uibModalInstance.close();
+  };
+
+  vm.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
