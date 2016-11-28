@@ -5,9 +5,12 @@
     .module('app.home')
     .controller('Home', Home);
 
-    Home.$inject = [];
+    Home.$inject = ['$translate', 'tmhDynamicLocale'];
     
-    function Home() {
+    function Home($translate, tmhDynamicLocale) {
+      $translate.use('ru');
+      tmhDynamicLocale.set('ru');
+
       var vm = this;
       vm.title = 'Главная';
       activate();

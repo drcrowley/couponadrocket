@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('app.integration')
-    .controller('Integration', Integration);
+    .module('app.balance')
+    .controller('Balance', Balance);
 
-    Integration.$inject = [];
+    Balance.$inject = [];
     
-    function Integration() {
+    function Balance() {
       var vm = this;
       activate();
 

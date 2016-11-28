@@ -12,22 +12,22 @@
       <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
         <ul class="nav navbar-nav">
           <li ng-class="{active: vm.isRoute('Главная')}">
-            <a ng-href="#/">Главная</a>
+            <a ng-href="#/">{{'Main' | translate}}</a>
           </li>
           <li ng-class="{active: vm.isRoute('Настройки')}">
-              <a href="#/settings">Настройки</a>
+              <a href="#/settings">{{'Settings' | translate}}</a>
           </li>
           <li ng-class="{active: vm.isRoute('Пополнить баланс')}">
-              <a href="#/">Пополнить баланс</a>
+              <a href="#/balance">{{'Balance' | translate}}</a>
           </li>           
           <li ng-class="{active: vm.isRoute('Faq')}">
               <a href="#/faq">FAQ</a>
           </li>          
           <li ng-class="{active: vm.isRoute('Интеграция')}">
-              <a href="#/integration">Интеграция</a>
+              <a href="#/integration">{{'Integration' | translate}}</a>
           </li>
           <li ng-class="{active: vm.isRoute('Стать партнёром')}">
-              <a href="#/">Стать партнёром</a>
+              <a href="#/partner">{{'Partner' | translate}}</a>
           </li>          
           <li>
             <button type="button" class="btn btn-default navbar-btn margin-left-30">

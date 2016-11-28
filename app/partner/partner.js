@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('app.integration')
-    .controller('Integration', Integration);
+    .module('app.partner')
+    .controller('Partner', Partner);
 
-    Integration.$inject = [];
+    Partner.$inject = [];
     
-    function Integration() {
+    function Partner() {
       var vm = this;
       activate();
 
