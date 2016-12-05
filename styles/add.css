@@ -65,3 +65,12 @@
 .faq .panel-title a {
   display: block;
 }
+
+@media (min-width: 768px) {
+  .logout-button {
+    margin-left: 30px;
+  }
+  .main-menu {
+    margin-left: -15px;
+  }
+} 

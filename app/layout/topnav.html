@@ -1,41 +1,48 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="TopNav as vm">
   <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" ng-click="vm.isNavCollapsed = !vm.isNavCollapsed">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#/">CouponAdRocket</a>     
-    </div>
-    <div class="navbar-right">
-      <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
-        <ul class="nav navbar-nav">
-          <li ng-class="{active: vm.isRoute('Главная')}">
-            <a ng-href="#/">{{'Main' | translate}}</a>
-          </li>
-          <li ng-class="{active: vm.isRoute('Настройки')}">
-              <a href="#/settings">{{'Settings' | translate}}</a>
-          </li>
-          <li ng-class="{active: vm.isRoute('Пополнить баланс')}">
-              <a href="#/balance">{{'Balance' | translate}}</a>
-          </li>           
-          <li ng-class="{active: vm.isRoute('Faq')}">
-              <a href="#/faq">FAQ</a>
-          </li>          
-          <li ng-class="{active: vm.isRoute('Интеграция')}">
-              <a href="#/integration">{{'Integration' | translate}}</a>
-          </li>
-          <li ng-class="{active: vm.isRoute('Стать партнёром')}">
-              <a href="#/partner">{{'Partner' | translate}}</a>
-          </li>          
-          <li>
-            <button type="button" class="btn btn-default navbar-btn margin-left-30">
-              <span class="glyphicon glyphicon-log-out"></span> Выйти
-            </button> 
-          </li>
-        </ul>
-      </div>            
+    <div class="row">
+      <div class="col-md-3">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" ng-click="vm.isNavCollapsed = !vm.isNavCollapsed">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/">CouponAdRocket</a>
+        </div>    
+      </div>
+      <div class="col-md-9">
+       <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
+          <div class="main-menu navbar-left">
+            <ul class="nav navbar-nav">
+              <li ng-class="{active: vm.isRoute('Главная')}">
+                <a ng-href="#/">{{'Main' | translate}}</a>
+              </li>
+              <li ng-class="{active: vm.isRoute('Настройки')}">
+                  <a href="#/settings">{{'Settings' | translate}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="navbar-right">
+            <ul class="nav navbar-nav">        
+              <li ng-class="{active: vm.isRoute('Faq')}">
+                  <a href="#/faq">FAQ</a>
+              </li>          
+              <li ng-class="{active: vm.isRoute('Интеграция')}">
+                  <a href="#/integration">{{'Integration' | translate}}</a>
+              </li>
+              <li ng-class="{active: vm.isRoute('Стать партнёром')}">
+                  <a href="#/partner">{{'Partner' | translate}}</a>
+              </li>
+              <li>
+                <button type="button" class="btn btn-default navbar-btn logout-button">
+                  <span class="glyphicon glyphicon-log-out"></span> Выйти
+                </button> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

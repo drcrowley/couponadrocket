@@ -15,6 +15,15 @@
       vm.title = 'Главная';
       activate();
 
+      vm.couponSettings = {
+        siteAddress: 'https://vk.com',
+        secretKey: 123,
+        colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
+        colorScheme: 0,
+        availableRegionList: ['Москва', 'Екатеринбург', 'Самара', 'Томск', 'Пермь'],
+        regionList: ['Томск', 'Пермь']
+      }
+
       vm.submitCouponSettings = function() {
         console.log(vm.couponSettings);
       }
@@ -36,7 +45,6 @@
       }
 
       // Статистика
-
       vm.datePopupEnd = false;
       vm.datePopupStart = false;
       vm.dateOptions = {
@@ -79,18 +87,7 @@
       }
 
       function activate() {
-        vm.couponSettings = {
-          siteAddress: 'https://vk.com',
-          secretKey: 123,
-          colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
-          colorScheme: 0,
-          positionList: [{id: 0, title: 'Снизу'}, {id: 1, title: 'Сбоку'}],
-          position: 0,
-          themes: [{title: 'Тема 1', checked: true}, {title: 'Тема 2', checked: false}, {title: 'Тема 3', checked: true}],
-          availableRegionList: ['Москва', 'Екатеринбург', 'Самара', 'Томск', 'Пермь'],
-          regionList: ['Томск', 'Пермь'],
-          couponPrice: 10
-        }
+
       }
     }
 })();
