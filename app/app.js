@@ -13,7 +13,7 @@
 
     'app.translate',
     'app.layout',
-    'app.home',
+    'app.site',
     'app.settings',
     'app.balance',
     'app.faq',
@@ -24,6 +24,6 @@
   routeConfig.$inject = ['$routeProvider'];
 
   function routeConfig($routeProvider) {
-    $routeProvider.otherwise({ redirectTo: '/' });
+    $routeProvider.otherwise({ redirectTo: '/sites/default' });
   }
 })();

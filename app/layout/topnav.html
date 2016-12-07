@@ -15,8 +15,15 @@
        <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
           <div class="main-menu navbar-left">
             <ul class="nav navbar-nav">
-              <li ng-class="{active: vm.isRoute('Главная')}">
-                <a ng-href="#/">{{'Main' | translate}}</a>
+              <li class="dropdown" uib-dropdown ng-class="{active: vm.isRoute('Мои сайты')}">
+                <a class="dropdown-toggle"  uib-dropdown-toggle>
+                  {{'Sites' | translate}} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                  <li><a href="#/sites/new">Добавить сайт <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span></a></li>
+                  <li class="divider" ng-if="vm.sites && vm.sites.length"></li>
+                  <li ng-repeat="site in vm.sites"><a href="#/sites/{{site.id}}">{{site.title}}</a></li>
+                </ul>                
               </li>
               <li ng-class="{active: vm.isRoute('Настройки')}">
                   <a href="#/settings">{{'Settings' | translate}}</a>

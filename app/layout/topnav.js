@@ -1,20 +1,24 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('app')
-        .controller('TopNav', TopNav);
+  angular.module('app')
+    .controller('TopNav', TopNav);
 
-    TopNav.$inject = ['$route'];
+  TopNav.$inject = ['$route', 'dataservice'];
 
-    function TopNav($route) {
-        /* jshint validthis:true */
-        var vm = this;
+  function TopNav($route, dataservice) {
+    var vm = this;
 
-        vm.isRoute = isRoute;
-        vm.isNavCollapsed = true;
+    vm.isRoute = isRoute;
+    vm.isNavCollapsed = true;
 
-        function isRoute(r) {
-            return $route.current.title.substr(0, r.length) === r;
-        }
+    vm.sites = dataservice.getSites();
+
+    function isRoute(r) {
+      var title = $route.current.title;
+      if (title) {
+        return title.substr(0, r.length) === r;
+      }
     }
+  }
 })();

@@ -11,7 +11,7 @@
       tmhDynamicLocaleProvider.localeLocationPattern('/scripts/angular-locale_{{locale}}.js');
 
       $translateProvider.translations('en', {
-        'Main': 'Main',
+        'Sites': 'My sites',
         'Settings': 'Settings',
         'Balance': 'Replenish the balance',
         'Integration': 'Integration',
@@ -19,7 +19,7 @@
       });
 
       $translateProvider.translations('ru', {
-        'Main': 'Главная',
+        'Sites': 'Мои сайты',
         'Settings': 'Настройки',
         'Balance': 'Пополнить баланс',
         'Integration': 'Интеграция',
