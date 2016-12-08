@@ -68,8 +68,8 @@
         <img alt="" width="125" height="125" class="img-thumbnail" ng-src="{{vm.couponSettings.icon}}" ng-if="vm.couponSettings.icon">
       </div>
     </div>
-
   </uib-tab>
+
   <uib-tab index="1" heading="Статистика">
     <form class="form-inline">
       <div class="row margin-top-20">
@@ -102,6 +102,120 @@
       chart-labels="vm.labels" chart-series="vm.series" chart-options="vm.options"
     </canvas>
   </uib-tab>
+
   <uib-tab index="2" heading="Тарифы">
+    <div class="row margin-top-20">
+      <div class="col-md-12 col-lg-3">
+        <h4 class="margin-top-10">Оплата за период:</h4>
+      </div>
+      <div class="col-md-12 col-lg-9">
+        <div class="pay-period-line row">
+          <div class="col-sm-6 col-md-3">
+            <button type="button" class="btn btn-default btn-lg">
+              <div class="margin-bottom-03">1 месяц</div> <span class="label label-default">Без скидки</span>
+            </button>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <button type="button" class="btn btn-default btn-lg">
+              <div class="margin-bottom-03">3 месяца</div> <span class="label label-success">Скидка 10%</span>
+            </button>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <button type="button" class="btn btn-default btn-lg">
+              <div class="margin-bottom-03">6 месяцев</div> <span class="label label-primary">Скидка 20%</span>
+            </button>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <button type="button" class="btn btn-default btn-lg">
+              <div class="margin-bottom-03">12 месяцев</div> <span class="label label-danger">Скидка 30%</span>
+            </button>
+          </div>         
+        </div>
+      </div>
+    </div>
+
+    <div class="row price-row margin-top-10">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths">
+        <div class="panel price panel-default">
+          <div class="panel-heading  text-center">
+          <h4>FREE</h4>
+          </div>
+          <div class="panel-body text-center">
+            <p class="lead"><strong>5</strong><br> купонов в месяц</p>
+          </div>
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item"><strong>0 руб.</strong><br> в месяц</li>
+          </ul>
+          <div class="panel-footer">
+            <button class="btn btn-lg btn-block btn-default" href="#">ВЫБРАТЬ</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths">
+        <div class="panel price panel-success">
+          <div class="panel-heading  text-center">
+          <h4>ECONOM</h4>
+          </div>
+          <div class="panel-body text-center">
+            <p class="lead"><strong>50</strong><br> купонов в месяц</p>
+          </div>
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item"><strong>490 руб.</strong><br> в месяц</li>
+          </ul>
+          <div class="panel-footer">
+            <button class="btn btn-lg btn-block btn-success" href="#">ВЫБРАТЬ</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths">
+        <div class="panel price panel-info">
+          <div class="panel-heading  text-center">
+          <h4>START</h4>
+          </div>
+          <div class="panel-body text-center">
+            <p class="lead"><strong>150</strong><br> купонов в месяц</p>
+          </div>
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item"><strong>990 руб.</strong><br> в месяц</li>
+          </ul>
+          <div class="panel-footer">
+            <button class="btn btn-lg btn-block btn-info" href="#">ВЫБРАТЬ</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths">
+        <div class="panel price panel-primary">
+          <div class="panel-heading  text-center">
+          <h4>STANDARD</h4>
+          </div>
+          <div class="panel-body text-center">
+            <p class="lead"><strong>400</strong><br> купонов в месяц</p>
+          </div>
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item"><strong>1 990 руб.</strong><br> в месяц</li>
+          </ul>
+          <div class="panel-footer">
+            <button class="btn btn-lg btn-block btn-primary" href="#">ВЫБРАТЬ</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths">
+        <div class="panel price panel-danger">
+          <div class="panel-heading  text-center">
+          <h4>UNLIMITED</h4>
+          </div>
+          <div class="panel-body text-center">
+            <p class="lead"><strong class="unlim">Безлимитное</strong><br> количество купонов</p>
+          </div>
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item"><strong>4 990 руб.</strong><br> в месяц</li>
+          </ul>
+          <div class="panel-footer">
+            <button class="btn btn-lg btn-block btn-danger" href="#">ВЫБРАТЬ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </uib-tab>
 </uib-tabset>

@@ -27,7 +27,7 @@ function dataservice($http) {
         secretKey: 123,
         colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
         colorScheme: 0,
-        regionList: ['Томск', 'Пермь']
+        regionList: ['Томск', ' Самара']
       }
     ];
     return sites
