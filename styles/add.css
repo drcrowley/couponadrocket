@@ -133,8 +133,6 @@
 }
 
 .pay-period-line .btn {
-  display: block;
-  width: 100%;
   white-space: normal;
   margin-bottom: 20px;
 }
@@ -160,6 +158,15 @@
   font-size: 18px;
 }
 
+.total-price {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.total-price strong {
+  font-size: 20px;
+}
 
 @media (min-width: 768px) {
   .logout-button {

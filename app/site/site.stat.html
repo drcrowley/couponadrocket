@@ -1,0 +1,32 @@
+<div ng-controller="Stat as vm">
+  <form class="form-inline">
+    <div class="row margin-top-20">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="period-start" class="margin-right-05">C</label>
+          <p class="input-group">
+            <input type="text" class="form-control" id="period-start" uib-datepicker-popup="{{vm.format}}" ng-model="vm.date.start" is-open="vm.datePopupStart" datepicker-options="vm.dateOptions" ng-change="vm.onChangeDate()"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="vm.datePopupStart = !vm.datePopupStart"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>            
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="period-end" class="margin-right-05">По</label>
+          <p class="input-group">
+            <input type="text" class="form-control" id="period-end" uib-datepicker-popup="{{vm.format}}" ng-model="vm.date.end" is-open="vm.datePopupEnd" datepicker-options="vm.dateOptions" ng-change="vm.onChangeDate()"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default"  ng-click="vm.datePopupEnd = !vm.datePopupEnd"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>            
+        </div>
+      </div>
+    </div>      
+  </form>
+  <hr />
+  <canvas id="line" class="chart chart-line" chart-data="vm.data"
+    chart-labels="vm.labels" chart-series="vm.series" chart-options="vm.options"
+  </canvas>
+</div>

@@ -10,9 +10,7 @@
     function routeConfig($routeProvider) {
       $routeProvider      
         .when('/sites/:id', { 
-          templateUrl: 'app/site/site.html', 
-          controller: 'Site',
-          controllerAs: 'vm',          
+          templateUrl: 'app/site/site.html',   
           title: 'Мои сайты'
         });
     }
