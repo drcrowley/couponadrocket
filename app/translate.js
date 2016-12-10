@@ -15,7 +15,8 @@
         'Settings': 'Settings',
         'Balance': 'Replenish the balance',
         'Integration': 'Integration',
-        'Partner': 'Become a partner'
+        'Partner': 'Become a partner',
+        'Month': 'month'
       });
 
       $translateProvider.translations('ru', {
@@ -23,7 +24,8 @@
         'Settings': 'Настройки',
         'Balance': 'Пополнить баланс',
         'Integration': 'Интеграция',
-        'Partner': 'Стать партнёром'
+        'Partner': 'Стать партнёром',
+        'Month': 'месяц'
       });
 
       $translateProvider.preferredLanguage('ru');
