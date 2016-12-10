@@ -146,7 +146,9 @@
   margin-right: -10px;
   margin-left: -10px;  
 }
-
+.price h4 {
+  text-transform: uppercase;
+}
 .price .lead {
   margin-bottom: 0;
 }
