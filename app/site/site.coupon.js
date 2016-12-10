@@ -5,9 +5,9 @@
     .module('app.site')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$translate', '$routeParams', '$location', 'tmhDynamicLocale', 'dataservice'];
+    Coupon.$inject = ['$routeParams', '$location', 'dataservice'];
     
-    function Coupon($translate, $routeParams, $location, tmhDynamicLocale, dataservice) {
+    function Coupon($routeParams, $location, dataservice) {
       var vm = this;
 
       activate();
@@ -15,33 +15,13 @@
       vm.couponSettings = {
         regionList: []
       };
+
+      var site = dataservice.getCurrentSite();
+
+      vm.couponSettings = site ? site : {};
+
       vm.availableRegionList = ['Москва', 'Екатеринбург', 'Самара', 'Томск', 'Пермь'];
-
-      var siteId = $routeParams.id,
-          sites = dataservice.getSites();
-
-      if (sites.length) {
-        switch (siteId) {
-          case 'new':
-            $location.url('/sites/new');
-            break;
-            
-          case 'default':
-            $location.url('/sites/' + sites[0].id);
-            vm.couponSettings = sites[0];
-            break;
-
-          default:
-            sites.forEach(function(item) {
-              if (item.id == siteId) {
-                vm.couponSettings = item;
-              }
-            });
-        }
-      } else {
-        $location.url('/sites/new');
-      }
-
+      
       vm.submitCouponSettings = function() {
         console.log(vm.couponSettings);
       }

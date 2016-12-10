@@ -66,26 +66,6 @@
     }
 }
 
-
-// .header .navbar-inverse {
-//   background-color: #337ab7;
-//   border-color: #2e6da4;  
-// }
-
-// .header .navbar-inverse .navbar-nav > .active > a, 
-// .header .navbar-inverse .navbar-nav > .active > a:hover, 
-// .header .navbar-inverse .navbar-nav > .active > a:focus,
-// .header .navbar-inverse .navbar-nav > .open > a, 
-// .header .navbar-inverse .navbar-nav > .open > a:hover, 
-// .header .navbar-inverse .navbar-nav > .open > a:focus {
-//     background-color: #2e6da4;
-// }
-
-// .header .navbar-inverse .navbar-nav > li > a,
-// .navbar-inverse .navbar-brand {
-//   color: #fff;
-// }
-
 .autocomplete-wrapper {
   position: relative;
 }
@@ -168,6 +148,12 @@
 
 .total-price strong {
   font-size: 20px;
+}
+
+.sidebar dt,
+.sidebar dd {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @media (min-width: 768px) {

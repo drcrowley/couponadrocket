@@ -1,15 +1,30 @@
-<div class="sidebar">
-	<div class="panel panel-default">
-	  <div class="panel-body ">
-			<dl>
-			  <dt>Email</dt>
-			  <dd><a href="mailto:#">first.last@example.com</a></dd>
-			</dl>
-			<dl>
-			  <dt>Ваш баланс</dt>
-			  <dd><p class="lead">6.152 руб.</p></dd>
-			</dl>	
-			<button type="button" class="btn btn-primary btn-block">Пополнить</button>			
-	  </div>
-	</div>
+<div class="sidebar" ng-controller="Sidebar as vm">
+  <div class="panel panel-default">
+    <div class="panel-body ">
+      <dl>
+        <dd><a href="mailto:#">first.last@example.com</a></dd>
+      </dl>
+      <dl ng-if="vm.currentSite">
+        <dd><a ng-href="{{vm.currentSite.url}}">{{vm.currentSite.url}}</a></dd>
+      </dl>
+      <hr>
+      <dl>
+        <dt>Тариф:</dt>
+        <dd>Старт</dd>
+      </dl>
+      <dl>
+        <dt>Лимит:</dt>
+        <dd>10/100</dd>
+      </dl>
+      <dl>
+        <dt>Начало:</dt>
+        <dd>30.11.2016</dd>
+      </dl>
+      <dl>
+        <dt>Бонусных баллов:</dt>
+        <dd>1000</dd>
+      </dl>      
+      <a ng-href="#/site/{{vm.currentSite.id}}/2" class="btn btn-primary btn-block">Продлить тариф</a>      
+    </div>
+  </div>
 </div>

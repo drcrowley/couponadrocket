@@ -20,9 +20,9 @@
                   {{'Sites' | translate}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                  <li><a href="#/sites/new">Добавить сайт <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span></a></li>
+                  <li><a href="#/site/new">Добавить сайт <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span></a></li>
                   <li class="divider" ng-if="vm.sites && vm.sites.length"></li>
-                  <li ng-repeat="site in vm.sites"><a href="#/sites/{{site.id}}">{{site.title}}</a></li>
+                  <li ng-repeat="site in vm.sites"><a href="#/site/{{site.id}}">{{site.title}}</a></li>
                 </ul>                
               </li>
               <li ng-class="{active: vm.isRoute('Настройки')}">

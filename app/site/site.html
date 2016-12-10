@@ -1,13 +1,18 @@
-<uib-tabset>
-  <uib-tab index="0" heading="Купон">
+<uib-tabset active="vm.activeTab">
+  <uib-tab index="0" heading="Купон" select="vm.onTabSelect(0)">
     <div ng-include="'app/site/site.coupon.html'"></div>
   </uib-tab>
 
-  <uib-tab index="1" heading="Статистика">
+  <uib-tab index="1" heading="Статистика" ng-if="vm.currentSite" select="vm.onTabSelect(1)">
     <div ng-include="'app/site/site.stat.html'"></div>
   </uib-tab>
 
-  <uib-tab index="2" heading="Тарифы">
+  <uib-tab index="2" heading="Тарифы" select="vm.onTabSelect(2)">
     <div ng-include="'app/site/site.prices.html'"></div>
   </uib-tab>
+
+  <uib-tab index="3" heading="Отправленные купоны" select="vm.onTabSelect(3)">
+    <div ng-include="'app/site/site.sent.html'"></div>
+  </uib-tab>
+  
 </uib-tabset>

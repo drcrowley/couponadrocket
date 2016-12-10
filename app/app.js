@@ -24,6 +24,6 @@
   config.$inject = ['$routeProvider'];
 
   function config($routeProvider, $translateProvider) {
-    $routeProvider.otherwise({ redirectTo: '/sites/default' });
+    $routeProvider.otherwise({ redirectTo: '/site' });
   }
 })();

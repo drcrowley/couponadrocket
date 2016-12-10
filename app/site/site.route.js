@@ -9,9 +9,11 @@
 
     function routeConfig($routeProvider) {
       $routeProvider      
-        .when('/sites/:id', { 
+        .when('/site/:siteId?/:tabId?', { 
           templateUrl: 'app/site/site.html',   
-          title: 'Мои сайты'
+          title: 'Мои сайты',
+          controller: 'Site',
+          controllerAs: 'vm'
         });
     }
 

@@ -5,12 +5,14 @@
     .module('app.layout')
     .controller('Sidebar', Sidebar);
 
-  Sidebar.$inject = [];
+  Sidebar.$inject = ['$scope', 'dataservice'];
 
-  function Sidebar($route, routehelper) {
-    /*jshint validthis: true */
+  function Sidebar($rootScope, dataservice) {
     var vm = this;
-
+   
+    $rootScope.$on('changeCurrentSite', function (event, data) {
+      vm.currentSite = dataservice.getCurrentSite();
+    });
 
     activate();
 
