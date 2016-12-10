@@ -13,19 +13,23 @@
       vm.periods = [
         {
           month: 1,
-          salePercent: 0
+          salePercent: 0,
+          class: 'default'
         },
         {
           month: 3,
-          salePercent: 10
+          salePercent: 10,
+          class: 'warning'
         },
         {
           month: 6,
-          salePercent: 20
+          salePercent: 20,
+          class: 'success'
         },
         {
           month: 12,
-          salePercent: 30          
+          salePercent: 30,
+          class: 'danger'
         }
       ];
 

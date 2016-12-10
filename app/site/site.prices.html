@@ -5,13 +5,24 @@
     </div>
     <div class="col-md-12 col-lg-9">
       <div class="pay-period-line row">
-<!--         <div class="col-sm-6 col-md-3" ng-repeat="period in vm.periods">
+        <div class="col-sm-6 col-md-3" ng-repeat="period in vm.periods">
           <button type="button" class="btn btn-block btn-default btn-lg">
-            <div class="margin-bottom-03">{{period.month}} {{ 'Month' | translate:"{ val: period.month }":"messageformat" }}</div>
-            <span class="label label-default">{{period.salePercent ? period.salePercent + '%' : 'Без скидки'}}</span>
+            <div class="margin-bottom-03">
+              {{period.month}} 
+              <ng-pluralize count="period.month"
+                when="{
+                  'one': 'месяц',
+                  'few': 'месяца',
+                  'many': 'месяцев',
+                  'other': 'месяца',
+                }"
+              >
+              </ng-pluralize>
+            </div>
+            <span class="label label-{{period.class}}">{{period.salePercent ? period.salePercent + '%' : 'Без скидки'}}</span>
           </button>
-        </div> -->
-        <div class="col-sm-6 col-md-3">
+        </div>
+<!--         <div class="col-sm-6 col-md-3">
           <button type="button" class="btn btn-block btn-default btn-lg">
             <div class="margin-bottom-03">1 месяц</div>
             <span class="label label-default">Без скидки</span>
@@ -31,7 +42,7 @@
           <button type="button" class="btn btn-block btn-default btn-lg">
             <div class="margin-bottom-03">12 месяцев</div> <span class="label label-danger">Скидка 30%</span>
           </button>
-        </div>         
+        </div> -->         
       </div>
     </div>
   </div>
