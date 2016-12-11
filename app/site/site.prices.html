@@ -33,8 +33,9 @@
   <div class="row price-row margin-top-10">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths" ng-repeat="tariff in vm.tariffs">
       <div class="panel price panel-{{tariff.class}}">
-        <div class="panel-heading  text-center">
-        <h4>{{tariff.title}}</h4>
+        <div uib-tooltip="Enter something in this input field to disable this tooltip" class="panel-heading  text-center">
+        <h4>{{tariff.title}} </h4> <span class="glyphicon glyphicon-question-sign faq" 
+          ></span>
         </div>
         <div class="panel-body text-center">
           <p class="lead">

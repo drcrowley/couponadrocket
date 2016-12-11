@@ -21,6 +21,7 @@ function dataservice($http, $rootScope) {
         url: 'https://site1.com',
         title: 'Сайт 1',
         secretKey: 123,
+        promoCodeType: 0,
         colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
         colorScheme: 0,
         regionList: ['Томск', 'Пермь']

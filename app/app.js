@@ -10,6 +10,7 @@
     'tmh.dynamicLocale',
     'ui.bootstrap',
     'chart.js',
+    'flow',
 
     'app.translate',
     'app.layout',

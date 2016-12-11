@@ -12,13 +12,14 @@
 
       activate();
 
-      vm.couponSettings = {
-        regionList: []
+      var couponSettingsDefault = {
+        regionList: [],
+        promoCodeType: 0
       };
 
       var site = dataservice.getCurrentSite();
 
-      vm.couponSettings = site ? site : {};
+      vm.couponSettings = site ? site : couponSettingsDefault;
 
       vm.availableRegionList = ['Москва', 'Екатеринбург', 'Самара', 'Томск', 'Пермь'];
       

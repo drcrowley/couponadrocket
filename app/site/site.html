@@ -11,7 +11,7 @@
     <div ng-include="'app/site/site.prices.html'"></div>
   </uib-tab>
 
-  <uib-tab index="3" heading="Отправленные купоны" select="vm.onTabSelect(3)">
+  <uib-tab index="3" heading="Отправленные купоны" ng-if="vm.currentSite" select="vm.onTabSelect(3)">
     <div ng-include="'app/site/site.sent.html'"></div>
   </uib-tab>
   
