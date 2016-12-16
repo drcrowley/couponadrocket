@@ -19,7 +19,8 @@
     'app.balance',
     'app.faq',
     'app.integration',
-    'app.partner'
+    'app.partner',
+    'app.payment'
   ]).config(config);
 
   config.$inject = ['$routeProvider'];

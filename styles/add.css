@@ -196,12 +196,22 @@
   vertical-align: middle;
 }
 
-.faq {
+.faq-link {
   pointer-events: auto;
   position: static;
   vertical-align: middle;
   margin-top: -2px;
   margin-left: 5px;
+}
+
+.sum-label {
+  text-align: right;
+}
+
+@media (max-width: 992px) {
+  .sum-label {
+    text-align: left;
+  }
 }
 
 @media (min-width: 768px) {

@@ -1,0 +1,44 @@
+<h3>Оплата</h3>
+<hr/>
+<form class="form-horizontal">
+  <div class="form-group">
+    <div class="col-md-3 sum-label"><strong>Сумма</strong>: </div>
+    <div class="col-md-9">
+      {{vm.orderData.totalPrice}} руб.
+    </div>
+    
+  </div>
+  <div class="form-group">
+    <label for="organization" class="col-md-3 control-label">Форма организации предприятия</label>
+    <div class="col-md-9">
+      <select class="form-control" name="organization" id="organization" 
+        ng-model="vm.paymentData.organization">
+          <option ng-selected="true" value="ООО">ООО</option>
+          <option value="ЗАО">ЗАО</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="company" class="col-md-3 control-label">Название предприятия</label>
+    <div class="col-md-9">
+      <input type="text" class="form-control" id="company" placeholder="" ng-model="vm.paymentData.company">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="address" class="col-md-3 control-label">Почтовый адрес</label>
+    <div class="col-md-9">
+      <textarea class="form-control" rows="4" id="address" ng-model="vm.paymentData.address"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tel" class="col-md-3 control-label">Телефон</label>
+    <div class="col-md-9">
+      <input type="tel" class="form-control" id="tel" placeholder="" ng-model="vm.paymentData.tel">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-9 col-md-offset-3">
+      <button type="submit" class="btn btn-primary">Оплатить</button>
+    </div>
+  </div>
+</form>

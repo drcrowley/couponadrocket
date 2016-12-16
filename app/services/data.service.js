@@ -10,9 +10,13 @@ function dataservice($http, $rootScope) {
     getCurrentSite: getCurrentSite,
     setCurrentSite: setCurrentSite,
     removeCurrentSite: removeCurrentSite,
+
+    setOrderData: setOrderData,
+    getOrderData: getOrderData
   };
 
   var currentSite;
+  var orderData;
 
   function getSites() {
     var sites = [
@@ -58,5 +62,14 @@ function dataservice($http, $rootScope) {
   function removeCurrentSite() {
     currentSite = null;
     $rootScope.$broadcast('changeCurrentSite');
+  }
+
+
+  function getOrderData() {
+    return orderData;
+  }
+
+  function setOrderData(data) {
+    orderData = data
   }
 }

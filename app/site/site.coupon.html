@@ -3,28 +3,28 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
-          <label for="site-address">Адрес сайта <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="site-address">Адрес сайта <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="site-url" placeholder="" ng-model="vm.couponSettings.url">
         </div>
 
         <div class="form-group">
-          <label for="site-title">Заголовок <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="site-title">Заголовок <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="site-title" placeholder="" ng-model="vm.couponSettings.title">
         </div>
         <div class="form-group">
-          <label for="description">Описание купона <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="description">Описание купона <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <textarea class="form-control" rows="2" ng-model="vm.couponSettings.description"></textarea>
         </div>
         <div class="form-group">
-          <label for="secret-key">Секретный ключ <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="secret-key">Секретный ключ <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="secret-key" placeholder="" readonly ng-model="vm.couponSettings.secretKey">
         </div>
         <div class="form-group">
-          <label for="promo-code-type">Промо-коды <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="promo-code-type">Промо-коды <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <div class="margin-top-03">
             <label class="radio-inline">
@@ -38,7 +38,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="site-icon">Иконка <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="site-icon">Иконка <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <div class="site-icon" flow-init="{singleFile:true}"
            flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="color-scheme">Цветовая тема <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="color-scheme">Цветовая тема <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <select class="form-control" name="color-scheme" id="color-scheme" 
             ng-options="color.id as color.title for color in vm.couponSettings.colorSchemeList" 
@@ -66,12 +66,12 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="conditions">Условия использования купона <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="conditions">Условия использования купона <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <textarea class="form-control" rows="5" ng-model="vm.couponSettings.conditions" style="height: 128px;"></textarea>
         </div>
         <div class="form-group">
-          <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq" 
+          <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="vm.couponSettings.promoCodeType != 1" ng-model="vm.couponSettings.promoCode">
         </div>        
@@ -79,7 +79,7 @@
     </div>
     <hr />
     <div class="form-group">
-      <label for="region">Регион посетителя для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq" 
+      <label for="region">Регион посетителя для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
       <div class="input-group">
         <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region for region in vm.availableRegionList | filter:$viewValue | limitTo:5">

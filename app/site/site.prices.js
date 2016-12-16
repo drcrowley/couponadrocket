@@ -5,9 +5,9 @@
     .module('app.site')
     .controller('Prices', Prices);
 
-    Prices.$inject = [];
+    Prices.$inject = ['$location', 'dataservice'];
     
-    function Prices() {
+    function Prices($location, dataservice) {
 
       var vm = this;
 
@@ -82,6 +82,18 @@
       vm.chooseTariff = function(tariff) {
         vm.choosedTariff = tariff;
         calcTotalPrice();
+      }
+
+      vm.pay = function() {
+        var orderData = {
+          period: vm.choosedPeriod,
+          tariff: vm.choosedTariff,
+          totalPrice: vm.totalPrice
+        };
+
+        dataservice.setOrderData(orderData);
+
+        $location.path('/payment');
       }
 
       function calcDiscountPrice() {

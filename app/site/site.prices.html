@@ -34,7 +34,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5ths" ng-repeat="tariff in vm.tariffs">
       <div class="panel price panel-{{tariff.class}}">
         <div uib-tooltip="Enter something in this input field to disable this tooltip" class="panel-heading  text-center">
-        <h4>{{tariff.title}} </h4> <span class="glyphicon glyphicon-question-sign faq" 
+        <h4>{{tariff.title}} </h4> <span class="glyphicon glyphicon-question-sign faq-link" 
           ></span>
         </div>
         <div class="panel-body text-center">
@@ -58,6 +58,6 @@
   </div>
   <div class="pull-right margin-top-10">
    <div class="total-price">Итого к оплате: <strong>{{vm.totalPrice}}</strong> руб.</div>
-    <button type="button" class="btn btn-primary margin-left-10">Оплатить</button>
+    <button type="button" class="btn btn-primary margin-left-10" ng-click="vm.pay()">Оплатить</button>
   </div>  
 </div> 
