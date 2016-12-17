@@ -12,18 +12,18 @@
     'chart.js',
     'flow',
 
+    'app.templates',
     'app.translate',
     'app.layout',
     'app.site',
     'app.settings',
-    'app.balance',
     'app.faq',
     'app.integration',
     'app.partner',
     'app.payment'
   ]).config(config);
 
-  config.$inject = ['$routeProvider'];
+  config.$inject = ['$routeProvider', '$translateProvider'];
 
   function config($routeProvider, $translateProvider) {
     $routeProvider.otherwise({ redirectTo: '/site' });

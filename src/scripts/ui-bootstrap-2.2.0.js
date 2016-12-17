@@ -202,7 +202,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse', 'ui.bootstrap
     controllerAs: 'accordion',
     transclude: true,
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/accordion/accordion.html';
+      return attrs.templateUrl || 'app/uib/template/accordion/accordion.html';
     }
   };
 })
@@ -214,7 +214,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse', 'ui.bootstrap
     transclude: true,              // It transcludes the contents of the directive into the template
     restrict: 'A',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/accordion/accordion-group.html';
+      return attrs.templateUrl || 'app/uib/template/accordion/accordion-group.html';
     },
     scope: {
       heading: '@',               // Interpolate the heading attribute onto this scope
@@ -324,7 +324,7 @@ angular.module('ui.bootstrap.alert', [])
     controllerAs: 'alert',
     restrict: 'A',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/alert/alert.html';
+      return attrs.templateUrl || 'app/uib/template/alert/alert.html';
     },
     transclude: true,
     scope: {
@@ -718,7 +718,7 @@ angular.module('ui.bootstrap.carousel', [])
     controllerAs: 'carousel',
     restrict: 'A',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/carousel/carousel.html';
+      return attrs.templateUrl || 'app/uib/template/carousel/carousel.html';
     },
     scope: {
       active: '=',
@@ -736,7 +736,7 @@ angular.module('ui.bootstrap.carousel', [])
     restrict: 'A',
     transclude: true,
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/carousel/slide.html';
+      return attrs.templateUrl || 'app/uib/template/carousel/slide.html';
     },
     scope: {
       actual: '=?',
@@ -2006,7 +2006,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
 .directive('uibDatepicker', function() {
   return {
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/datepicker/datepicker.html';
+      return attrs.templateUrl || 'app/uib/template/datepicker/datepicker.html';
     },
     scope: {
       datepickerOptions: '=?'
@@ -2026,7 +2026,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
 .directive('uibDaypicker', function() {
   return {
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/datepicker/day.html';
+      return attrs.templateUrl || 'app/uib/template/datepicker/day.html';
     },
     require: ['^uibDatepicker', 'uibDaypicker'],
     restrict: 'A',
@@ -2043,7 +2043,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
 .directive('uibMonthpicker', function() {
   return {
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/datepicker/month.html';
+      return attrs.templateUrl || 'app/uib/template/datepicker/month.html';
     },
     require: ['^uibDatepicker', 'uibMonthpicker'],
     restrict: 'A',
@@ -2060,7 +2060,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
 .directive('uibYearpicker', function() {
   return {
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/datepicker/year.html';
+      return attrs.templateUrl || 'app/uib/template/datepicker/year.html';
     },
     require: ['^uibDatepicker', 'uibYearpicker'],
     restrict: 'A',
@@ -2708,8 +2708,8 @@ angular.module('ui.bootstrap.datepickerPopup', ['ui.bootstrap.datepicker', 'ui.b
   closeText: 'Done',
   currentText: 'Today',
   datepickerPopup: 'yyyy-MM-dd',
-  datepickerPopupTemplateUrl: 'uib/template/datepickerPopup/popup.html',
-  datepickerTemplateUrl: 'uib/template/datepicker/datepicker.html',
+  datepickerPopupTemplateUrl: 'app/uib/template/datepickerPopup/popup.html',
+  datepickerTemplateUrl: 'app/uib/template/datepicker/datepicker.html',
   html5Types: {
     date: 'yyyy-MM-dd',
     'datetime-local': 'yyyy-MM-ddTHH:mm:ss.sss',
@@ -3140,7 +3140,7 @@ function($scope, $element, $attrs, $compile, $log, $parse, $window, $document, $
     restrict: 'A',
     transclude: true,
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/datepickerPopup/popup.html';
+      return attrs.templateUrl || 'app/uib/template/datepickerPopup/popup.html';
     }
   };
 });
@@ -3723,7 +3723,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap', 'ui.bootstrap.p
       restrict: 'A',
       transclude: true,
       templateUrl: function(tElement, tAttrs) {
-        return tAttrs.templateUrl || 'uib/template/modal/window.html';
+        return tAttrs.templateUrl || 'app/uib/template/modal/window.html';
       },
       link: function(scope, element, attrs) {
         element.addClass(attrs.windowTopClass || '');
@@ -4591,7 +4591,7 @@ angular.module('ui.bootstrap.pager', ['ui.bootstrap.paging', 'ui.bootstrap.tabin
     controller: 'UibPagerController',
     controllerAs: 'pager',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/pager/pager.html';
+      return attrs.templateUrl || 'app/uib/template/pager/pager.html';
     },
     link: function(scope, element, attrs, ctrls) {
       element.addClass('pager');
@@ -4744,7 +4744,7 @@ angular.module('ui.bootstrap.pagination', ['ui.bootstrap.paging', 'ui.bootstrap.
     controller: 'UibPaginationController',
     controllerAs: 'pagination',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/pagination/pagination.html';
+      return attrs.templateUrl || 'app/uib/template/pagination/pagination.html';
     },
     link: function(scope, element, attrs, ctrls) {
       element.addClass('pagination');
@@ -5446,7 +5446,7 @@ function ($animate, $sce, $compile, $templateRequest) {
   return {
     restrict: 'A',
     scope: { content: '@' },
-    templateUrl: 'uib/template/tooltip/tooltip-popup.html'
+    templateUrl: 'app/uib/template/tooltip/tooltip-popup.html'
   };
 })
 
@@ -5458,7 +5458,7 @@ function ($animate, $sce, $compile, $templateRequest) {
   return {
     restrict: 'A',
     scope: { contentExp: '&', originScope: '&' },
-    templateUrl: 'uib/template/tooltip/tooltip-template-popup.html'
+    templateUrl: 'app/uib/template/tooltip/tooltip-template-popup.html'
   };
 })
 
@@ -5472,7 +5472,7 @@ function ($animate, $sce, $compile, $templateRequest) {
   return {
     restrict: 'A',
     scope: { contentExp: '&' },
-    templateUrl: 'uib/template/tooltip/tooltip-html-popup.html'
+    templateUrl: 'app/uib/template/tooltip/tooltip-html-popup.html'
   };
 })
 
@@ -5493,7 +5493,7 @@ angular.module('ui.bootstrap.popover', ['ui.bootstrap.tooltip'])
   return {
     restrict: 'A',
     scope: { uibTitle: '@', contentExp: '&', originScope: '&' },
-    templateUrl: 'uib/template/popover/popover-template.html'
+    templateUrl: 'app/uib/template/popover/popover-template.html'
   };
 })
 
@@ -5507,7 +5507,7 @@ angular.module('ui.bootstrap.popover', ['ui.bootstrap.tooltip'])
   return {
     restrict: 'A',
     scope: { contentExp: '&', uibTitle: '@' },
-    templateUrl: 'uib/template/popover/popover-html.html'
+    templateUrl: 'app/uib/template/popover/popover-html.html'
   };
 })
 
@@ -5521,7 +5521,7 @@ angular.module('ui.bootstrap.popover', ['ui.bootstrap.tooltip'])
   return {
     restrict: 'A',
     scope: { uibTitle: '@', content: '@' },
-    templateUrl: 'uib/template/popover/popover.html'
+    templateUrl: 'app/uib/template/popover/popover.html'
   };
 })
 
@@ -5603,7 +5603,7 @@ angular.module('ui.bootstrap.progressbar', [])
     scope: {
       maxParam: '=?max'
     },
-    templateUrl: 'uib/template/progressbar/progress.html'
+    templateUrl: 'app/uib/template/progressbar/progress.html'
   };
 })
 
@@ -5616,7 +5616,7 @@ angular.module('ui.bootstrap.progressbar', [])
       value: '=',
       type: '@'
     },
-    templateUrl: 'uib/template/progressbar/bar.html',
+    templateUrl: 'app/uib/template/progressbar/bar.html',
     link: function(scope, element, attrs, progressCtrl) {
       progressCtrl.addBar(scope, element, attrs);
     }
@@ -5633,7 +5633,7 @@ angular.module('ui.bootstrap.progressbar', [])
       maxParam: '=?max',
       type: '@'
     },
-    templateUrl: 'uib/template/progressbar/progressbar.html',
+    templateUrl: 'app/uib/template/progressbar/progressbar.html',
     link: function(scope, element, attrs, progressCtrl) {
       progressCtrl.addBar(scope, angular.element(element.children()[0]), {title: attrs.title});
     }
@@ -5739,7 +5739,7 @@ angular.module('ui.bootstrap.rating', [])
       onLeave: '&'
     },
     controller: 'UibRatingController',
-    templateUrl: 'uib/template/rating/rating.html',
+    templateUrl: 'app/uib/template/rating/rating.html',
     link: function(scope, element, attrs, ctrls) {
       var ratingCtrl = ctrls[0], ngModelCtrl = ctrls[1];
       ratingCtrl.init(ngModelCtrl);
@@ -5857,7 +5857,7 @@ angular.module('ui.bootstrap.tabs', [])
     controller: 'UibTabsetController',
     controllerAs: 'tabset',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/tabs/tabset.html';
+      return attrs.templateUrl || 'app/uib/template/tabs/tabset.html';
     },
     link: function(scope, element, attrs) {
       scope.vertical = angular.isDefined(attrs.vertical) ?
@@ -5873,7 +5873,7 @@ angular.module('ui.bootstrap.tabs', [])
     require: '^uibTabset',
     replace: true,
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'uib/template/tabs/tab.html';
+      return attrs.templateUrl || 'app/uib/template/tabs/tab.html';
     },
     transclude: true,
     scope: {
@@ -5997,7 +5997,7 @@ angular.module('ui.bootstrap.timepicker', [])
   mousewheel: true,
   arrowkeys: true,
   showSpinners: true,
-  templateUrl: 'uib/template/timepicker/timepicker.html'
+  templateUrl: 'app/uib/template/timepicker/timepicker.html'
 })
 
 .controller('UibTimepickerController', ['$scope', '$element', '$attrs', '$parse', '$log', '$locale', 'uibTimepickerConfig', function($scope, $element, $attrs, $parse, $log, $locale, timepickerConfig) {
@@ -7175,7 +7175,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
       },
       replace: true,
       templateUrl: function(element, attrs) {
-        return attrs.popupTemplateUrl || 'uib/template/typeahead/typeahead-popup.html';
+        return attrs.popupTemplateUrl || 'app/uib/template/typeahead/typeahead-popup.html';
       },
       link: function(scope, element, attrs) {
         scope.templateUrl = attrs.templateUrl;
@@ -7216,7 +7216,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
         query: '='
       },
       link: function(scope, element, attrs) {
-        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'uib/template/typeahead/typeahead-match.html';
+        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'app/uib/template/typeahead/typeahead-match.html';
         $templateRequest(tplUrl).then(function(tplContent) {
           var tplEl = angular.element(tplContent.trim());
           element.replaceWith(tplEl);
