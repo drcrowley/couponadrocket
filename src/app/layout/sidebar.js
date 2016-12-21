@@ -14,6 +14,14 @@
       vm.currentSite = dataservice.getCurrentSite();
     });
 
+    vm.toggleStatus = function() {
+      if (vm.currentSite.status == 'active') {
+        vm.currentSite.status = 'disabled';
+      } else {
+        vm.currentSite.status = 'active';
+      }
+    };
+
     activate();
 
     function activate() { 

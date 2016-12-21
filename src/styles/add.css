@@ -208,6 +208,26 @@
   text-align: right;
 }
 
+.coupon-info {
+  margin-bottom: 15px;
+}
+.coupon-info h5 {
+  font-size: 14px;
+}
+
+.coupon-info dl {
+   margin-bottom: 7px;
+}
+
+.coupon-info dt {
+  font-size: 12px;
+}
+
+.coupon-status .label {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
 @media (max-width: 992px) {
   .sum-label {
     text-align: left;

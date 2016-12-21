@@ -32,7 +32,7 @@ gulp.task('templatecache', function() {
         dirs.source + '/app/**/*.html',
         dirs.source + '/uib/**/*.html'
       ])
-      .pipe(htmlmin({collapseWhitespace: true}))
+      .pipe(htmlmin())
       .pipe(templateCache('templates.js', {
           module: 'app.templates',
           standalone: true,

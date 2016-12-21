@@ -28,7 +28,8 @@ function dataservice($http, $rootScope) {
         promoCodeType: 0,
         colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
         colorScheme: 0,
-        regionList: ['Томск', 'Пермь']
+        regionList: ['Томск', 'Пермь'],
+        status: 'verified'
       },
       {
         id: 2,
@@ -37,7 +38,18 @@ function dataservice($http, $rootScope) {
         secretKey: 123,
         colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
         colorScheme: 0,
-        regionList: ['Томск', ' Самара']
+        regionList: ['Томск', ' Самара'],
+        status: 'active',
+      },
+      {
+        id: 3,
+        url: 'https://site3.com',
+        title: 'Сайт 3',
+        secretKey: 123,
+        colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
+        colorScheme: 0,
+        regionList: ['Томск', ' Самара'],
+        status: 'disabled'
       }
     ];
     return sites

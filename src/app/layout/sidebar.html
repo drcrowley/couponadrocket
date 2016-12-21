@@ -4,27 +4,50 @@
       <dl>
         <dd><a href="mailto:#">first.last@example.com</a></dd>
       </dl>
+      <dl>
+        <dt>Лимит: </dt>
+        <dd>10/100</dd>
+      </dl> 
+      <hr>
       <dl ng-if="vm.currentSite">
+        <dt>Сайт: </dt>
         <dd><a ng-href="{{vm.currentSite.url}}">{{vm.currentSite.url}}</a></dd>
       </dl>
-      <hr>
-      <dl>
-        <dt>Тариф:</dt>
-        <dd>Старт</dd>
-      </dl>
-      <dl>
-        <dt>Лимит:</dt>
-        <dd>10/100</dd>
-      </dl>
-      <dl>
-        <dt>Начало:</dt>
-        <dd>30.11.2016</dd>
-      </dl>
-      <dl>
-        <dt>Бонусных баллов:</dt>
-        <dd>1000</dd>
-      </dl>      
-      <a ng-href="#/site/{{vm.currentSite.id}}/2" class="btn btn-primary btn-block">Продлить тариф</a>      
+      <div class="coupon-info">
+        <h5><strong>Отправленных купонов:</strong></h5>
+        <dl>
+          <dt>За сутки: </dt>
+          <dd>10</dd>
+        </dl>
+        <dl>
+          <dt>За неделю: </dt>
+          <dd>50</dd>
+        </dl>
+        <dl>
+          <dt>За месяц: </dt>
+          <dd>120</dd>
+        </dl>        
+      </div>
+      <dl class="coupon-status">
+        <dt>Статус: </dt>
+        <dd>
+          <span class="label" ng-class="
+          {
+            'label-success': vm.currentSite.status == 'active', 
+            'label-warning': vm.currentSite.status == 'verified',
+            'label-danger': vm.currentSite.status == 'disabled'
+          }">{{vm.currentSite.status == 'active' ? 'Активен' : vm.currentSite.status == 'verified' ? 'Проверяется' : 'Остановлен'}}</span>
+        </dd>
+      </dl>  
+      <button type="button" class="btn" 
+        ng-disabled="vm.currentSite.status == 'verified'"
+        ng-class="
+          {'btn-success': vm.currentSite.status != 'active',
+          'btn-danger': vm.currentSite.status == 'active'}"
+        ng-click="vm.toggleStatus()">
+        {{vm.currentSite.status == 'active' ? 'Стоп' : 'Старт'}}
+      </button>
+      <a ng-href="#/site/{{vm.currentSite.id}}/2" class="btn btn-primary">Продлить тариф</a>      
     </div>
   </div>
 </div>
