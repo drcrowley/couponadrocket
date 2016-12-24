@@ -2,18 +2,18 @@
   'use strict';
 
   angular
-    .module('app.settings')
+    .module('app.bill')
     .config(routeConfig);
 
     routeConfig.$inject = ['$routeProvider'];
 
     function routeConfig($routeProvider) {
       $routeProvider
-        .when('/integration', { 
-          templateUrl: 'app/integration/integration.html', 
-          controller: 'Integration',
+        .when('/bill', { 
+          templateUrl: 'app/bill/bill.html', 
+          controller: 'Bill',
           controllerAs: 'vm',          
-          title: 'Интеграция'
+          title: 'Выставить счет'
         });
     }
 

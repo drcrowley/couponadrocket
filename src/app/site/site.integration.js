@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.integration')
+    .module('app.site')
     .controller('Integration', Integration);
 
     Integration.$inject = [];

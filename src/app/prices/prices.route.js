@@ -2,18 +2,18 @@
   'use strict';
 
   angular
-    .module('app.payment')
+    .module('app.prices')
     .config(routeConfig);
 
     routeConfig.$inject = ['$routeProvider'];
 
     function routeConfig($routeProvider) {
       $routeProvider
-        .when('/payment', { 
-          templateUrl: 'app/payment/payment.html', 
-          controller: 'Payment',
+        .when('/prices', { 
+          templateUrl: 'app/prices/prices.html', 
+          controller: 'Prices',
           controllerAs: 'vm',          
-          title: 'Оплата'
+          title: 'Тарифы'
         });
     }
 

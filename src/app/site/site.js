@@ -13,7 +13,7 @@
       var siteId = $routeParams.siteId,
           sites = dataservice.getSites();
 
-      vm.activeTab = $routeParams.tabId ? parseInt($routeParams.tabId) : 0;
+      vm.activeTab = $routeParams.tabId && parseInt($routeParams.tabId) < 4  ? parseInt($routeParams.tabId) : 0;
 
       activate();
 

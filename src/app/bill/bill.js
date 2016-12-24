@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('app.payment')
-    .controller('Payment', Payment);
+    .module('app.bill')
+    .controller('Bill', Bill);
 
-    Payment.$inject = ['$location', 'dataservice'];
+    Bill.$inject = ['$location', 'dataservice'];
     
-    function Payment($location, dataservice) {
+    function Bill($location, dataservice) {
       var vm = this;
       activate();
 

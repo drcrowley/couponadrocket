@@ -31,13 +31,13 @@
             </ul>
           </div>
           <div class="navbar-right">
-            <ul class="nav navbar-nav">        
+            <ul class="nav navbar-nav">
+              <li ng-class="{active: vm.isRoute('Тарифы')}">
+                  <a href="#/prices">Тарифы</a>
+              </li>             
               <li ng-class="{active: vm.isRoute('Faq')}">
                   <a href="#/faq">FAQ</a>
               </li>          
-              <li ng-class="{active: vm.isRoute('Интеграция')}">
-                  <a href="#/integration">{{'Integration' | translate}}</a>
-              </li>
               <li ng-class="{active: vm.isRoute('Стать партнёром')}">
                   <a href="#/partner">{{'Partner' | translate}}</a>
               </li>

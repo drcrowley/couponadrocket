@@ -121,10 +121,9 @@
   white-space: normal;
   display: block;
 }
-
-.price-row {
-  margin-right: -10px;
-  margin-left: -10px;  
+.price .panel-body {
+  min-height: 117px;
+  display: flex;
 }
 .price h4 {
   text-transform: uppercase;
@@ -132,7 +131,9 @@
   vertical-align: middle;
 }
 .price .lead {
-  margin-bottom: 0;
+  display: block;
+  width: 100%;
+  margin: auto;
 }
 .price .panel-heading h3 {
   margin-top: 10px;

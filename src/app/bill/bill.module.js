@@ -1,5 +1,5 @@
 (function() {
   'use strict';
 
-  angular.module('app.payment', []);
+  angular.module('app.bill', []);
 })();

@@ -18,9 +18,9 @@
     'app.site',
     'app.settings',
     'app.faq',
-    'app.integration',
     'app.partner',
-    'app.payment'
+    'app.bill',
+    'app.prices'
   ]).config(config);
 
   config.$inject = ['$routeProvider', '$translateProvider'];

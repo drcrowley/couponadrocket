@@ -35,7 +35,7 @@
           animation: true,
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
-          templateUrl: 'myModalContent.html',
+          templateUrl: 'feedback.html',
           controller: 'FaqFeedback', 
           controllerAs: 'vm'
         });
