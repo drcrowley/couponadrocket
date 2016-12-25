@@ -1,44 +1,58 @@
 <div class="margin-top-15" ng-controller="Coupon as vm">
-  <form ng-submit="vm.submitCouponSettings()">
+  <form name="couponForm" ng-submit="couponForm.$valid ? vm.submitCouponSettings() : ''" novalidate>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
-          <label for="site-address">Адрес сайта <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="site-address">Адрес сайта* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="site-url" placeholder="" ng-model="vm.couponSettings.url">
-        </div>
-
-        <div class="form-group">
-          <label for="site-title">Заголовок <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="site-title" placeholder="" ng-model="vm.couponSettings.title">
-        </div>
-        <div class="form-group">
-          <label for="description">Описание купона <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <textarea class="form-control" rows="2" ng-model="vm.couponSettings.description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="promo-code-type">Промо-коды <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <div class="margin-top-03">
-            <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-1" value="0" ng-model="vm.couponSettings.promoCodeType"> Сгенерировать системой
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-2" value="1" ng-model="vm.couponSettings.promoCodeType"> Загрузить вручную
-            </label>            
+          <input type="text" class="form-control" id="site-url" name="siteUrl" placeholder="" 
+            ng-required="true"
+            ng-model="vm.couponSettings.url"
+          >
+          <div class="text-danger" ng-messages="couponForm.siteUrl.$error" ng-if="couponForm.$submitted">
+            <div ng-message="required">Это поле обязательно для заполнения.</div>
           </div>
         </div>
         <div class="form-group">
-          <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="site-title">Заголовок* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="vm.couponSettings.promoCodeType != 1" ng-model="vm.couponSettings.promoCode">
+          <input type="text" class="form-control" id="site-title" name="siteTitle" placeholder="" 
+            ng-required="true" 
+            ng-maxlength="40" 
+            ng-model="vm.couponSettings.title">
+          <div class="text-danger" ng-messages="couponForm.siteTitle.$error" ng-if="couponForm.$submitted">
+            <div ng-message="required">Это поле обязательно для заполнения.</div>
+            <div ng-message="maxlength">Введите не больше 40 символов</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Описание купона* <span class="glyphicon glyphicon-question-sign faq-link" 
+          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <textarea class="form-control" rows="2" id="description" name="description"
+            ng-required="true"
+            ng-maxlength="105" 
+            ng-model="vm.couponSettings.description"></textarea>
+          <div class="text-danger" ng-messages="couponForm.description.$error" ng-if="couponForm.$submitted">
+            <div ng-message="required">Это поле обязательно для заполнения.</div>
+            <div ng-message="maxlength">Введите не больше 105 символов</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="conditions">Условия использования купона* <span class="glyphicon glyphicon-question-sign faq-link" 
+          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <textarea class="form-control" rows="5" ng-model="vm.couponSettings.conditions" name="conditions" style="height: 128px;"
+            ng-required="true"
+            ng-maxlength="300" 
+            ></textarea>
+          <div class="text-danger" ng-messages="couponForm.conditions.$error" ng-if="couponForm.$submitted">
+            <div ng-message="required">Это поле обязательно для заполнения.</div>
+            <div ng-message="maxlength">Введите не больше 105 символов</div>
+          </div>
         </div> 
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="site-icon">Иконка <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="site-icon">Иконка (макс. размер 1 мб.)<span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <div class="site-icon" flow-init="{singleFile:true}"
            flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
@@ -66,10 +80,30 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="conditions">Условия использования купона <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="site-limit">Лимит в месяц* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <textarea class="form-control" rows="5" ng-model="vm.couponSettings.conditions" style="height: 128px;"></textarea>
-        </div>        
+          <input type="text" class="form-control" id="site-limit" name="siteLimit" placeholder="" ng-model="vm.couponSettings.limit" ng-required="true" >
+          <div class="text-danger" ng-messages="couponForm.siteLimit.$error" ng-if="couponForm.$submitted">
+            <div ng-message="required">Это поле обязательно для заполнения.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="promo-code-type">Промо-коды <span class="glyphicon glyphicon-question-sign faq-link" 
+          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <div class="margin-top-03">
+            <label class="radio-inline">
+              <input type="radio" name="promo-code-type" id="promo-code-type-1" value="0" ng-model="vm.couponSettings.promoCodeType"> Сгенерировать системой
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="promo-code-type" id="promo-code-type-2" value="1" ng-model="vm.couponSettings.promoCodeType"> Загрузить вручную
+            </label>            
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq-link" 
+          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="vm.couponSettings.promoCodeType != 1" ng-model="vm.couponSettings.promoCode">
+        </div>       
       </div>
     </div>
     <hr />

@@ -41,12 +41,14 @@
       vm.pay = function(tariff) {
         dataservice.setOrderData(tariff);
 
-        $uibModal.open({
-          animation: true,
-          templateUrl: 'payment.html',
-          controller: 'Payment', 
-          controllerAs: 'vm'
-        });
+        if(tariff.price > 0) {
+           $uibModal.open({
+            animation: true,
+            templateUrl: 'payment.html',
+            controller: 'Payment', 
+            controllerAs: 'vm'
+          });         
+        }
       }
 
     }

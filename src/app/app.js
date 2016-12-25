@@ -6,6 +6,7 @@
     'ngTouch',
     'ngAnimate',
     'ngSanitize',
+    'ngMessages',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     'ui.bootstrap',
