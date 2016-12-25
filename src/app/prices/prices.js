@@ -41,10 +41,8 @@
       vm.pay = function(tariff) {
         dataservice.setOrderData(tariff);
 
-        vm.modalInstance = $uibModal.open({
+        $uibModal.open({
           animation: true,
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
           templateUrl: 'payment.html',
           controller: 'Payment', 
           controllerAs: 'vm'
@@ -56,9 +54,9 @@
 
 angular.module('app.prices').controller('Payment', Payment);
 
-Payment.$inject = ['$location', '$uibModalInstance'];
+Payment.$inject = ['$location', '$uibModalInstance', '$uibModal'];
 
-function Payment($location, $uibModalInstance) {
+function Payment($location, $uibModalInstance, $uibModal) {
   var vm = this;
 
   vm.paymentType = 'card';
@@ -71,6 +69,17 @@ function Payment($location, $uibModalInstance) {
   vm.requestBill = function() {
     $uibModalInstance.close();
     $location.path('/bill');
+  };
+
+  vm.showOffer = function($event) {
+
+    $event.stopPropagation();
+    $event.preventDefault();
+    
+    $uibModal.open({
+      animation: true,
+      templateUrl: 'offer.html'
+    });
   };
 
 };
