@@ -174,22 +174,28 @@
 }
 
 .site-icon-preview {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   left: 0;
   top: 50%;
-  margin-top: -30px;
+  margin-top: -25px;
+}
+
+.site-icon-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
 }
 
 .site-icon-image {
+  max-width: 100%;
   position: absolute;
-  bottom: 4px;
-  top: 4px;
-  left: 4px;
-  right: 4px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   margin: auto;
-  max-width: 90% !important;
 }
 
 .site-icon-buttons {
