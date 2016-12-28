@@ -34,12 +34,12 @@
         } 
       }
 
-      vm.addFile = function ( $files, $event, $flow ) {
+      vm.addFile = function ($files, $event, $flow) {
         var base64;
         var fileReader = new FileReader();
           fileReader.onload = function (event) {
             base64 = event.target.result;
-            console.log(base64);
+            vm.couponSettings.image = base64; 
           };
         
         fileReader.readAsDataURL($files[0].file);
