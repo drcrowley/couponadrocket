@@ -55,7 +55,8 @@
           <label for="site-icon">Иконка (макс. размер 1 мб.)<span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <div class="site-icon" flow-init="{singleFile:true}"
-           flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+           flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+           flow-files-submitted="vm.addFile( $files, $event, $flow )">
             <div class="site-icon-buttons">
               <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn>Добавить изображение</span>
               <span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Изменить</span>
