@@ -35,16 +35,66 @@
     <div class="modal-body" id="modal-body">
         <button class="btn" ng-class="{'btn-primary' : vm.paymentType == 'card'}" ng-click="vm.changePayType('card')">Безналичный расчет</button>
         <button class="btn" ng-class="{'btn-primary' : vm.paymentType == 'webMoney'}" ng-click="vm.changePayType('webMoney')">Web-money</button>
-        <p class="margin-top-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit illum neque id, molestiae quos doloribus recusandae facere, minus quae odio corporis voluptatem tenetur expedita deserunt fuga, in accusamus omnis quod.</p>
+
+        <form ng-if="vm.paymentType == 'card'" class="form-horizontal margin-top-10" id="bill" ng-submit="vm.requestBill">
+          <div class="form-group">
+            <div class="col-md-3 sum-label"><strong>Сумма</strong>: </div>
+            <div class="col-md-9">
+              {{vm.orderData.price}} руб.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="organization" class="col-md-3 control-label">Форма организации предприятия</label>
+            <div class="col-md-9">
+              <select class="form-control" name="organization" id="organization" 
+                ng-model="vm.paymentData.organization">
+                  <option ng-selected="true" value="ООО">ООО</option>
+                  <option value="ЗАО">ЗАО</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="company" class="col-md-3 control-label">Название предприятия</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="company" placeholder="" ng-model="vm.paymentData.company">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="country" class="col-md-3 control-label">Страна</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="country" placeholder="" ng-model="vm.paymentData.country">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="city" class="col-md-3 control-label">Город</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="country" placeholder="" ng-model="vm.paymentData.city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address" class="col-md-3 control-label">Почтовый адрес</label>
+            <div class="col-md-9">
+              <textarea class="form-control" rows="4" id="address" ng-model="vm.paymentData.address"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tel" class="col-md-3 control-label">Телефон</label>
+            <div class="col-md-9">
+              <input type="tel" class="form-control" id="tel" placeholder="" ng-model="vm.paymentData.tel">
+            </div>
+          </div>
+        </form>
+
+        <p ng-if="vm.paymentType == 'webMoney'" class="margin-top-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit illum neque id, molestiae quos doloribus recusandae facere, minus quae odio corporis voluptatem tenetur expedita deserunt fuga, in accusamus omnis quod.</p>
     </div>
-    <div class="modal-footer">
+    <div ng-if="vm.paymentType == 'card'" class="modal-footer">
       <div class="clearfix">
         <div class="checkbox pull-left">
           <label>
             <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
           </label>
         </div>
-         <button type="button" class="btn btn-primary pull-right" ng-disabled="!vm.agree" ng-click="vm.requestBill()">Запросить счет</button>        
+         <button type="submit" form="bill" class="btn btn-primary pull-right" ng-disabled="!vm.agree" ng-click="vm.requestBill()">Запросить счет</button>        
       </div>
     </div>
 </script>

@@ -56,13 +56,15 @@
 
 angular.module('app.prices').controller('Payment', Payment);
 
-Payment.$inject = ['$location', '$uibModalInstance', '$uibModal'];
+Payment.$inject = ['$location', '$uibModalInstance', '$uibModal', 'dataservice'];
 
-function Payment($location, $uibModalInstance, $uibModal) {
+function Payment($location, $uibModalInstance, $uibModal, dataservice) {
   var vm = this;
 
   vm.paymentType = 'card';
   vm.aggree = false;
+
+  vm.orderData = dataservice.getOrderData();
 
   vm.changePayType = function(type) {
     vm.paymentType = type;
@@ -70,7 +72,6 @@ function Payment($location, $uibModalInstance, $uibModal) {
 
   vm.requestBill = function() {
     $uibModalInstance.close();
-    $location.path('/bill');
   };
 
   vm.showOffer = function($event) {

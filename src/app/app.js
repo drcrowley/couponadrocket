@@ -20,7 +20,6 @@
     'app.settings',
     'app.faq',
     'app.partner',
-    'app.bill',
     'app.prices'
   ]).config(config);
 

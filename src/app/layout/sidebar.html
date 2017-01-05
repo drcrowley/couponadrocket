@@ -5,9 +5,10 @@
         <dd><a href="mailto:#">first.last@example.com</a></dd>
       </dl>
       <dl>
-        <dt>Лимит: </dt>
-        <dd>10/100</dd>
-      </dl> 
+        <dt>Остаток купонов: </dt>
+        <dd>100</dd>
+      </dl>
+      <a ng-href="#/prices" class="btn btn-primary">Пополнить баланс</a>  
       <hr>
       <dl ng-if="vm.currentSite">
         <dt>Сайт: </dt>
@@ -47,7 +48,7 @@
         ng-click="vm.toggleStatus()">
         {{vm.currentSite.status == 'active' ? 'Стоп' : 'Старт'}}
       </button>
-      <a ng-href="#/prices" class="btn btn-primary">Продлить тариф</a>      
+          
     </div>
   </div>
 </div>
