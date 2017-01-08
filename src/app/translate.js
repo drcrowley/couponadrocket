@@ -8,7 +8,7 @@
     translateConfig.$inject = ['$translateProvider', 'tmhDynamicLocaleProvider'];
 
     function translateConfig($translateProvider, tmhDynamicLocaleProvider) {
-      tmhDynamicLocaleProvider.localeLocationPattern('/i18n/angular-locale_{{locale}}.js');
+      tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
 
       $translateProvider.translations('en', {
         'Sites': 'My sites',
