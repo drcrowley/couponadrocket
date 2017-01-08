@@ -63,7 +63,7 @@ gulp.task('scripts', gulp.series('templatecache', function () {
 
 // Компиляция стилей
 gulp.task('styles', function () {
-  return gulp.src([dirs.source + '/styles/bootstrap.css', dirs.source + '/styles/add.css'])
+  return gulp.src([dirs.source + '/styles/bootstrap.css', dirs.source + '/styles/*.css'])
     .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(postcss([
       autoprefixer({ browsers: ['last 4 versions', 'IE 9'], cascade: false })

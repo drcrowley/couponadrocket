@@ -40,15 +40,7 @@
           }">{{vm.currentSite.status == 'active' ? 'Активен' : vm.currentSite.status == 'verified' ? 'Проверяется' : 'Остановлен'}}</span>
         </dd>
       </dl>  
-      <button type="button" class="btn" 
-        ng-disabled="vm.currentSite.status == 'verified'"
-        ng-class="
-          {'btn-success': vm.currentSite.status != 'active',
-          'btn-danger': vm.currentSite.status == 'active'}"
-        ng-click="vm.toggleStatus()">
-        {{vm.currentSite.status == 'active' ? 'Стоп' : 'Старт'}}
-      </button>
-          
+      <toggle ng-model="vm.toggleModel" ng-if="vm.currentSite.status != 'verified'" ng-disabled="vm.currentSite.status == 'verified'" ng-change="vm.toggleStatus()" on="Включен" off="Выключен" onstyle="btn-success" offstyle="btn-danger"></toggle>
     </div>
   </div>
 </div>

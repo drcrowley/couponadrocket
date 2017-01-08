@@ -12,7 +12,10 @@
    
     $rootScope.$on('changeCurrentSite', function (event, data) {
       vm.currentSite = dataservice.getCurrentSite();
+      vm.toggleModel = vm.currentSite.status == 'active' ? true : false;
     });
+
+
 
     vm.toggleStatus = function() {
       if (vm.currentSite.status == 'active') {

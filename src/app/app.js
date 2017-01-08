@@ -10,6 +10,7 @@
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     'ui.bootstrap',
+    'ui.toggle',
     'chart.js',
     'flow',
 
