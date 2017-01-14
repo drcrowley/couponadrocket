@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.site')
+    .module('app.sent')
     .controller('Sent', Sent);
 
     Sent.$inject = [];

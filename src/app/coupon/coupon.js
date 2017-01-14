@@ -2,24 +2,46 @@
   'use strict';
 
   angular
-    .module('app.site')
+    .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$routeParams', '$location', 'dataservice'];
-    
-    function Coupon($routeParams, $location, dataservice) {
+    Coupon.$inject = ['$routeParams', '$location', 'dataservice', 'message'];
+
+    function Coupon($routeParams, $location, dataservice, message) {
       var vm = this;
 
-      activate();
+      console.log(message);
 
       var couponSettingsDefault = {
         regionList: [],
         promoCodeType: 0
       };
+      var siteId = $routeParams.siteId,
+          sites = dataservice.getCoupons(),
+          site;
+     
+      if (sites.length && siteId != 'new') {
 
-      var site = dataservice.getCurrentSite();
+        sites.forEach(function(siteItem) {
+          if (siteId == siteItem.id) {
+            site = siteItem;
+          }
+        });       
 
-      vm.couponSettings = site ? site : couponSettingsDefault;
+        if (site) {
+          dataservice.setCurrentSite(siteId);
+        } else {
+          $location.url('/site/1/coupon');
+          site = sites[0].id;
+          dataservice.setCurrentSite(site.id);
+        }
+
+        vm.couponSettings = site;
+      } else {
+        dataservice.removeCurrentSite();
+        $location.url('/site/new/coupon');
+        vm.couponSettings = couponSettingsDefault;
+      }
 
       vm.availableRegionList = ['Москва', 'Екатеринбург', 'Самара', 'Томск', 'Пермь'];
       
@@ -56,10 +78,8 @@
 
       function isInclude(arr,obj) {
         return (arr.indexOf(obj) != -1);
-      }
-
-      function activate() {
-
-      }      
+      }    
     }
+
+
 })();

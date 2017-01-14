@@ -12,7 +12,8 @@
     vm.isRoute = isRoute;
     vm.isNavCollapsed = true;
 
-    vm.sites = dataservice.getSites();
+    vm.sites = dataservice.getCoupons();
+    vm.currentSite = dataservice.getCurrentSite();
 
     function isRoute(r) {
       var title = $route.current.title;

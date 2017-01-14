@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs" ng-controller="TopNav as vm">
+	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Купон')}">
+		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/coupon'}}" class="nav-link">
+			Купон
+		</a>
+	</li>
+	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Статистика')}" ng-if="vm.currentSite">
+		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/stat'}}" class="nav-link">
+			Статистика
+		</a>
+	</li>
+	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Отправленные купоны')}" ng-if="vm.currentSite">
+		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/sent'}}" class="nav-link">
+			Отправленные купоны
+		</a>
+	</li>
+	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Интеграция')}" ng-if="vm.currentSite">
+		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/integration'}}" class="nav-link">
+			Интеграция
+		</a>
+	</li>	
+</ul>

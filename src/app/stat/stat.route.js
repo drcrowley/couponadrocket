@@ -2,17 +2,17 @@
   'use strict';
 
   angular
-    .module('app.site')
+    .module('app.stat')
     .config(routeConfig);
 
     routeConfig.$inject = ['$routeProvider'];
 
     function routeConfig($routeProvider) {
       $routeProvider      
-        .when('/site/:siteId?/:tabId?', { 
-          templateUrl: 'app/site/site.html',   
-          title: 'Мои сайты',
-          controller: 'Site',
+        .when('/site/:siteId/stat', { 
+          templateUrl: 'app/stat/stat.html',   
+          title: 'Мои сайты - Статистика',
+          controller: 'Stat',
           controllerAs: 'vm'
         });
     }

@@ -1,4 +1,5 @@
-<div class="margin-top-15" ng-controller="Coupon as vm">
+<div ng-include="'app/layout/sitenav.html'"></div>
+<div class="margin-top-15">
   <form name="couponForm" ng-submit="couponForm.$valid ? vm.submitCouponSettings() : ''" novalidate>
     <div class="row">
       <div class="col-md-6">

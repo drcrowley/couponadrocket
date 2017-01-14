@@ -17,16 +17,22 @@
     'app.templates',
     'app.translate',
     'app.layout',
-    'app.site',
+    'app.coupon',
+    'app.stat',
+    'app.sent',
+    'app.integration',
     'app.settings',
     'app.faq',
     'app.partner',
     'app.prices'
   ]).config(config);
 
-  config.$inject = ['$routeProvider', '$translateProvider'];
+  config.$inject = ['$httpProvider', '$routeProvider', '$translateProvider', '$compileProvider'];
 
-  function config($routeProvider, $translateProvider) {
-    $routeProvider.otherwise({ redirectTo: '/site' });
+  function config($httpProvider, $routeProvider, $translateProvider, $compileProvider) {
+    $httpProvider.defaults.headers.get = {'Content-Type': 'application/json; charset=utf-8'};
+    $compileProvider.debugInfoEnabled(false);
+    $routeProvider.otherwise({ redirectTo: '/site/0/coupon' });
+    $translateProvider.useSanitizeValueStrategy(null);
   }
 })();

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.site')
+    .module('app.stat')
     .controller('Stat', Stat);
 
     Stat.$inject = [];
