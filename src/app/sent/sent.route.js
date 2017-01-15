@@ -3,18 +3,26 @@
 
   angular
     .module('app.sent')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider      
-        .when('/site/:siteId/sent', { 
-          templateUrl: 'app/sent/sent.html',   
-          title: 'Мои сайты - Отправленные купоны',
-          controller: 'Sent',
-          controllerAs: 'vm'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/site/:siteId/sent',
+          config: {
+            templateUrl: 'app/sent/sent.html',
+            controller: 'Sent',
+            controllerAs: 'vm',
+            title: 'Мои сайты - Отправленные купоны',
+         }
+        }
+      ];
     }
 
 })();

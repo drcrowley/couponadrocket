@@ -3,18 +3,26 @@
 
   angular
     .module('app.prices')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider
-        .when('/prices', { 
-          templateUrl: 'app/prices/prices.html', 
-          controller: 'Prices',
-          controllerAs: 'vm',          
-          title: 'Тарифы'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/prices',
+          config: {
+            templateUrl: 'app/prices/prices.html',
+            controller: 'Prices',
+            controllerAs: 'vm',
+            title: 'Тарифы'
+         }
+        }
+      ];
     }
 
 })();

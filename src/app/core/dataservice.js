@@ -90,7 +90,6 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function setCurrentSite(siteId) {
     getCoupons().then(function(sites) {
-      console.log(sites)
       sites.forEach(function(site) {
         if(site.id == siteId) {
           currentSite = site;

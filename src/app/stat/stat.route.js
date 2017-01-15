@@ -3,18 +3,26 @@
 
   angular
     .module('app.stat')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider      
-        .when('/site/:siteId/stat', { 
-          templateUrl: 'app/stat/stat.html',   
-          title: 'Мои сайты - Статистика',
-          controller: 'Stat',
-          controllerAs: 'vm'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/site/:siteId/stat',
+          config: {
+            templateUrl: 'app/stat/stat.html', 
+            controller: 'Stat',
+            controllerAs: 'vm',
+            title: 'Мои сайты - Статистика'
+         }
+        }
+      ];
     }
 
 })();

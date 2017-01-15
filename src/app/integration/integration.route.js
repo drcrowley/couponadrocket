@@ -3,18 +3,26 @@
 
   angular
     .module('app.coupon')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider      
-        .when('/site/:siteId/integration', { 
-          templateUrl: 'app/integration/integration.html',   
-          title: 'Мои сайты - Интеграция',
-          controller: 'Integration',
-          controllerAs: 'vm'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/site/:siteId/integration',
+          config: {
+            templateUrl: 'app/integration/integration.html', 
+            controller: 'Integration',
+            controllerAs: 'vm',
+            title: 'Мои сайты - Интеграция',
+         }
+        }
+      ];
     }
 
 })();

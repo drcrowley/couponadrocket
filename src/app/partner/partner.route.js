@@ -3,18 +3,26 @@
 
   angular
     .module('app.partner')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider
-        .when('/partner', { 
-          templateUrl: 'app/partner/partner.html', 
-          controller: 'Partner',
-          controllerAs: 'vm',          
-          title: 'Стать партнёром'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/partner',
+          config: {
+            templateUrl: 'app/partner/partner.html',    
+            controller: 'Partner',
+            controllerAs: 'vm',
+            title: 'Стать партнёром'
+         }
+        }
+      ];
     }
 
 })();

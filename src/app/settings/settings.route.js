@@ -3,18 +3,26 @@
 
   angular
     .module('app.settings')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider
-        .when('/settings', { 
-          templateUrl: 'app/settings/settings.html', 
-          controller: 'Settings',
-          controllerAs: 'vm',          
-          title: 'Настройки'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/settings',
+          config: {
+            templateUrl: 'app/settings/settings.html', 
+            controller: 'Settings',
+            controllerAs: 'vm',
+            title: 'Настройки'
+         }
+        }
+      ];
     }
 
 })();

@@ -14,21 +14,21 @@
     'app.faq',
     'app.partner',
     'app.prices'
-  ]).config(config);
+  ]).config(config)
+    .run(runBlock);
 
-  config.$inject = ['$httpProvider', '$translateProvider', '$compileProvider', 'routehelperConfigProvider'];
+  config.$inject = ['$httpProvider', '$translateProvider', '$compileProvider'];
 
-  function config($httpProvider, $translateProvider, $compileProvider, routehelperConfigProvider) {
+
+  runBlock.$inject = ['auth'];
+
+  function runBlock(auth) {
+    
+  }
+
+  function config($httpProvider, $translateProvider, $compileProvider) {
     $httpProvider.defaults.headers.get = {'Content-Type': 'application/json; charset=utf-8'};
     $compileProvider.debugInfoEnabled(false);
-    
     $translateProvider.useSanitizeValueStrategy(null);
-
-    // var resolveAlways = {
-    //     ready: ['dataservice', function (dataservice) {
-    //        return dataservice.ready();
-    //     }]
-    // };
-    // routehelperConfigProvider.config.resolveAlways = resolveAlways;
   }
 })();
