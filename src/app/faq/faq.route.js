@@ -3,18 +3,26 @@
 
   angular
     .module('app.faq')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider
-        .when('/faq', { 
-          templateUrl: 'app/faq/faq.html', 
-          controller: 'Faq',
-          controllerAs: 'vm',          
-          title: 'Faq'
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
     }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/faq',
+          config: {
+            templateUrl: 'app/faq/faq.html',    
+            controller: 'Faq',
+            controllerAs: 'vm',
+            title: 'Faq'
+         }
+        }
+      ];
+    }    
 
 })();

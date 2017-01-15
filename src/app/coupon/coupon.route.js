@@ -3,23 +3,31 @@
 
   angular
     .module('app.coupon')
-    .config(routeConfig);
+    .run(appRun);
 
-    routeConfig.$inject = ['$routeProvider'];
+    appRun.$inject = ['routehelper'];
 
-    function routeConfig($routeProvider) {
-      $routeProvider      
-        .when('/site/:siteId/coupon', { 
-          templateUrl: 'app/coupon/coupon.html',   
-          title: 'Мои сайты - Купон',
-          controller: 'Coupon',
-          controllerAs: 'vm',
-          resolve: {
-            message: ['dataservice', function (dataservice) {
-              return dataservice.getCityList();
-            }]
-          }
-        });
+    function appRun(routehelper) {
+      routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+      return [
+        {
+          url: '/site/:siteId/coupon',
+          config: {
+            templateUrl: 'app/coupon/coupon.html',   
+            controller: 'Coupon',
+            controllerAs: 'vm',
+            title: 'Мои сайты - Купон',
+            resolve: {
+              coupons: ['dataservice' , function (dataservice) {
+                return dataservice.getCoupons();
+              }]
+            }
+         }
+        }
+      ];
     }
 
 })();

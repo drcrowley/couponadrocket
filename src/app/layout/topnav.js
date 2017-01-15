@@ -12,7 +12,9 @@
     vm.isRoute = isRoute;
     vm.isNavCollapsed = true;
 
-    vm.sites = dataservice.getCoupons();
+    dataservice.getCoupons().then(function(data) {
+      vm.sites = data;
+    });
     vm.currentSite = dataservice.getCurrentSite();
 
     function isRoute(r) {

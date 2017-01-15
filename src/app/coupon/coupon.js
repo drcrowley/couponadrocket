@@ -5,19 +5,19 @@
     .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$routeParams', '$location', 'dataservice', 'message'];
+    Coupon.$inject = ['$routeParams', '$location', 'dataservice', 'coupons'];
 
-    function Coupon($routeParams, $location, dataservice, message) {
+    function Coupon($routeParams, $location, dataservice, coupons) {
       var vm = this;
 
-      console.log(message);
 
       var couponSettingsDefault = {
         regionList: [],
         promoCodeType: 0
       };
+      
       var siteId = $routeParams.siteId,
-          sites = dataservice.getCoupons(),
+          sites = coupons,
           site;
      
       if (sites.length && siteId != 'new') {
