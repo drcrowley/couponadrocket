@@ -8,7 +8,10 @@ routeConfig.$inject = ['$routeProvider'];
 
 function routeConfig($routeProvider) {
   $routeProvider.when('/auth', {
-  	controller: 'Auth'
+  	controller: 'Auth',
+  	controllerAs: 'vm',
+  	title: 'Авторизация',
+  	template: ''
   });
 }
 
@@ -18,12 +21,10 @@ Auth.$inject = ['$location', 'auth'];
 function Auth($location, auth) {
 	
 	var token = $location.search().token;
-
 	if (token) {
 		auth.set(token);
 	}
 	$location.path('/');
-
 }
 
 auth.$inject = ['localStorageService'];
