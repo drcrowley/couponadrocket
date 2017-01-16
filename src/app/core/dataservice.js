@@ -24,43 +24,43 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function getCoupons() {
 
-    // var coupons = [
-    //   {
-    //     id: 1,
-    //     url: 'https://site1.com',
-    //     title: 'Сайт 1',
-    //     secretKey: 123,
-    //     promoCodeType: 0,
-    //     colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
-    //     colorScheme: 0,
-    //     regionList: ['Томск', 'Пермь'],
-    //     status: 'verified'
-    //   },
-    //   {
-    //     id: 2,
-    //     url: 'https://site2.com',
-    //     title: 'Сайт 2',
-    //     secretKey: 123,
-    //     colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
-    //     colorScheme: 0,
-    //     regionList: ['Томск', ' Самара'],
-    //     status: 'active',
-    //   },
-    //   {
-    //     id: 3,
-    //     url: 'https://site3.com',
-    //     title: 'Сайт 3',
-    //     secretKey: 123,
-    //     colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
-    //     colorScheme: 0,
-    //     regionList: ['Томск', ' Самара'],
-    //     status: 'disabled'
-    //   }
-    // ];
+    var coupons = [
+      {
+        id: 1,
+        url: 'https://site1.com',
+        title: 'Сайт 1',
+        secretKey: 123,
+        promoCodeType: 0,
+        colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
+        colorScheme: 0,
+        regionList: ['Томск', 'Пермь'],
+        status: 'verified'
+      },
+      {
+        id: 2,
+        url: 'https://site2.com',
+        title: 'Сайт 2',
+        secretKey: 123,
+        colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
+        colorScheme: 0,
+        regionList: ['Томск', ' Самара'],
+        status: 'active',
+      },
+      {
+        id: 3,
+        url: 'https://site3.com',
+        title: 'Сайт 3',
+        secretKey: 123,
+        colorSchemeList: [{id: 0, title: 'Синий'}, {id: 1, title: 'Зеленый'}, {id: 2, title: 'Белый'}],
+        colorScheme: 0,
+        regionList: ['Томск', ' Самара'],
+        status: 'disabled'
+      }
+    ];
 
-    // var lsData = coupons;
+    var lsData = coupons;
 
-    var lsData = localStorageService.get('cityList');
+    // var lsData = localStorageService.get('cityList');
     if (lsData) {
       return $q.when(lsData);
     } else {

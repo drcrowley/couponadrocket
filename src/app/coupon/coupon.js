@@ -11,7 +11,7 @@
       var vm = this;
 
 
-      dataservice.saveCoupon();
+      // dataservice.saveCoupon();
 
       var couponSettingsDefault = {
         regionList: [],
