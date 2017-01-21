@@ -23,7 +23,7 @@
     $httpProvider.defaults.headers.get = {'Content-Type': 'application/json; charset=utf-8'};
     $httpProvider.defaults.headers.post = {'Content-Type': 'application/json; charset=utf-8'};
     $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];    
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $compileProvider.debugInfoEnabled(false);
     $translateProvider.useSanitizeValueStrategy(null);
   }

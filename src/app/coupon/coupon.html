@@ -4,24 +4,24 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
-          <label for="site-address">Адрес сайта* <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="homepage-url">Адрес сайта* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="site-url" name="siteUrl" placeholder="" 
+          <input type="text" class="form-control" id="homepage-url" name="homepageUrl" placeholder="" 
             ng-required="true"
-            ng-model="vm.couponSettings.url"
+            ng-model="vm.couponSettings.homepageUrl"
           >
           <div class="text-danger" ng-messages="couponForm.siteUrl.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
           </div>
         </div>
         <div class="form-group">
-          <label for="site-title">Заголовок* <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="titel">Заголовок* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="site-title" name="siteTitle" placeholder="" 
+          <input type="text" class="form-control" id="titel" name="titel" placeholder="" 
             ng-required="true" 
             ng-maxlength="40" 
-            ng-model="vm.couponSettings.title">
-          <div class="text-danger" ng-messages="couponForm.siteTitle.$error" ng-if="couponForm.$submitted">
+            ng-model="vm.couponSettings.titel">
+          <div class="text-danger" ng-messages="couponForm.titel.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
             <div ng-message="maxlength">Введите не больше 40 символов</div>
           </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label for="conditions">Условия использования купона* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <textarea class="form-control" rows="5" ng-model="vm.couponSettings.conditions" name="conditions" style="height: 128px;"
+          <textarea class="form-control" rows="5" ng-model="vm.couponSettings.text" name="conditions" style="height: 128px;"
             ng-required="true"
             ng-maxlength="300" 
             ></textarea>
@@ -67,27 +67,28 @@
               </span>
             </div>
             <div class="site-icon-holder">
-              <div class="thumbnail site-icon-preview" ng-show="$flow.files.length">
+              <div class="thumbnail site-icon-preview" ng-show="$flow.files.length || vm.couponSettings.imgUrl">
                 <div class="site-icon-wrapper">
-                  <img  class="site-icon-image" flow-img="$flow.files[0]" />
+                  <img  class="site-icon-image" ng-if="$flow.files.length" flow-img="$flow.files[0]" />
+                  <img  class="site-icon-image" ng-if="!$flow.files.length && vm.couponSettings.imgUrl" ng-src="{{vm.couponSettings.imgUrl}}" />
                 </div>
               </div>               
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label for="color-scheme">Цветовая тема <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="color-theme">Цветовая тема <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <select class="form-control" name="color-scheme" id="color-scheme" 
-            ng-options="color.id as color.title for color in vm.couponSettings.colorSchemeList" 
-            ng-model="vm.couponSettings.colorScheme" convert-to-number>
+          <select class="form-control" name="color-theme" id="color-theme" 
+            ng-options="color.id as color.name for color in vm.colorThemes" 
+            ng-model="vm.couponSettings.colorTheme" convert-to-number>
           </select>
         </div>
         <div class="form-group">
-          <label for="site-limit">Лимит в месяц* <span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="limit-period">Лимит в месяц* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="site-limit" name="siteLimit" placeholder="" ng-model="vm.couponSettings.limit" ng-required="true" >
-          <div class="text-danger" ng-messages="couponForm.siteLimit.$error" ng-if="couponForm.$submitted">
+          <input type="tel" class="form-control" id="limit-period" name="limitPeriod" placeholder="" ng-model="vm.couponSettings.limitPeriod" ng-required="true" >
+          <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
           </div>
         </div>
@@ -96,17 +97,17 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <div class="margin-top-03">
             <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-1" value="0" ng-model="vm.couponSettings.promoCodeType"> Сгенерировать системой
+              <input type="radio" name="promo-code-type" id="promo-code-type-1" value="1" ng-model="vm.couponSettings.couponCodeGenerate"> Сгенерировать системой
             </label>
             <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-2" value="1" ng-model="vm.couponSettings.promoCodeType"> Загрузить вручную
+              <input type="radio" name="promo-code-type" id="promo-code-type-2" value="0" ng-model="vm.couponSettings.couponCodeGenerate"> Загрузить вручную
             </label>            
           </div>
         </div>
         <div class="form-group">
           <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="vm.couponSettings.promoCodeType != 1" ng-model="vm.couponSettings.promoCode">
+          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="!vm.couponSettings.couponCodeGenerate" ng-model="vm.couponSettings.couponCode">
         </div>       
       </div>
     </div>
@@ -115,15 +116,15 @@
       <label for="region">Регион посетителя для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
       <div class="input-group">
-        <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region for region in vm.availableRegionList | filter:$viewValue | limitTo:5">
+        <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:5">
         <span class="input-group-btn">
           <button class="btn btn-primary" type="button" ng-click="vm.addRegion()"><span class="glyphicon glyphicon-plus"></span></button>
         </span>
       </div>
     </div>
     <ul class="list-inline">
-      <li ng-repeat="region in vm.couponSettings.regionList">
-        {{region}}
+      <li ng-repeat="region in vm.couponSettings.showRegions">
+        {{region.name}}
         <button type="button" class="btn btn-xs btn-link" ng-click="vm.removeRegion(region)">
           <span class="glyphicon glyphicon-remove text-danger"></span>
         </button>

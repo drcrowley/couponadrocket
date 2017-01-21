@@ -13,7 +13,7 @@
     vm.isNavCollapsed = true;
 
     dataservice.getCoupons().then(function(data) {
-      vm.sites = data;
+      vm.coupons = data;
     });
     vm.currentSite = dataservice.getCurrentSite();
 
