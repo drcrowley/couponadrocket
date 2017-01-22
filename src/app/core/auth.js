@@ -16,15 +16,15 @@ function routeConfig($routeProvider) {
 }
 
 
-Auth.$inject = ['$location', 'auth'];
+Auth.$inject = ['$location', '$window', 'auth'];
 
-function Auth($location, auth) {
+function Auth($location, $window, auth) {
 	
 	var token = $location.search().token;
 	if (token) {
 		auth.set(token);
 	}
-	$location.path('/');
+	$window.location.href = '/';
 }
 
 auth.$inject = ['localStorageService'];

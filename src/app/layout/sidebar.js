@@ -9,7 +9,8 @@
 
   function Sidebar($rootScope, dataservice) {
     var vm = this;
-   
+    vm.currentSite = dataservice.getCurrentSite();
+
     $rootScope.$on('changeCurrentSite', function (event, data) {
       vm.currentSite = dataservice.getCurrentSite();
       if (vm.currentSite != undefined) {
@@ -20,18 +21,12 @@
 
 
     vm.toggleStatus = function() {
-      if (vm.currentSite.status == 'active') {
-        vm.currentSite.status = 'disabled';
-      } else {
-        vm.currentSite.status = 'active';
-      }
+      // if (vm.currentSite.status == 'active') {
+      //   vm.currentSite.status = 'disabled';
+      // } else {
+      //   vm.currentSite.status = 'active';
+      // }
     };
-
-    activate();
-
-    function activate() { 
-
-    }
 
   }
 })();

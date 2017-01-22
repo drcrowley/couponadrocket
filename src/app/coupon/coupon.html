@@ -1,6 +1,6 @@
 <div ng-include="'app/layout/sitenav.html'"></div>
 <div class="margin-top-15">
-  <form name="couponForm" ng-submit="couponForm.$valid ? vm.submitCouponSettings() : ''" novalidate>
+  <form name="couponForm" ng-submit="couponForm.$valid ? vm.saveCoupon() : ''" novalidate>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
@@ -97,17 +97,17 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <div class="margin-top-03">
             <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-1" value="1" ng-model="vm.couponSettings.couponCodeGenerate"> Сгенерировать системой
+              <input type="radio" name="promo-code-type" id="promo-code-type-1" ng-value="true" ng-model="vm.couponSettings.couponCodeGenerate"> Сгенерировать системой
             </label>
             <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-2" value="0" ng-model="vm.couponSettings.couponCodeGenerate"> Загрузить вручную
+              <input type="radio" name="promo-code-type" id="promo-code-type-2" ng-value="false" ng-model="vm.couponSettings.couponCodeGenerate"> Загрузить вручную
             </label>            
           </div>
         </div>
         <div class="form-group">
           <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="!vm.couponSettings.couponCodeGenerate" ng-model="vm.couponSettings.couponCode">
+          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="vm.couponSettings.couponCodeGenerate" ng-model="vm.couponSettings.couponCode">
         </div>       
       </div>
     </div>
@@ -116,7 +116,7 @@
       <label for="region">Регион посетителя для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
       <div class="input-group">
-        <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:5">
+        <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:1">
         <span class="input-group-btn">
           <button class="btn btn-primary" type="button" ng-click="vm.addRegion()"><span class="glyphicon glyphicon-plus"></span></button>
         </span>
@@ -132,8 +132,8 @@
     </ul>
     <div class="form-group margin-top-15">
       <button type="submit" class="btn btn-primary">Сохранить</button>
-      <button type="button" class="btn btn-danger">Удалить</button>
-      <button type="button" class="btn btn-default">Отмена</button>
+      <button type="button" class="btn btn-danger" ng-click="vm.deleteCoupon()">Удалить</button>
+      <button type="button" class="btn btn-default" ng-click="vm.resetCoupon()">Отмена</button>
     </div>
   </form>
   <img alt="" width="125" height="125" class="img-thumbnail" ng-src="{{vm.couponSettings.icon}}" ng-if="vm.couponSettings.icon">

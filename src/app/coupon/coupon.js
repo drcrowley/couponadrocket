@@ -5,52 +5,33 @@
     .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$routeParams', '$location', 'dataservice', 'coupons', 'colorThemes'];
+    Coupon.$inject = ['$routeParams', '$location', 'dataservice', 'colorThemes'];
 
-    function Coupon($routeParams, $location, dataservice, coupons, colorThemes) {
+    function Coupon($routeParams, $location, dataservice, colorThemes) {
       var vm = this;
 
-      var couponSettingsDefault = {},
-          siteId = $routeParams.siteId,
-          sites = coupons,
-          site;
-
-      console.log(coupons);
-     
-      if (sites.length && siteId != 'new') {
-
-        sites.forEach(function(siteItem) {
-          if (siteId == siteItem.id) {
-            site = siteItem;
-          }
-        });       
-
-        if (site) {
-          dataservice.setCurrentSite(siteId);
-        } else {
-          $location.url('/site/1/coupon');
-          site = sites[0].id;
-          dataservice.setCurrentSite(site.id);
-        }
-
-        vm.couponSettings = site;
-      } else {
-        dataservice.removeCurrentSite();
-        $location.url('/site/new/coupon');
-        vm.couponSettings = couponSettingsDefault;
-      }
-
-      vm.colorThemes = colorThemes;
+      activate();
 
       vm.getRegionList = function(value) {
         return dataservice.getRegions(value).then(function(data) {
-          return data;
-        });        
+          return data.slice(0, 5);
+        });
       }
     
-      vm.submitCouponSettings = function() {
-        console.log(vm.couponSettings);
-        dataservice.saveCoupon(vm.couponSettings);
+      vm.saveCoupon = function() {
+        dataservice.saveCoupon(vm.couponSettings).then(function() {
+          activate();
+        });
+      }
+
+      vm.deleteCoupon = function() {
+        dataservice.deleteCoupon(vm.couponSettings.id).then(function() {
+          activate();
+        });
+      }
+
+      vm.resetCoupon = function() {
+        activate();
       }
 
       vm.addRegion = function() {
@@ -64,9 +45,9 @@
       vm.addFile = function ($files, $event, $flow) {
         var fileReader = new FileReader();
           fileReader.onload = function (event) {
-            var base64 = event.target.result,
-                base64Code = base64.replace('data:image/png;base64,', '');
-            vm.couponSettings.image = base64Code;
+            var dataUrl = event.target.result,
+                base64 = dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+            vm.couponSettings.image = base64;
           };
         
         fileReader.readAsDataURL($files[0].file);
@@ -83,8 +64,43 @@
 
       function isInclude(arr,obj) {
         return (arr.indexOf(obj) != -1);
-      }    
+      }
+
+      function activate() {
+        dataservice.getCoupons().then(function(coupons) {
+          var couponSettingsDefault = {
+              couponCodeGenerate: true,
+              colorTheme: 1,
+              showRegions: []
+            },
+            siteId = $routeParams.siteId,
+            sites = coupons,
+            site;
+       
+          if (sites.length && siteId != 'new') {
+            sites.forEach(function(siteItem) {
+              if (siteId == siteItem.id) {
+                site = siteItem;
+              }
+            });
+
+            if (site) {
+              dataservice.setCurrentSite(siteId);
+            } else {
+              site = sites[0];         
+              dataservice.setCurrentSite(site.id);
+              $location.url('/site/'+ site.id + '/coupon');
+            }
+
+            vm.couponSettings = site;
+          } else {
+            dataservice.removeCurrentSite();
+            $location.url('/site/new/coupon');
+            vm.couponSettings = couponSettingsDefault;
+          }
+
+          vm.colorThemes = colorThemes;
+        });
+      }
     }
-
-
 })();

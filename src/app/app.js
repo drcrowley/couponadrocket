@@ -3,8 +3,8 @@
 
   angular.module('app', [
     'app.core',
-
     'app.templates',
+    'app.services',
     'app.layout',
     'app.coupon',
     'app.stat',
@@ -28,9 +28,10 @@
     $translateProvider.useSanitizeValueStrategy(null);
   }
 
-  runBlock.$inject = [];
+  runBlock.$inject = ['$http', 'auth'];
 
-  function runBlock() {
-   
-  }  
+  function runBlock($http, auth) {
+    $http.defaults.headers.common.Authorization = auth.get();
+  }
+
 })();
