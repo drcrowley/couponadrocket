@@ -37,7 +37,7 @@
             'label-success': vm.currentSite.status == 'active', 
             'label-warning': vm.currentSite.status == 'verified',
             'label-danger': vm.currentSite.status == 'disabled'
-          }">{{vm.currentSite.status == 'active' ? 'Активен' : vm.currentSite.status == 'verified' ? 'Проверяется' : 'Остановлен'}}</span>
+          }">{{vm.currentSite.status}}</span>
         </dd>
       </dl>  
       <toggle ng-model="vm.currentSite.activeFlag" ng-change="vm.toggleStatus()" on="Включен" off="Выключен" onstyle="btn-success" offstyle="btn-danger"></toggle>
