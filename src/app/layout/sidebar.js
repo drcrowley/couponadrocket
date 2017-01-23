@@ -18,14 +18,25 @@
       }
     });
 
-
+    dataservice.getCoupons().then(function(coupons) {
+      console.log(coupons);
+    });
 
     vm.toggleStatus = function() {
-      // if (vm.currentSite.status == 'active') {
-      //   vm.currentSite.status = 'disabled';
-      // } else {
-      //   vm.currentSite.status = 'active';
-      // }
+
+      if (vm.currentSite.activeFlag) {
+        dataservice.activateCoupon(vm.currentSite.id).then(function(coupons) {
+          dataservice.getCoupons().then(function(coupons) {
+            console.log(coupons);
+          });
+        });
+      } else {
+        dataservice.deactivateCoupon(vm.currentSite.id).then(function(coupons) {
+          dataservice.getCoupons().then(function(coupons) {
+            console.log(coupons);
+          });
+        });
+      }
     };
 
   }

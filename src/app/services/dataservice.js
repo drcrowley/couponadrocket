@@ -10,6 +10,8 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     getCoupons: getCoupons,
     saveCoupon: saveCoupon,
     deleteCoupon: deleteCoupon,
+    activateCoupon: activateCoupon,
+    deactivateCoupon: deactivateCoupon,
     getCurrentSite: getCurrentSite,
     setCurrentSite: setCurrentSite,
     removeCurrentSite: removeCurrentSite,
@@ -25,29 +27,34 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   var currentSite;
   var orderData;
 
-  function getCoupons() {
+  function getCoupons(cache) {
     var lsData = localStorageService.get('coupons');
-    if (lsData) {
+    if (lsData && cache) {
       return $q.when(lsData);
     } else {
+      $rootScope.isLoading = true;
       return $http.get(CONSTANT.apiUrl + '/manage/myCoupons')
       .then(complete)
       .catch(function(message) {
           exception.catcher('XHR Failed')(message);
+          $rootScope.isLoading = false;
       });
     }
     
     function complete(data) {
       localStorageService.set('coupons', data.data);
+      $rootScope.isLoading = false;
       return data.data;
     }    
   }
 
   function saveCoupon(coupon) {
+    $rootScope.isLoading = true;
     return $http.post(CONSTANT.apiUrl + '/manage/saveCoupon', coupon)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
     });
 
     function complete(data) {
@@ -69,16 +76,19 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
         }
        
         localStorageService.set('coupons', coupons);
+        $rootScope.isLoading = false;
         return data.data;
       });
     }
   }
 
   function deleteCoupon(couponId) {
+    $rootScope.isLoading = true;
     return $http.get(CONSTANT.apiUrl + '/manage/deleteCoupon/' + couponId)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
     });
 
     function complete(data) {
@@ -92,10 +102,42 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
         });
         coupons.splice(deleteIndex, 1);
         localStorageService.set('coupons', coupons);
+        $rootScope.isLoading = false;
         return data.data;
       });
     }
   }
+
+
+  function activateCoupon(couponId) {
+    $rootScope.isLoading = true;
+    return $http.get(CONSTANT.apiUrl + '/manage/activate/' + couponId)
+    .then(complete)
+    .catch(function(message) {
+      exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
+    });
+
+    function complete(data) {
+      $rootScope.isLoading = false;
+      return data.data;
+    }    
+  }
+
+  function deactivateCoupon(couponId) {
+    $rootScope.isLoading = true;
+    return $http.get(CONSTANT.apiUrl + '/manage/deactivate/' + couponId)
+    .then(complete)
+    .catch(function(message) {
+      exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
+    });
+
+    function complete(data) {
+      $rootScope.isLoading = false;
+      return data.data;
+    }    
+  }  
 
   function getCurrentSite() {
     return currentSite;
@@ -122,15 +164,18 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     if (lsData) {
       return $q.when(lsData);
     } else {
+      $rootScope.isLoading = true;
       return $http.get(CONSTANT.apiUrl + '/general/colorThemes')
       .then(complete)
       .catch(function(message) {
-          exception.catcher('XHR Failed')(message);
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
       });      
     }
 
     function complete(data) {
       localStorageService.set('colorThemes', data.data);
+      $rootScope.isLoading = false;
       return data.data;
     }
   }
@@ -139,7 +184,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     return $http.get(CONSTANT.apiUrl + '/general/regions/' + value + '/RU')
     .then(complete)
     .catch(function(message) {
-        exception.catcher('XHR Failed')(message);
+      exception.catcher('XHR Failed')(message);
     });
 
     function complete(data) {

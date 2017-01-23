@@ -1,5 +1,5 @@
 angular
-  .module('app.core')
+  .module('app.services')
 	.config(routeConfig)
 	.controller('Auth', Auth)
   .factory('auth', auth);
@@ -16,20 +16,23 @@ function routeConfig($routeProvider) {
 }
 
 
-Auth.$inject = ['$location', '$window', 'auth'];
+Auth.$inject = ['$rootScope', '$location', '$window', 'auth'];
 
-function Auth($location, $window, auth) {
+function Auth($rootScope, $location, $window, auth) {
+  $rootScope.isLoading = true;
 	
 	var token = $location.search().token;
 	if (token) {
 		auth.set(token);
 	}
-	$window.location.href = '/';
+
+  $location.path('#/site/0/coupon');
+  $window.location.reload();
 }
 
-auth.$inject = ['localStorageService'];
+auth.$inject = ['$http', 'localStorageService'];
 
-function auth(localStorageService) {
+function auth($http, localStorageService) {
 
   var service = {
     get: get,
@@ -40,6 +43,7 @@ function auth(localStorageService) {
 
 
   function set(token) {
+    $http.defaults.headers.common.Authorization
   	localStorageService.set('token', token);
   }
 

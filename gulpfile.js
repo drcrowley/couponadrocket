@@ -117,6 +117,7 @@ gulp.task('watch', function () {
   gulp.watch([dirs.source + '/styles/*.css'], gulp.series('styles'));
   gulp.watch([dirs.source + '/app/**/*.*'], gulp.series('scripts'));
   gulp.watch([dirs.source + '/fonts/*.{woff,woff2,ttf,eot,otf,svg}'], gulp.series('fonts'));
+  gulp.watch([dirs.source + '/*.*'], gulp.series('files'));
 });
 
 

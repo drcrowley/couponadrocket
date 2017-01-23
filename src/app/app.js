@@ -31,7 +31,9 @@
   runBlock.$inject = ['$http', 'auth'];
 
   function runBlock($http, auth) {
-    $http.defaults.headers.common.Authorization = auth.get();
+    if (!$http.defaults.headers.common.Authorization && auth.get()) {
+      $http.defaults.headers.common.Authorization = auth.get();
+    }
   }
 
 })();

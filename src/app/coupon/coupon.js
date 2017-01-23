@@ -67,27 +67,26 @@
       }
 
       function activate() {
-        dataservice.getCoupons().then(function(coupons) {
+        dataservice.getCoupons(true).then(function(coupons) {
           var couponSettingsDefault = {
               couponCodeGenerate: true,
               colorTheme: 1,
               showRegions: []
             },
             siteId = $routeParams.siteId,
-            sites = coupons,
             site;
        
-          if (sites.length && siteId != 'new') {
-            sites.forEach(function(siteItem) {
-              if (siteId == siteItem.id) {
-                site = siteItem;
+          if (coupons.length && siteId != 'new') {
+            coupons.forEach(function(coupon) {
+              if (siteId == coupon.id) {
+                site = coupon;
               }
             });
 
             if (site) {
               dataservice.setCurrentSite(siteId);
             } else {
-              site = sites[0];         
+              site = coupons[0];         
               dataservice.setCurrentSite(site.id);
               $location.url('/site/'+ site.id + '/coupon');
             }
