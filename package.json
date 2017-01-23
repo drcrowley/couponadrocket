@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp",
+    "start": "./node_modules/.bin/gulp",
     "production": "set NODE_ENV='production' && npm start build"
   },
   "engines": {
