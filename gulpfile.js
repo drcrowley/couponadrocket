@@ -111,7 +111,6 @@ gulp.task('build', gulp.series(
   gulp.parallel('styles', 'scripts','fonts', 'files')
 ));
 
-
 // Cлежение за изменениями
 gulp.task('watch', function () {
   gulp.watch([dirs.source + '/styles/*.css'], gulp.series('styles'));
