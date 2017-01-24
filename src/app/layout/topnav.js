@@ -19,7 +19,7 @@
     });    
 
     function activate() {
-      dataservice.getCoupons(true).then(function(data) {
+      dataservice.getCoupons().then(function(data) {
         vm.coupons = data;
       });
       vm.currentSite = dataservice.getCurrentSite();      

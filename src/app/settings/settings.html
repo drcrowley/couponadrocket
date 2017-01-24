@@ -1,6 +1,6 @@
 <h3>Информация о пользователе</h3>
 <hr/>
-<form name="userInfoForm" novalidate>
+<form name="userInfoForm" novalidate ng-submit="vm.saveUser()">
   <div class="form-group">
     <label for="email">Email*</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="" 
@@ -12,18 +12,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="name">Фамилия, Имя*</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="" 
-      ng-model="vm.user.name" 
-      ng-required="true">
-    <div class="text-danger" ng-messages="userInfoForm.name.$error" ng-if="userInfoForm.$submitted">
-      <div ng-message="required">Это поле обязательно для заполнения.</div>
-    </div>
-  </div>
-  <div class="form-group">
     <label for="tel">Телефон*</label>
     <input type="tel" class="form-control" id="tel" name="tel" placeholder=""
-      ng-model="vm.user.tel" 
+      ng-model="vm.user.phone" 
       ng-required="true">
     <div class="text-danger" ng-messages="userInfoForm.tel.$error" ng-if="userInfoForm.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -31,16 +22,16 @@
   </div>   
   <div class="form-group margin-top-15">
     <button type="submit" class="btn btn-primary">Сохранить</button>
-    <button type="button" class="btn btn-default">Отмена</button>
+    <button type="button" class="btn btn-default" ng-click="vm.resetUser()">Отмена</button>
   </div>
 </form>
 <h3 class="margin-top-20">Сменить пароль</h3>
 <hr/>
-<form name="userPassword" novalidate>
+<form name="userPassword" novalidate ng-submit="vm.changePassword(userPassword)">
 	<div class="form-group">
     <label for="old-password">Старый пароль*</label>
     <input type="password" class="form-control" id="old-password" name="oldPassword" placeholder=""
-      ng-model="vm.user.oldPassword" 
+      ng-model="vm.password.oldPwd" 
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.oldPassword.$error" ng-if="userPassword.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -49,7 +40,7 @@
 	<div class="form-group">
     <label for="new-password">Новый пароль*</label>
     <input type="password" class="form-control" id="new-password" name="newPassword" placeholder=""
-      ng-model="vm.user.newPassword" 
+      ng-model="vm.password.newPwd" 
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.newPassword.$error" ng-if="userPassword.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -58,14 +49,15 @@
 	<div class="form-group">
     <label for="confirm-password">Подтвердить пароль*</label>
     <input type="password" class="form-control" id="confirm-password" name="confirmPassword" placeholder=""
-      ng-model="vm.user.confirmPassword" 
+      ng-model="vm.password.cnfPwd" 
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.confirmPassword.$error" ng-if="userPassword.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
+      <div ng-message="confirmError">Пароли должны совпадать.</div>
     </div>
   </div>  
   <div class="form-group margin-top-15">
     <button type="submit" class="btn btn-primary">Сохранить</button>
-    <button type="button" class="btn btn-default">Отмена</button>
+    <button type="button" class="btn btn-default" ng-click="vm.resetPassword()">Отмена</button>
   </div>
 </form>

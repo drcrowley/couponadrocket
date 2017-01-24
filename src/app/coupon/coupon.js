@@ -19,6 +19,7 @@
       }
     
       vm.saveCoupon = function() {
+        console.log(vm.couponSettings);
         dataservice.saveCoupon(vm.couponSettings).then(function() {
           activate();
         });
@@ -67,7 +68,7 @@
       }
 
       function activate() {
-        dataservice.getCoupons(true).then(function(coupons) {
+        dataservice.getCoupons().then(function(coupons) {
           var couponSettingsDefault = {
               couponCodeGenerate: true,
               colorTheme: 1,

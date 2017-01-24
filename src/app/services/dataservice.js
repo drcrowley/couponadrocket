@@ -17,6 +17,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     removeCurrentSite: removeCurrentSite,
     getColorThemes: getColorThemes,
     getRegions: getRegions,
+    getUser: getUser,
+    updateUser: updateUser,
+    changePassword: changePassword,
 
     setOrderData: setOrderData,
     getOrderData: getOrderData
@@ -24,13 +27,18 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
  
   return service;
 
-  var currentSite;
-  var orderData;
+  var coupons,
+      user,
+      currentSite,
+      orderData;
 
-  function getCoupons(cache) {
-    var lsData = localStorageService.get('coupons');
-    if (lsData && cache) {
-      return $q.when(lsData);
+  function getCoupons() {
+    var couponsClone;
+    if (coupons) {
+      couponsClone = angular.copy(coupons);
+    }
+    if (couponsClone) {
+      return $q.when(couponsClone);
     } else {
       $rootScope.isLoading = true;
       return $http.get(CONSTANT.apiUrl + '/manage/myCoupons')
@@ -42,7 +50,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     }
     
     function complete(data) {
-      localStorageService.set('coupons', data.data);
+      coupons = data.data;
       $rootScope.isLoading = false;
       return data.data;
     }    
@@ -58,28 +66,24 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
-      getCoupons().then(function(coupons) {
-        var coupons = coupons,
-            currentCoupon = coupon,
-            saveIndex;
+      var currentCoupon = coupon,
+          saveIndex;
 
-        coupons.forEach(function(coupon, index) {
-          if (currentCoupon.id == coupon.id) {
-            saveIndex = index;
-          }
-        });
-
-        if (saveIndex) {
-          coupons[saveIndex] = currentCoupon;
-        } else {
-          coupons.push(currentCoupon);
+      coupons.forEach(function(coupon, index) {
+        if (currentCoupon.id == coupon.id) {
+          saveIndex = index;
         }
-       
-        localStorageService.set('coupons', coupons);
-        $rootScope.isLoading = false;
-        return data.data;
       });
-    }
+
+      if (saveIndex) {
+        coupons[saveIndex] = currentCoupon;
+      } else {
+        coupons.push(currentCoupon);
+      }
+     
+      $rootScope.isLoading = false;
+      return data.data;
+     }
   }
 
   function deleteCoupon(couponId) {
@@ -92,19 +96,15 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
-      getCoupons().then(function(coupons) {
-        var coupons = coupons,
-            deleteIndex;
-        coupons.forEach(function(coupon, index) {
-          if (couponId == coupon.id) {
-            deleteIndex = index;
-          }
-        });
-        coupons.splice(deleteIndex, 1);
-        localStorageService.set('coupons', coupons);
-        $rootScope.isLoading = false;
-        return data.data;
+      var deleteIndex;
+      coupons.forEach(function(coupon, index) {
+        if (couponId == coupon.id) {
+          deleteIndex = index;
+        }
       });
+      coupons.splice(deleteIndex, 1);
+      $rootScope.isLoading = false;
+      return data.data;
     }
   }
 
@@ -119,6 +119,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
+      coupons = null;
       $rootScope.isLoading = false;
       return data.data;
     }    
@@ -134,6 +135,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
+      coupons = null;
       $rootScope.isLoading = false;
       return data.data;
     }    
@@ -191,6 +193,62 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       return data.data;
     }    
   }
+
+  function getUser() {
+    var userClone;
+    if (user) {
+      userClone = angular.copy(user);
+    }
+    
+    if (userClone) {
+      return $q.when(userClone);
+    } else {
+      $rootScope.isLoading = true;
+      return $http.get(CONSTANT.apiUrl + '/user/myUser')
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+    }
+    
+    function complete(data) {
+      user = data.data;
+      $rootScope.isLoading = false;
+      return data.data;
+    }
+  }
+
+  function updateUser(userData) {
+    $rootScope.isLoading = true;
+    return $http.post(CONSTANT.apiUrl + '/user/updateUser', userData)
+    .then(complete)
+    .catch(function(message) {
+      exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
+    });
+    
+    function complete(data) {
+      user = null;
+      $rootScope.isLoading = false;
+      return data.data;
+    }
+  }
+
+  function changePassword(data) {
+    $rootScope.isLoading = true;
+    return $http.post(CONSTANT.apiUrl + '/user/changePassword', data)
+    .then(complete)
+    .catch(function(message) {
+      exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
+    });
+    
+    function complete(data) {
+      $rootScope.isLoading = false;
+      return data.data;
+    }
+  }  
 
   function getOrderData() {
     return orderData;

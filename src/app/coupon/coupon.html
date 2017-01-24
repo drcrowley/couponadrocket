@@ -10,7 +10,7 @@
             ng-required="true"
             ng-model="vm.couponSettings.homepageUrl"
           >
-          <div class="text-danger" ng-messages="couponForm.siteUrl.$error" ng-if="couponForm.$submitted">
+          <div class="text-danger" ng-messages="couponForm.homepageUrl.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
           </div>
         </div>
@@ -53,8 +53,10 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="site-icon">Иконка (макс. размер 1 мб.)<span class="glyphicon glyphicon-question-sign faq-link" 
+          <label for="image">Иконка (макс. размер 1 мб.)<span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <input type="hidden" class="form-control" id="image" name="image" placeholder="" 
+            ng-required="true" ng-model="vm.couponSettings.image">
           <div class="site-icon" flow-init="{singleFile:true}"
            flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
            flow-files-submitted="vm.addFile( $files, $event, $flow )">
@@ -72,8 +74,11 @@
                   <img  class="site-icon-image" ng-if="$flow.files.length" flow-img="$flow.files[0]" />
                   <img  class="site-icon-image" ng-if="!$flow.files.length && vm.couponSettings.imgUrl" ng-src="{{vm.couponSettings.imgUrl}}" />
                 </div>
-              </div>               
+              </div>
             </div>
+          </div>
+          <div class="text-danger" ng-messages="couponForm.image.$error" ng-if="couponForm.$submitted">
+            <div ng-message="required">Это поле обязательно для заполнения.</div>
           </div>
         </div>
         <div class="form-group">

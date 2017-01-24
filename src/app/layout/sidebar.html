@@ -2,11 +2,11 @@
   <div class="panel panel-default">
     <div class="panel-body ">
       <dl>
-        <dd><a href="mailto:#">first.last@example.com</a></dd>
+        <dd><a ng-href="{{'mailto:' + vm.user.email}}">{{vm.user.email}}</a></dd>
       </dl>
       <dl>
         <dt>Остаток купонов: </dt>
-        <dd>100</dd>
+        <dd>{{vm.user.couponsCount}}</dd>
       </dl>
       <a ng-href="#/prices" class="btn btn-primary">Пополнить баланс</a>  
       <hr>
@@ -29,7 +29,7 @@
           <dd>{{vm.currentSite.couponSellAtThisMonth}}</dd>
         </dl>        
       </div>
-      <dl class="coupon-status">
+      <dl class="coupon-status" ng-if="vm.currentSite.status">
         <dt>Статус: </dt>
         <dd>
           <span class="label" ng-class="
