@@ -5,9 +5,9 @@
     .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$routeParams', '$location', 'dataservice', 'colorThemes'];
+    Coupon.$inject = ['$routeParams', '$timeout', '$location', 'dataservice', 'colorThemes'];
 
-    function Coupon($routeParams, $location, dataservice, colorThemes) {
+    function Coupon($routeParams, $timeout, $location, dataservice, colorThemes) {
       var vm = this;
 
       activate();
@@ -18,10 +18,12 @@
         });
       }
     
-      vm.saveCoupon = function() {
-        console.log(vm.couponSettings);
-        dataservice.saveCoupon(vm.couponSettings).then(function() {
-          activate();
+      vm.saveCoupon = function(form) {
+        dataservice.saveCoupon(vm.couponSettings).then(function(data) {
+          form.$submitted = false;
+          dataservice.setCurrentSite(data.id);
+          vm.couponSettings = data;
+          $location.url('/site/'+ data.id +'/coupon');            
         });
       }
 

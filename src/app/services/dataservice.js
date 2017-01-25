@@ -66,7 +66,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
-      var currentCoupon = coupon,
+      var currentCoupon = data.data,
           saveIndex;
 
       coupons.forEach(function(coupon, index) {
@@ -75,7 +75,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
         }
       });
 
-      if (saveIndex) {
+      if (saveIndex != undefined) {
         coupons[saveIndex] = currentCoupon;
       } else {
         coupons.push(currentCoupon);

@@ -1,6 +1,6 @@
 <div ng-include="'app/layout/sitenav.html'"></div>
 <div class="margin-top-15">
-  <form name="couponForm" ng-submit="couponForm.$valid ? vm.saveCoupon() : ''" novalidate>
+  <form name="couponForm" ng-submit="couponForm.$valid ? vm.saveCoupon(couponForm, $flow) : ''" novalidate>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
@@ -56,7 +56,7 @@
           <label for="image">Иконка (макс. размер 1 мб.)<span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="hidden" class="form-control" id="image" name="image" placeholder="" 
-            ng-required="true" ng-model="vm.couponSettings.image">
+            ng-required="!vm.couponSettings.id" ng-model="vm.couponSettings.image">
           <div class="site-icon" flow-init="{singleFile:true}"
            flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
            flow-files-submitted="vm.addFile( $files, $event, $flow )">

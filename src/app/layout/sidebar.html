@@ -14,7 +14,7 @@
         <dt>Сайт: </dt>
         <dd><a ng-href="{{vm.currentSite.homepageUr}}">{{vm.currentSite.homepageUrl}}</a></dd>
       </dl>
-      <div class="coupon-info">
+      <div class="coupon-info" ng-if="vm.currentSite">
         <h5><strong>Отправленных купонов:</strong></h5>
         <dl>
           <dt>За сутки: </dt>
@@ -34,13 +34,13 @@
         <dd>
           <span class="label" ng-class="
           {
-            'label-success': vm.currentSite.status == 'active', 
-            'label-warning': vm.currentSite.status == 'verified',
+            'label-success': vm.currentSite.status == 'Approved', 
+            'label-warning': vm.currentSite.status == 'Not approved',
             'label-danger': vm.currentSite.status == 'disabled'
           }">{{vm.currentSite.status}}</span>
         </dd>
       </dl>  
-      <toggle ng-model="vm.currentSite.activeFlag" ng-change="vm.toggleStatus()" on="Включен" off="Выключен" onstyle="btn-success" offstyle="btn-danger"></toggle>
+      <toggle ng-model="vm.currentSite.activeFlag" ng-if="vm.currentSite" ng-change="vm.toggleStatus()" on="Включен" off="Выключен" onstyle="btn-success" offstyle="btn-danger"></toggle>
     </div>
   </div>
 </div>

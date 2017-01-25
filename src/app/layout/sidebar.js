@@ -13,7 +13,6 @@
     dataservice.getUser().then(function(user) {
       vm.user = user;
     });
-
     $rootScope.$on('changeCurrentSite', function (event, data) {
       vm.currentSite = dataservice.getCurrentSite();
     });
