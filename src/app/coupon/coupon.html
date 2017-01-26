@@ -117,14 +117,18 @@
       </div>
     </div>
     <hr />
-    <div class="form-group">
-      <label for="region">Регион посетителя для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-      <div class="input-group">
-        <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:1">
-        <span class="input-group-btn">
-          <button class="btn btn-primary" type="button" ng-click="vm.addRegion()"><span class="glyphicon glyphicon-plus"></span></button>
-        </span>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="region">Регионы для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq-link" 
+              uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <div class="input-group">
+            <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:1">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" ng-click="vm.addRegion()"><span class="glyphicon glyphicon-plus"></span></button>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
     <ul class="list-inline">
@@ -134,7 +138,7 @@
           <span class="glyphicon glyphicon-remove text-danger"></span>
         </button>
       </li>
-    </ul>
+    </ul>    
     <div class="form-group margin-top-15">
       <button type="submit" class="btn btn-primary">Сохранить</button>
       <button type="button" class="btn btn-danger" ng-click="vm.deleteCoupon()">Удалить</button>
