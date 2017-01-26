@@ -17,9 +17,9 @@
   ]).config(config)
     .run(runBlock);
 
-  config.$inject = ['$httpProvider', '$translateProvider', '$compileProvider'];
+  config.$inject = ['$httpProvider', '$translateProvider', '$compileProvider', 'toastr'];
 
-  function config($httpProvider, $translateProvider, $compileProvider) {
+  function config($httpProvider, $translateProvider, $compileProvider, toastr) {
     $httpProvider.defaults.headers.get = {'Content-Type': 'application/json; charset=utf-8'};
     $httpProvider.defaults.headers.post = {'Content-Type': 'application/json; charset=utf-8'};
     $httpProvider.defaults.useXDomain = true;

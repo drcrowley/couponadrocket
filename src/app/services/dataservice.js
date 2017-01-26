@@ -2,9 +2,9 @@ angular
   .module('app.services')
   .factory('dataservice', dataservice);
 
-dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'CONSTANT'];
+dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'logger'];
 
-function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, CONSTANT) {
+function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, logger) {
   
   var service = {
     getCoupons: getCoupons,
@@ -41,7 +41,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       return $q.when(couponsClone);
     } else {
       $rootScope.isLoading = true;
-      return $http.get(CONSTANT.apiUrl + '/manage/myCoupons')
+      return $http.get(config.apiUrl + '/manage/myCoupons')
       .then(complete)
       .catch(function(message) {
           exception.catcher('XHR Failed')(message);
@@ -58,7 +58,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function saveCoupon(coupon) {
     $rootScope.isLoading = true;
-    return $http.post(CONSTANT.apiUrl + '/manage/saveCoupon', coupon)
+    return $http.post(config.apiUrl + '/manage/saveCoupon', coupon)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -82,13 +82,15 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       }
      
       $rootScope.isLoading = false;
+
+      logger.success('Купон успешно сохранен', coupon.id);
       return data.data;
-     }
+    }
   }
 
   function deleteCoupon(couponId) {
     $rootScope.isLoading = true;
-    return $http.get(CONSTANT.apiUrl + '/manage/deleteCoupon/' + couponId)
+    return $http.get(config.apiUrl + '/manage/deleteCoupon/' + couponId)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -104,6 +106,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       });
       coupons.splice(deleteIndex, 1);
       $rootScope.isLoading = false;
+      logger.success('Купон успешно удален', couponId);
       return data.data;
     }
   }
@@ -111,7 +114,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function activateCoupon(couponId) {
     $rootScope.isLoading = true;
-    return $http.get(CONSTANT.apiUrl + '/manage/activate/' + couponId)
+    return $http.get(config.apiUrl + '/manage/activate/' + couponId)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -121,13 +124,14 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     function complete(data) {
       coupons = null;
       $rootScope.isLoading = false;
+      logger.success('Купон успешно активирован', couponId);
       return data.data;
     }    
   }
 
   function deactivateCoupon(couponId) {
     $rootScope.isLoading = true;
-    return $http.get(CONSTANT.apiUrl + '/manage/deactivate/' + couponId)
+    return $http.get(config.apiUrl + '/manage/deactivate/' + couponId)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -137,6 +141,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     function complete(data) {
       coupons = null;
       $rootScope.isLoading = false;
+      logger.success('Купон успешно деактивирован', couponId);
       return data.data;
     }    
   }  
@@ -167,7 +172,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       return $q.when(lsData);
     } else {
       $rootScope.isLoading = true;
-      return $http.get(CONSTANT.apiUrl + '/general/colorThemes')
+      return $http.get(config.apiUrl + '/general/colorThemes')
       .then(complete)
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
@@ -183,7 +188,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }
 
   function getRegions(value) {
-    return $http.get(CONSTANT.apiUrl + '/general/regions/' + value + '/RU')
+    return $http.get(config.apiUrl + '/general/regions/' + value + '/RU')
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -204,7 +209,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       return $q.when(userClone);
     } else {
       $rootScope.isLoading = true;
-      return $http.get(CONSTANT.apiUrl + '/user/myUser')
+      return $http.get(config.apiUrl + '/user/myUser')
       .then(complete)
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
@@ -221,7 +226,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function updateUser(userData) {
     $rootScope.isLoading = true;
-    return $http.post(CONSTANT.apiUrl + '/user/updateUser', userData)
+    return $http.post(config.apiUrl + '/user/updateUser', userData)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -231,13 +236,14 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     function complete(data) {
       user = null;
       $rootScope.isLoading = false;
+      logger.success('Настройки сохранены');
       return data.data;
     }
   }
 
   function changePassword(data) {
     $rootScope.isLoading = true;
-    return $http.post(CONSTANT.apiUrl + '/user/changePassword', data)
+    return $http.post(config.apiUrl + '/user/changePassword', data)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -246,6 +252,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     
     function complete(data) {
       $rootScope.isLoading = false;
+      logger.success('Пароль изменен');
       return data.data;
     }
   }  

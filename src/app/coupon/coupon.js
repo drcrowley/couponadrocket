@@ -5,9 +5,9 @@
     .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$routeParams', '$timeout', '$location', 'dataservice', 'colorThemes'];
+    Coupon.$inject = ['$routeParams', '$timeout', '$location', '$uibModal', 'dataservice', 'colorThemes'];
 
-    function Coupon($routeParams, $timeout, $location, dataservice, colorThemes) {
+    function Coupon($routeParams, $timeout, $location, $uibModal, dataservice, colorThemes) {
       var vm = this;
 
       activate();
@@ -23,7 +23,7 @@
           form.$submitted = false;
           dataservice.setCurrentSite(data.id);
           vm.couponSettings = data;
-          $location.url('/site/'+ data.id +'/coupon');            
+          $location.url('/site/'+ data.id +'/coupon');
         });
       }
 
