@@ -25,9 +25,15 @@
                   {{'Sites' | translate}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                  <li><a href="#/site/new/coupon">Добавить сайт <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span></a></li>
+                  <li>
+                    <a href="#/site/new/coupon">
+                      Добавить сайт <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span>
+                    </a>
+                  </li>
                   <li class="divider" ng-if="vm.sites && vm.sites.length"></li>
-                  <li ng-repeat="coupon in vm.coupons"><a href="#/site/{{coupon.id}}/coupon">{{coupon.titel}}</a></li>
+                  <li ng-repeat="coupon in vm.coupons" ng-class="{active: vm.currentSite.id == coupon.id}">
+                    <a href="#/site/{{coupon.id}}/coupon">{{coupon.titel}}</a>
+                  </li>
                 </ul>                
               </li>
               <li ng-class="{active: vm.isRoute('Настройки')}">
