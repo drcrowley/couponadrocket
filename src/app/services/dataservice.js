@@ -2,9 +2,9 @@ angular
   .module('app.services')
   .factory('dataservice', dataservice);
 
-dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'logger'];
+dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'logger', 'datacache'];
 
-function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, logger) {
+function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, logger, datacache) {
   
   var service = {
     getCoupons: getCoupons,
@@ -21,20 +21,16 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     updateUser: updateUser,
     changePassword: changePassword,
     getTariffs: getTariffs,
-
     setOrderData: setOrderData,
     getOrderData: getOrderData
   };
  
   return service;
 
-  var coupons,
-      user,
-      currentSite,
-      orderData;
-
   function getCoupons() {
-    var couponsClone;
+    var couponsClone,
+        coupons = datacache.get('coupons');
+
     if (coupons) {
       couponsClone = angular.copy(coupons);
     }
@@ -51,7 +47,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     }
     
     function complete(data) {
-      coupons = data.data;
+      datacache.put('coupons', data.data);
       $rootScope.isLoading = false;
       return data.data;
     }    
@@ -68,7 +64,8 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
     function complete(data) {
       var currentCoupon = data.data,
-          saveIndex;
+          saveIndex,
+          coupons = datacache.get('coupons');
 
       coupons.forEach(function(coupon, index) {
         if (currentCoupon.id == coupon.id) {
@@ -99,7 +96,8 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
-      var deleteIndex;
+      var deleteIndex,
+          coupons = datacache.get('coupons');
       coupons.forEach(function(coupon, index) {
         if (couponId == coupon.id) {
           deleteIndex = index;
@@ -148,14 +146,14 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }  
 
   function getCurrentSite() {
-    return currentSite;
+    return datacache.get('currentSite');
   }
 
   function setCurrentSite(siteId) {
     getCoupons().then(function(coupons) {
       coupons.forEach(function(coupon) {
         if(coupon.id == siteId) {
-          currentSite = coupon;
+          datacache.put('currentSite', coupon);
         }
       });
       $rootScope.$broadcast('changeCurrentSite');
@@ -163,7 +161,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }
 
   function removeCurrentSite() {
-    currentSite = null;
+    datacache.remove('currentSite');
     $rootScope.$broadcast('changeCurrentSite');
   }
 
@@ -201,7 +199,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }
 
   function getUser() {
-    var userClone;
+    var userClone,
+        user = datacache.get('user');
+
     if (user) {
       userClone = angular.copy(user);
     }
@@ -219,7 +219,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     }
     
     function complete(data) {
-      user = data.data;
+      datacache.put('user', data.data);
       $rootScope.isLoading = false;
       return data.data;
     }
@@ -235,7 +235,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
     
     function complete(data) {
-      user = null;
+      datacache.remove('user');
       $rootScope.isLoading = false;
       logger.success('Настройки сохранены');
       return data.data;
@@ -280,10 +280,10 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }
 
   function getOrderData() {
-    return orderData;
+    return datacache.get('orderData');;
   }
 
   function setOrderData(data) {
-    orderData = data
+    datacache.put('orderData', data);
   }
 }
