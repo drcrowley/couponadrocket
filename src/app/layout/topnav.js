@@ -6,7 +6,7 @@
 
   TopNav.$inject = ['$route', '$rootScope', 'dataservice'];
 
-  function TopNav($route,$rootScope, dataservice) {
+  function TopNav($route, $rootScope, dataservice) {
     var vm = this;
 
     vm.isRoute = isRoute;

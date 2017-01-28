@@ -38,7 +38,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       return $q.when(couponsClone);
     } else {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/manage/myCoupons')
+      return $http.get(config.apiUrl + '/manage/myCoupons', {
+        cache: true
+      })
       .then(complete)
       .catch(function(message) {
           exception.catcher('XHR Failed')(message);
@@ -210,7 +212,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       return $q.when(userClone);
     } else {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/user/myUser')
+      return $http.get(config.apiUrl + '/user/myUser', {
+        cache: true
+      })
       .then(complete)
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
