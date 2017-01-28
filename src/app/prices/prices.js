@@ -5,11 +5,13 @@
     .module('app.prices')
     .controller('Prices', Prices);
 
-    Prices.$inject = ['$location', '$uibModal', 'dataservice'];
+    Prices.$inject = ['$location', '$uibModal', 'dataservice', 'logger'];
     
-    function Prices($location, $uibModal, dataservice) {
+    function Prices($location, $uibModal, dataservice, logger) {
 
       var vm = this;
+
+      vm.aggree = false;
 
       vm.tariffs = [
         {
@@ -41,16 +43,30 @@
       vm.pay = function(tariff) {
         dataservice.setOrderData(tariff);
 
-        if(tariff.price > 0) {
+        if (tariff.price <= 0) return false;
+
+        if(vm.agree) {
            $uibModal.open({
             animation: true,
             templateUrl: 'payment.html',
             controller: 'Payment', 
             controllerAs: 'vm'
           });         
+        } else {
+          logger.warning('Для оплаты необходимо принять условия договора оферты');
         }
-      }
+      };
 
+      vm.showOffer = function($event) {
+
+        $event.stopPropagation();
+        $event.preventDefault();
+        
+        $uibModal.open({
+          animation: true,
+          templateUrl: 'offer-error.html'
+        });
+      };
     }
 })();
 
@@ -62,8 +78,7 @@ function Payment($location, $uibModalInstance, $uibModal, dataservice) {
   var vm = this;
 
   vm.paymentType = 'card';
-  vm.aggree = false;
-
+  
   vm.orderData = dataservice.getOrderData();
 
   vm.changePayType = function(type) {
@@ -73,16 +88,4 @@ function Payment($location, $uibModalInstance, $uibModal, dataservice) {
   vm.requestBill = function() {
     $uibModalInstance.close();
   };
-
-  vm.showOffer = function($event) {
-
-    $event.stopPropagation();
-    $event.preventDefault();
-    
-    $uibModal.open({
-      animation: true,
-      templateUrl: 'offer.html'
-    });
-  };
-
 };

@@ -27,10 +27,16 @@
     </div>
   </div>
 </div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
+  </label>
+</div>
+
 <script type="text/ng-template" id="payment.html">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" id="modal-title">Оплата</h3>
+        <h3 class="modal-title" id="modal-title">Покупка</h3>
     </div>
     <div class="modal-body" id="modal-body">
         <button class="btn" ng-class="{'btn-primary' : vm.paymentType == 'card'}" ng-click="vm.changePayType('card')">Безналичный расчет</button>
@@ -89,12 +95,7 @@
     </div>
     <div ng-if="vm.paymentType == 'card'" class="modal-footer">
       <div class="clearfix">
-        <div class="checkbox pull-left">
-          <label>
-            <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
-          </label>
-        </div>
-         <button type="submit" form="bill" class="btn btn-primary pull-right" ng-disabled="!vm.agree" ng-click="vm.requestBill()">Запросить счет</button>        
+         <button type="submit" form="bill" class="btn btn-primary pull-right" ng-click="vm.requestBill()">Купить</button>        
       </div>
     </div>
 </script>
@@ -106,5 +107,15 @@
     </div>
     <div class="modal-body" id="modal-body">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit illum neque id, molestiae quos doloribus recusandae facere, minus quae odio corporis voluptatem tenetur expedita deserunt fuga, in accusamus omnis quod.
+    </div>
+</script>
+
+<script type="text/ng-template" id="offer-error.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="modal-title">Оферта</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        Для оплаты необходимо принять условия договора оферты
     </div>
 </script>

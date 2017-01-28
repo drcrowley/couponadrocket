@@ -20,6 +20,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     getUser: getUser,
     updateUser: updateUser,
     changePassword: changePassword,
+    getTariffs: getTariffs,
 
     setOrderData: setOrderData,
     getOrderData: getOrderData
@@ -255,7 +256,28 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       logger.success('Пароль изменен');
       return data.data;
     }
-  }  
+  }
+
+  function getTariffs() {
+    var lsData = localStorageService.get('tariffs');
+    if (lsData) {
+      return $q.when(lsData);
+    } else {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/general/tarifs')
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });      
+    }
+
+    function complete(data) {
+      localStorageService.set('tariffs', data.data);
+      $rootScope.isLoading = false;
+      return data.data;
+    }    
+  }
 
   function getOrderData() {
     return orderData;
