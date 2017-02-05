@@ -1,6 +1,6 @@
 <h3>Информация о пользователе</h3>
 <hr/>
-<form name="userInfoForm" novalidate ng-submit="vm.saveUser()">
+<form name="userInfoForm" novalidate ng-submit="userInfoForm.$valid ? vm.saveUser() : ''">
   <div class="form-group">
     <label for="email">Email*</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="" 

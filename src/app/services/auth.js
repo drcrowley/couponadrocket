@@ -25,9 +25,7 @@ function Auth($rootScope, $location, $window, auth) {
 	if (token) {
 		auth.set(token);
 	}
-
   $location.path('#/site/0/coupon');
-  $window.location.reload();
 }
 
 auth.$inject = ['$http', 'localStorageService'];
@@ -43,7 +41,7 @@ function auth($http, localStorageService) {
 
 
   function set(token) {
-    $http.defaults.headers.common.Authorization
+    $http.defaults.headers.common.Authorization = token;
   	localStorageService.set('token', token);
   }
 

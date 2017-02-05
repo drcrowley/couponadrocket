@@ -19,7 +19,12 @@
             templateUrl: 'app/prices/prices.html',
             controller: 'Prices',
             controllerAs: 'vm',
-            title: 'Тарифы'
+            title: 'Тарифы',
+            resolve: {
+              tariffs: ['dataservice' , function (dataservice) {
+                return dataservice.getTariffs();
+              }]
+            }
          }
         }
       ];

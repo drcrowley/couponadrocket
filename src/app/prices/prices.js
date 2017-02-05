@@ -5,41 +5,18 @@
     .module('app.prices')
     .controller('Prices', Prices);
 
-    Prices.$inject = ['$location', '$uibModal', 'dataservice', 'logger'];
+    Prices.$inject = ['$location', '$uibModal', 'dataservice', 'logger', 'tariffs'];
     
-    function Prices($location, $uibModal, dataservice, logger) {
+    function Prices($location, $uibModal, dataservice, logger, tariffs) {
 
       var vm = this;
 
       vm.aggree = false;
 
-      vm.tariffs = [
-        {
-          title: 'Free',
-          count: 5,
-          price: 0,
-          class: 'default'
-        },
-        {
-          title: 'Econom',
-          count: 50,
-          price: 490,
-          class: 'warning'
-        },
-        {
-          title: 'Start',
-          count: 150,
-          price: 990,
-          class: 'success'
-        },
-        {
-          title: 'Standart',
-          count: 400,
-          price: 1990,
-          class: 'danger'
-        }
-      ];
-        
+      vm.classes = ['default', 'warning', 'success', 'danger'];
+
+      vm.tariffs = tariffs;
+
       vm.pay = function(tariff) {
         dataservice.setOrderData(tariff);
 
@@ -72,20 +49,25 @@
 
 angular.module('app.prices').controller('Payment', Payment);
 
-Payment.$inject = ['$location', '$uibModalInstance', '$uibModal', 'dataservice'];
+Payment.$inject = ['$location', '$uibModalInstance', '$uibModal', '$q', 'dataservice'];
 
-function Payment($location, $uibModalInstance, $uibModal, dataservice) {
+function Payment($location, $uibModalInstance, $uibModal, $q, dataservice) {
   var vm = this;
 
-  vm.paymentType = 'card';
-  
-  vm.orderData = dataservice.getOrderData();
+  $q.all({
+    orderData: dataservice.getOrderData(), 
+    user: dataservice.getUser()
+  }).then(function(data) {
+    vm.orderData = data.orderData;
+    vm.user = data.user;
+    console.log(vm.user);
+  });
 
-  vm.changePayType = function(type) {
-    vm.paymentType = type;
-  };
-
-  vm.requestBill = function() {
+  vm.buy = function(id) {
     $uibModalInstance.close();
+    console.log(vm.user);
+    dataservice.updateUser(vm.user).then(function() {
+      dataservice.buyTariff(id);
+    });  
   };
 };

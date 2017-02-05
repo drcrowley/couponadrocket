@@ -5,9 +5,9 @@
     .module('app.stat')
     .controller('Stat', Stat);
 
-    Stat.$inject = [];
+    Stat.$inject = ['$routeParams', '$location', 'dataservice'];
     
-    function Stat() {
+    function Stat($routeParams, $location, dataservice) {
       var vm = this;
 
       activate();
@@ -51,7 +51,37 @@
       }
 
       function activate() {
+        dataservice.getCoupons().then(function(coupons) {
+          var siteId = $routeParams.siteId,
+              site;
+       
+          if (coupons.length) {
+            coupons.forEach(function(coupon) {
+              if (siteId == coupon.id) {
+                site = coupon;
+              }
+            });
+            if (site) {
+              dataservice.setCurrentSite(siteId);
+            } else {
+              site = coupons[0];         
+              dataservice.setCurrentSite(site.id);
+              $location.path('/site/'+ site.id + '/coupon');
+            }
+          } else {
+            dataservice.removeCurrentSite();
+            $location.path('/site/new/coupon');
+          }
 
+          // dataservice.getStatistics({
+          //   couponId: site.id,
+          //   from: moment().subtract('days', 7).unix(),
+          //   to: moment().unix()
+          // }).then(function(data) {
+          //   console.log(data);
+          // });
+
+        });
       }
     }
 })();

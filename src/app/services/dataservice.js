@@ -12,6 +12,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     deleteCoupon: deleteCoupon,
     activateCoupon: activateCoupon,
     deactivateCoupon: deactivateCoupon,
+    getStatistics: getStatistics,
     getCurrentSite: getCurrentSite,
     setCurrentSite: setCurrentSite,
     removeCurrentSite: removeCurrentSite,
@@ -21,6 +22,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     updateUser: updateUser,
     changePassword: changePassword,
     getTariffs: getTariffs,
+    buyTariff: buyTariff,
     setOrderData: setOrderData,
     getOrderData: getOrderData
   };
@@ -145,7 +147,34 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       logger.success('Купон успешно деактивирован', couponId);
       return data.data;
     }    
-  }  
+  }
+
+  function getStatistics(params) {
+    var statisticsClone,
+        statistics = datacache.get('statistics');
+
+    if (statistics) {
+      colorThemesClone = angular.copy(statistics);
+    }
+
+    if (statisticsClone) {
+      return $q.when(statisticsClone);
+    } else {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/manage/statistics/' + params.couponId + '/' + params.from + '/' + params.to)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });      
+    }
+
+    function complete(data) {
+      datacache.put('statistics', data.data);
+      $rootScope.isLoading = false;
+      return data.data;
+    }
+  }
 
   function getCurrentSite() {
     return datacache.get('currentSite');
@@ -168,9 +197,15 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }
 
   function getColorThemes() {
-    var lsData = localStorageService.get('colorThemes');
-    if (lsData) {
-      return $q.when(lsData);
+    var colorThemesClone,
+        colorThemes = datacache.get('colorThemes');
+
+    if (colorThemes) {
+      colorThemesClone = angular.copy(colorThemes);
+    }
+
+    if (colorThemesClone) {
+      return $q.when(colorThemesClone);
     } else {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/general/colorThemes')
@@ -182,7 +217,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     }
 
     function complete(data) {
-      localStorageService.set('colorThemes', data.data);
+      datacache.put('colorThemes', data.data);
       $rootScope.isLoading = false;
       return data.data;
     }
@@ -263,12 +298,20 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
   }
 
   function getTariffs() {
-    var lsData = localStorageService.get('tariffs');
-    if (lsData) {
-      return $q.when(lsData);
+    var tariffsClone,
+        tariffs = datacache.get('tariffs');
+
+    if (tariffs) {
+      tariffsClone = angular.copy(tariffs);
+    }
+    
+    if (tariffsClone) {
+      return $q.when(tariffsClone);
     } else {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/general/tarifs')
+      return $http.get(config.apiUrl + '/general/tarifs', {
+        cache: true
+      })
       .then(complete)
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
@@ -277,14 +320,30 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     }
 
     function complete(data) {
-      localStorageService.set('tariffs', data.data);
+      datacache.put('tariffs', data.data);
       $rootScope.isLoading = false;
       return data.data;
     }    
   }
 
+  function buyTariff(tariffId) {
+    $rootScope.isLoading = true;
+    return $http.get(config.apiUrl + '/buytariff/' + tariffId)
+    .then(complete)
+    .catch(function(message) {
+      exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
+    });
+
+    function complete(data) {
+      $rootScope.isLoading = false;
+      return data.data;
+    }     
+  }
+
   function getOrderData() {
-    return datacache.get('orderData');;
+    var orderData = datacache.get('orderData');
+    return $q.when(orderData);
   }
 
   function setOrderData(data) {

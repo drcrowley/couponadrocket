@@ -143,6 +143,10 @@
   font-size: 18px;
 }
 
+.price .panel-footer {
+  min-height: 54px;
+}
+
 .total-price {
   font-size: 16px;
   display: inline-block;
