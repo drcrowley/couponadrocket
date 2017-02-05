@@ -73,13 +73,13 @@
             $location.path('/site/new/coupon');
           }
 
-          // dataservice.getStatistics({
-          //   couponId: site.id,
-          //   from: moment().subtract('days', 7).unix(),
-          //   to: moment().unix()
-          // }).then(function(data) {
-          //   console.log(data);
-          // });
+          dataservice.getStatistics({
+            couponId: site.id,
+            from: moment().subtract('days', 7).unix(),
+            to: moment().unix()
+          }).then(function(data) {
+            console.log(data);
+          });
 
         });
       }
