@@ -2,9 +2,9 @@ angular
   .module('app.services')
   .factory('dataservice', dataservice);
 
-dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'logger', 'datacache'];
+dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'datacache', 'auth'];
 
-function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, logger, datacache) {
+function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, datacache, auth) {
   
   var service = {
     getCoupons: getCoupons,
@@ -21,10 +21,13 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     getUser: getUser,
     updateUser: updateUser,
     changePassword: changePassword,
+    logout: logout,
     getTariffs: getTariffs,
     buyTariff: buyTariff,
     setOrderData: setOrderData,
-    getOrderData: getOrderData
+    getOrderData: getOrderData,
+    getFaq: getFaq,
+    sendQuestion: sendQuestion
   };
  
   return service;
@@ -41,7 +44,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     } else {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/manage/myCoupons', {
-        cache: true
+        cache: datacache
       })
       .then(complete)
       .catch(function(message) {
@@ -117,6 +120,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function activateCoupon(couponId) {
     $rootScope.isLoading = true;
+    datacache.remove('coupons');
+    datacache.remove(config.apiUrl + '/manage/myCoupons');
+
     return $http.get(config.apiUrl + '/manage/activate/' + couponId)
     .then(complete)
     .catch(function(message) {
@@ -125,7 +131,6 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
-      coupons = null;
       $rootScope.isLoading = false;
       logger.success('Купон успешно активирован', couponId);
       return data.data;
@@ -134,6 +139,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function deactivateCoupon(couponId) {
     $rootScope.isLoading = true;
+    datacache.remove('coupons');
+    datacache.remove(config.apiUrl + '/manage/myCoupons');
+
     return $http.get(config.apiUrl + '/manage/deactivate/' + couponId)
     .then(complete)
     .catch(function(message) {
@@ -142,7 +150,6 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
 
     function complete(data) {
-      coupons = null;
       $rootScope.isLoading = false;
       logger.success('Купон успешно деактивирован', couponId);
       return data.data;
@@ -248,7 +255,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     } else {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/user/myUser', {
-        cache: true
+        cache: datacache
       })
       .then(complete)
       .catch(function(message) {
@@ -274,9 +281,9 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     });
     
     function complete(data) {
+      datacache.remove(config.apiUrl + '/user/myUser');
       datacache.remove('user');
       $rootScope.isLoading = false;
-      logger.success('Настройки сохранены');
       return data.data;
     }
   }
@@ -293,6 +300,22 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
     function complete(data) {
       $rootScope.isLoading = false;
       logger.success('Пароль изменен');
+      return data.data;
+    }
+  }
+
+  function logout() {
+    $rootScope.isLoading = true;
+    return $http.post(config.apiUrl + '/user/logout')
+    .then(complete)
+    .catch(function(message) {
+      auth.remove();
+      $rootScope.isLoading = false;
+    });
+    
+    function complete(data) {
+      $rootScope.isLoading = false;
+      auth.remove();
       return data.data;
     }
   }
@@ -328,7 +351,7 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function buyTariff(tariffId) {
     $rootScope.isLoading = true;
-    return $http.get(config.apiUrl + '/buytariff/' + tariffId)
+    return $http.get(config.apiUrl + '/buytarif/buy/' + tariffId)
     .then(complete)
     .catch(function(message) {
       exception.catcher('XHR Failed')(message);
@@ -348,5 +371,50 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
 
   function setOrderData(data) {
     datacache.put('orderData', data);
+  }
+
+  function getFaq() {
+    var faqClone,
+        faq = datacache.get('faq');
+
+    if (faq) {
+      faqClone = angular.copy(faq);
+    }
+    
+    if (faqClone) {
+      return $q.when(faqClone);
+    } else {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/general/faq/ru', {
+        cache: true
+      })
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });      
+    }
+
+    function complete(data) {
+      datacache.put('faq', data.data);
+      $rootScope.isLoading = false;
+      return data.data;
+    }     
+  }
+
+  function sendQuestion(question) {
+    $rootScope.isLoading = true;
+    return $http.post(config.apiUrl + '/user/sendQuestion', question)
+    .then(complete)
+    .catch(function(message) {
+      exception.catcher('XHR Failed')(message);
+      $rootScope.isLoading = false;
+    });
+
+    function complete(data) {
+      $rootScope.isLoading = false;
+      logger.success('Вопрос отправлен');
+      return data.data;
+    }
   }
 }

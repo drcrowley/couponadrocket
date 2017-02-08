@@ -28,13 +28,14 @@ function Auth($rootScope, $location, $window, auth) {
   $location.path('#/site/0/coupon');
 }
 
-auth.$inject = ['$http', 'localStorageService'];
+auth.$inject = ['$http', '$window', 'localStorageService'];
 
-function auth($http, localStorageService) {
+function auth($http, $window, localStorageService) {
 
   var service = {
     get: get,
-    set: set
+    set: set,
+    remove: remove
   };
 
   return service;	
@@ -52,4 +53,10 @@ function auth($http, localStorageService) {
 			return token;
 		}
 	}
+
+  function remove() {
+    localStorageService.remove('token');
+    delete $http.defaults.headers.common.Authorization;
+    $window.location.href = '/';
+  }
 }

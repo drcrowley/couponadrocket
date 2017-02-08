@@ -49,25 +49,42 @@
 
 angular.module('app.prices').controller('Payment', Payment);
 
-Payment.$inject = ['$location', '$uibModalInstance', '$uibModal', '$q', 'dataservice'];
+Payment.$inject = ['$location', '$uibModalInstance', '$uibModal', '$q', 'dataservice', 'config'];
 
-function Payment($location, $uibModalInstance, $uibModal, $q, dataservice) {
+function Payment($location, $uibModalInstance, $uibModal, $q, dataservice, config) {
   var vm = this;
 
-  $q.all({
-    orderData: dataservice.getOrderData(), 
-    user: dataservice.getUser()
-  }).then(function(data) {
-    vm.orderData = data.orderData;
-    vm.user = data.user;
-    console.log(vm.user);
-  });
+  activate();
+
 
   vm.buy = function(id) {
     $uibModalInstance.close();
-    console.log(vm.user);
     dataservice.updateUser(vm.user).then(function() {
-      dataservice.buyTariff(id);
+      dataservice.buyTariff(id).then(function(data) {
+
+        $uibModal.open({
+          animation: true,
+          templateUrl: 'thank-popup.html',
+          controller: function () {
+            var vm = this;
+            vm.invoiceLink = config.apiUrl + '/buytarif/invoice/' + data.id;
+          },
+          controllerAs: 'vm'
+        });
+
+      });
     });  
   };
+
+
+  function activate() {
+    $q.all({
+      orderData: dataservice.getOrderData(), 
+      user: dataservice.getUser()
+    }).then(function(data) {
+      vm.orderData = data.orderData;
+      vm.user = data.user;
+      // delete vm.user.companyType;
+    });    
+  }
 };

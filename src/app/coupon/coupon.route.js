@@ -21,9 +21,6 @@
             controllerAs: 'vm',
             title: 'Мои сайты - Купон',
             resolve: {
-              // coupons: ['dataservice' , function (dataservice) {
-              //   return dataservice.getCoupons();
-              // }],
               colorThemes: ['dataservice' , function (dataservice) {
                 return dataservice.getColorThemes();
               }]

@@ -19,7 +19,12 @@
             templateUrl: 'app/faq/faq.html',    
             controller: 'Faq',
             controllerAs: 'vm',
-            title: 'Faq'
+            title: 'Faq',
+            resolve: {
+              faq: ['dataservice' , function (dataservice) {
+                return dataservice.getFaq();
+              }]
+            }
          }
         }
       ];

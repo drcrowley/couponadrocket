@@ -5,30 +5,14 @@
     .module('app.faq')
     .controller('Faq', Faq);
 
-    Faq.$inject = ['$uibModal'];
+    Faq.$inject = ['$uibModal', 'faq'];
     
-    function Faq($uibModal) {
+    function Faq($uibModal, faq) {
       var vm = this;
 
       vm.modalInstance = null;
 
-      vm.list = [
-        {
-          question: 'Lorem ipsum dolo',
-          answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quam debitis officia ratione maxime dolor. Itaque molestias maiores nesciunt suscipit doloribus eius harum facere necessitatibus, numquam sint nihil vel ipsa.',
-          open: false
-        },
-        {
-          question: 'Lorem ipsum dolo',
-          answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quam debitis officia ratione maxime dolor. Itaque molestias maiores nesciunt suscipit doloribus eius harum facere necessitatibus, numquam sint nihil vel ipsa.',
-          open: false
-        },
-        {
-          question: 'Lorem ipsum dolo',
-          answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quam debitis officia ratione maxime dolor. Itaque molestias maiores nesciunt suscipit doloribus eius harum facere necessitatibus, numquam sint nihil vel ipsa.',
-          open: false
-        }
-      ];
+      vm.faq = faq;
 
       vm.open = function (size, parentSelector) {
         vm.modalInstance = $uibModal.open({
@@ -40,24 +24,23 @@
           controllerAs: 'vm'
         });
       };
-
-      activate();
-
-      function activate() {
-
-      }
     }
 })();
 
-angular.module('app.faq').controller('FaqFeedback', function ($uibModalInstance) {
+angular.module('app.faq').controller('FaqFeedback', FaqFeedback);
+
+FaqFeedback.$inject = ['$uibModalInstance', 'dataservice'];
+
+function FaqFeedback($uibModalInstance, dataservice) {
   var vm = this;
 
-  vm.submit = function () {
-    console.log(vm.title, vm.question);
-    $uibModalInstance.close();
+  vm.sendQuestion = function () {
+    dataservice.sendQuestion(vm.question).then(function() {
+      $uibModalInstance.close();      
+    });
   };
 
   vm.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-});
+};

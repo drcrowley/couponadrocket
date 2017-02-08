@@ -16,7 +16,11 @@
 
     $rootScope.$on('changeCurrentSite', function (event, data) {
       activate();
-    });    
+    });
+
+    vm.logout = function() {
+      dataservice.logout();
+    }
 
     function activate() {
       dataservice.getCoupons().then(function(data) {

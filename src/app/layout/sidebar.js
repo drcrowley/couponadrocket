@@ -5,9 +5,9 @@
     .module('app.layout')
     .controller('Sidebar', Sidebar);
 
-  Sidebar.$inject = ['$scope', 'dataservice'];
+  Sidebar.$inject = ['$timeout', '$rootScope', 'dataservice'];
 
-  function Sidebar($rootScope, dataservice) {
+  function Sidebar($timeout, $rootScope, dataservice) {
     var vm = this;
     vm.currentSite = dataservice.getCurrentSite();
     dataservice.getUser().then(function(user) {
@@ -32,8 +32,7 @@
             vm.currentSite = coupon;
           }
         });
-      });      
+      });   
     }
-
   }
 })();

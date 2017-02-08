@@ -48,9 +48,12 @@
       vm.addFile = function ($files, $event, $flow) {
         var fileReader = new FileReader();
           fileReader.onload = function (event) {
-            var dataUrl = event.target.result,
-                base64 = dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
-            vm.couponSettings.image = base64;
+            var dataUrl = event.target.result;
+
+            resizeImage(dataUrl, 200, 200, function(dataUrl) {
+              var base64 = dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+              vm.couponSettings.image = base64;
+            });
           };
         
         fileReader.readAsDataURL($files[0].file);
@@ -63,6 +66,25 @@
         if (regionIndex > -1) {
           regionList.splice(regionIndex, 1);
         }
+      }
+
+      function resizeImage(url, width, height, callback) {
+          var sourceImage = new Image();
+
+          sourceImage.onload = function() {
+              // Create a canvas with the desired dimensions
+              var canvas = document.createElement("canvas");
+              canvas.width = width;
+              canvas.height = height;
+
+              // Scale and draw the source image to the canvas
+              canvas.getContext("2d").drawImage(sourceImage, 0, 0, width, height);
+
+              // Convert the canvas to a data URL in PNG format
+              callback(canvas.toDataURL());
+          }
+
+          sourceImage.src = url;
       }
 
       function isInclude(arr,obj) {
