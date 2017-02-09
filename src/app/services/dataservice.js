@@ -1,258 +1,230 @@
-angular
-  .module('app.services')
-  .factory('dataservice', dataservice);
+(function() {
+  'use strict';
 
-dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'datacache', 'auth'];
+  angular
+    .module('app.services')
+    .factory('dataservice', dataservice);
 
-function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, datacache, auth) {
-  
-  var service = {
-    getCoupons: getCoupons,
-    saveCoupon: saveCoupon,
-    deleteCoupon: deleteCoupon,
-    activateCoupon: activateCoupon,
-    deactivateCoupon: deactivateCoupon,
-    getStatistics: getStatistics,
-    getCurrentSite: getCurrentSite,
-    setCurrentSite: setCurrentSite,
-    removeCurrentSite: removeCurrentSite,
-    getColorThemes: getColorThemes,
-    getRegions: getRegions,
-    getUser: getUser,
-    updateUser: updateUser,
-    changePassword: changePassword,
-    logout: logout,
-    getTariffs: getTariffs,
-    buyTariff: buyTariff,
-    setOrderData: setOrderData,
-    getOrderData: getOrderData,
-    getFaq: getFaq,
-    sendQuestion: sendQuestion
-  };
- 
-  return service;
+  dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'datacache', 'auth'];
 
-  function getCoupons() {
-    var couponsClone,
-        coupons = datacache.get('coupons');
+  function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, datacache, auth) {
+    
+    var service = {
+      getCoupons: getCoupons,
+      saveCoupon: saveCoupon,
+      deleteCoupon: deleteCoupon,
+      activateCoupon: activateCoupon,
+      deactivateCoupon: deactivateCoupon,
+      getStatistics: getStatistics,
+      getCurrentSite: getCurrentSite,
+      setCurrentSite: setCurrentSite,
+      removeCurrentSite: removeCurrentSite,
+      getColorThemes: getColorThemes,
+      getRegions: getRegions,
+      getUser: getUser,
+      updateUser: updateUser,
+      changePassword: changePassword,
+      logout: logout,
+      getTariffs: getTariffs,
+      buyTariff: buyTariff,
+      getInvoice: getInvoice,
+      setOrderData: setOrderData,
+      getOrderData: getOrderData,
+      getFaq: getFaq,
+      sendQuestion: sendQuestion
+    };
+   
+    return service;
 
-    if (coupons) {
-      couponsClone = angular.copy(coupons);
+    function getCoupons() {
+      var couponsClone,
+          coupons = datacache.get('coupons');
+
+      if (coupons) {
+        couponsClone = angular.copy(coupons);
+      }
+      if (couponsClone) {
+        return $q.when(couponsClone);
+      } else {
+        $rootScope.isLoading = true;
+        return $http.get(config.apiUrl + '/manage/myCoupons', {
+          cache: datacache
+        })
+        .then(complete)
+        .catch(function(message) {
+            exception.catcher('XHR Failed')(message);
+            $rootScope.isLoading = false;
+        });
+      }
+      
+      function complete(data) {
+        datacache.put('coupons', data.data);
+        $rootScope.isLoading = false;
+        return data.data;
+      }    
     }
-    if (couponsClone) {
-      return $q.when(couponsClone);
-    } else {
+
+    function saveCoupon(coupon) {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/manage/myCoupons', {
-        cache: datacache
-      })
+      return $http.post(config.apiUrl + '/manage/saveCoupon', coupon)
       .then(complete)
       .catch(function(message) {
-          exception.catcher('XHR Failed')(message);
-          $rootScope.isLoading = false;
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
       });
-    }
-    
-    function complete(data) {
-      datacache.put('coupons', data.data);
-      $rootScope.isLoading = false;
-      return data.data;
-    }    
-  }
 
-  function saveCoupon(coupon) {
-    $rootScope.isLoading = true;
-    return $http.post(config.apiUrl + '/manage/saveCoupon', coupon)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
+      function complete(data) {
+        var currentCoupon = data.data,
+            saveIndex,
+            coupons = datacache.get('coupons');
 
-    function complete(data) {
-      var currentCoupon = data.data,
-          saveIndex,
-          coupons = datacache.get('coupons');
+        coupons.forEach(function(coupon, index) {
+          if (currentCoupon.id == coupon.id) {
+            saveIndex = index;
+          }
+        });
 
-      coupons.forEach(function(coupon, index) {
-        if (currentCoupon.id == coupon.id) {
-          saveIndex = index;
+        if (saveIndex != undefined) {
+          coupons[saveIndex] = currentCoupon;
+        } else {
+          coupons.push(currentCoupon);
         }
-      });
+       
+        $rootScope.isLoading = false;
 
-      if (saveIndex != undefined) {
-        coupons[saveIndex] = currentCoupon;
-      } else {
-        coupons.push(currentCoupon);
+        logger.success('Купон успешно сохранен', coupon.id);
+        return data.data;
       }
-     
-      $rootScope.isLoading = false;
-
-      logger.success('Купон успешно сохранен', coupon.id);
-      return data.data;
     }
-  }
 
-  function deleteCoupon(couponId) {
-    $rootScope.isLoading = true;
-    return $http.get(config.apiUrl + '/manage/deleteCoupon/' + couponId)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-
-    function complete(data) {
-      var deleteIndex,
-          coupons = datacache.get('coupons');
-      coupons.forEach(function(coupon, index) {
-        if (couponId == coupon.id) {
-          deleteIndex = index;
-        }
+    function deleteCoupon(couponId) {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/manage/deleteCoupon/' + couponId)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
       });
-      coupons.splice(deleteIndex, 1);
-      $rootScope.isLoading = false;
-      logger.success('Купон успешно удален', couponId);
-      return data.data;
-    }
-  }
 
-
-  function activateCoupon(couponId) {
-    $rootScope.isLoading = true;
-    datacache.remove('coupons');
-    datacache.remove(config.apiUrl + '/manage/myCoupons');
-
-    return $http.get(config.apiUrl + '/manage/activate/' + couponId)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-
-    function complete(data) {
-      $rootScope.isLoading = false;
-      logger.success('Купон успешно активирован', couponId);
-      return data.data;
-    }    
-  }
-
-  function deactivateCoupon(couponId) {
-    $rootScope.isLoading = true;
-    datacache.remove('coupons');
-    datacache.remove(config.apiUrl + '/manage/myCoupons');
-
-    return $http.get(config.apiUrl + '/manage/deactivate/' + couponId)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-
-    function complete(data) {
-      $rootScope.isLoading = false;
-      logger.success('Купон успешно деактивирован', couponId);
-      return data.data;
-    }    
-  }
-
-  function getStatistics(params) {
-    var statisticsClone,
-        statistics = datacache.get('statistics');
-
-    if (statistics) {
-      colorThemesClone = angular.copy(statistics);
+      function complete(data) {
+        var deleteIndex,
+            coupons = datacache.get('coupons');
+        coupons.forEach(function(coupon, index) {
+          if (couponId == coupon.id) {
+            deleteIndex = index;
+          }
+        });
+        coupons.splice(deleteIndex, 1);
+        $rootScope.isLoading = false;
+        logger.success('Купон успешно удален', couponId);
+        return data.data;
+      }
     }
 
-    if (statisticsClone) {
-      return $q.when(statisticsClone);
-    } else {
+
+    function activateCoupon(couponId) {
+      $rootScope.isLoading = true;
+      datacache.remove('coupons');
+      datacache.remove(config.apiUrl + '/manage/myCoupons');
+
+      return $http.get(config.apiUrl + '/manage/activate/' + couponId)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        logger.success('Купон успешно активирован', couponId);
+        return data.data;
+      }    
+    }
+
+    function deactivateCoupon(couponId) {
+      $rootScope.isLoading = true;
+      datacache.remove('coupons');
+      datacache.remove(config.apiUrl + '/manage/myCoupons');
+
+      return $http.get(config.apiUrl + '/manage/deactivate/' + couponId)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        logger.success('Купон успешно деактивирован', couponId);
+        return data.data;
+      }    
+    }
+
+    function getStatistics(params) {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/manage/statistics/' + params.couponId + '/' + params.from + '/' + params.to)
       .then(complete)
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
         $rootScope.isLoading = false;
-      });      
-    }
-
-    function complete(data) {
-      datacache.put('statistics', data.data);
-      $rootScope.isLoading = false;
-      return data.data;
-    }
-  }
-
-  function getCurrentSite() {
-    return datacache.get('currentSite');
-  }
-
-  function setCurrentSite(siteId) {
-    getCoupons().then(function(coupons) {
-      coupons.forEach(function(coupon) {
-        if(coupon.id == siteId) {
-          datacache.put('currentSite', coupon);
-        }
       });
-      $rootScope.$broadcast('changeCurrentSite');
-    });
-  }
 
-  function removeCurrentSite() {
-    datacache.remove('currentSite');
-    $rootScope.$broadcast('changeCurrentSite');
-  }
-
-  function getColorThemes() {
-    var colorThemesClone,
-        colorThemes = datacache.get('colorThemes');
-
-    if (colorThemes) {
-      colorThemesClone = angular.copy(colorThemes);
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }
     }
 
-    if (colorThemesClone) {
-      return $q.when(colorThemesClone);
-    } else {
+    function getCurrentSite() {
+      return datacache.get('currentSite');
+    }
+
+    function setCurrentSite(siteId) {
+      getCoupons().then(function(coupons) {
+        coupons.forEach(function(coupon) {
+          if(coupon.id == siteId) {
+            datacache.put('currentSite', coupon);
+          }
+        });
+        $rootScope.$broadcast('changeCurrentSite');
+      });
+    }
+
+    function removeCurrentSite() {
+      datacache.remove('currentSite');
+      $rootScope.$broadcast('changeCurrentSite');
+    }
+
+    function getColorThemes() {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/general/colorThemes')
+      return $http.get(config.apiUrl + '/general/colorThemes', {
+        cache: true
+      })
       .then(complete)
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
         $rootScope.isLoading = false;
-      });      
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }
     }
 
-    function complete(data) {
-      datacache.put('colorThemes', data.data);
-      $rootScope.isLoading = false;
-      return data.data;
+    function getRegions(value) {
+      return $http.get(config.apiUrl + '/general/regions/' + value + '/RU')
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+      });
+
+      function complete(data) {
+        return data.data;
+      }    
     }
-  }
 
-  function getRegions(value) {
-    return $http.get(config.apiUrl + '/general/regions/' + value + '/RU')
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-    });
-
-    function complete(data) {
-      return data.data;
-    }    
-  }
-
-  function getUser() {
-    var userClone,
-        user = datacache.get('user');
-
-    if (user) {
-      userClone = angular.copy(user);
-    }
-    
-    if (userClone) {
-      return $q.when(userClone);
-    } else {
+    function getUser() {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/user/myUser', {
         cache: datacache
@@ -262,75 +234,64 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
         exception.catcher('XHR Failed')(message);
         $rootScope.isLoading = false;
       });
+      
+      function complete(data) {
+        datacache.put('user', data.data);
+        $rootScope.isLoading = false;
+        return data.data;
+      }
     }
-    
-    function complete(data) {
-      datacache.put('user', data.data);
-      $rootScope.isLoading = false;
-      return data.data;
-    }
-  }
 
-  function updateUser(userData) {
-    $rootScope.isLoading = true;
-    return $http.post(config.apiUrl + '/user/updateUser', userData)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-    
-    function complete(data) {
-      datacache.remove(config.apiUrl + '/user/myUser');
-      datacache.remove('user');
-      $rootScope.isLoading = false;
-      return data.data;
+    function updateUser(userData) {
+      $rootScope.isLoading = true;
+      return $http.post(config.apiUrl + '/user/updateUser', userData)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+      
+      function complete(data) {
+        datacache.remove(config.apiUrl + '/user/myUser');
+        datacache.remove('user');
+        $rootScope.isLoading = false;
+        return data.data;
+      }
     }
-  }
 
-  function changePassword(data) {
-    $rootScope.isLoading = true;
-    return $http.post(config.apiUrl + '/user/changePassword', data)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-    
-    function complete(data) {
-      $rootScope.isLoading = false;
-      logger.success('Пароль изменен');
-      return data.data;
+    function changePassword(data) {
+      $rootScope.isLoading = true;
+      return $http.post(config.apiUrl + '/user/changePassword', data)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+      
+      function complete(data) {
+        $rootScope.isLoading = false;
+        logger.success('Пароль изменен');
+        return data.data;
+      }
     }
-  }
 
-  function logout() {
-    $rootScope.isLoading = true;
-    return $http.post(config.apiUrl + '/user/logout')
-    .then(complete)
-    .catch(function(message) {
-      auth.remove();
-      $rootScope.isLoading = false;
-    });
-    
-    function complete(data) {
-      $rootScope.isLoading = false;
-      auth.remove();
-      return data.data;
+    function logout() {
+      $rootScope.isLoading = true;
+      return $http.post(config.apiUrl + '/user/logout')
+      .then(complete)
+      .catch(function(message) {
+        auth.remove();
+        $rootScope.isLoading = false;
+      });
+      
+      function complete(data) {
+        $rootScope.isLoading = false;
+        auth.remove();
+        return data.data;
+      }
     }
-  }
 
-  function getTariffs() {
-    var tariffsClone,
-        tariffs = datacache.get('tariffs');
-
-    if (tariffs) {
-      tariffsClone = angular.copy(tariffs);
-    }
-    
-    if (tariffsClone) {
-      return $q.when(tariffsClone);
-    } else {
+    function getTariffs() {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/general/tarifs', {
         cache: true
@@ -339,51 +300,64 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
         $rootScope.isLoading = false;
-      });      
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }    
     }
 
-    function complete(data) {
-      datacache.put('tariffs', data.data);
-      $rootScope.isLoading = false;
-      return data.data;
-    }    
-  }
+    function buyTariff(tariffId) {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/buytarif/buy/' + tariffId)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
 
-  function buyTariff(tariffId) {
-    $rootScope.isLoading = true;
-    return $http.get(config.apiUrl + '/buytarif/buy/' + tariffId)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-
-    function complete(data) {
-      $rootScope.isLoading = false;
-      return data.data;
-    }     
-  }
-
-  function getOrderData() {
-    var orderData = datacache.get('orderData');
-    return $q.when(orderData);
-  }
-
-  function setOrderData(data) {
-    datacache.put('orderData', data);
-  }
-
-  function getFaq() {
-    var faqClone,
-        faq = datacache.get('faq');
-
-    if (faq) {
-      faqClone = angular.copy(faq);
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }     
     }
-    
-    if (faqClone) {
-      return $q.when(faqClone);
-    } else {
+
+    function getInvoice(invoiceId) {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/buytarif/invoice/' + invoiceId, {
+        transformResponse: function (data, status, headers) {
+          var pdf;
+          if (data) {
+            pdf = new Blob([data], {
+                type: 'application/pdf'
+            });
+          }
+          return pdf;
+        }
+      })
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }    
+    }
+
+    function getOrderData() {
+      var orderData = datacache.get('orderData');
+      return $q.when(orderData);
+    }
+
+    function setOrderData(data) {
+      datacache.put('orderData', data);
+    }
+
+    function getFaq() {
       $rootScope.isLoading = true;
       return $http.get(config.apiUrl + '/general/faq/ru', {
         cache: true
@@ -392,29 +366,29 @@ function dataservice($http, $rootScope, $location, $q, exception, logger, localS
       .catch(function(message) {
         exception.catcher('XHR Failed')(message);
         $rootScope.isLoading = false;
-      });      
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }     
     }
 
-    function complete(data) {
-      datacache.put('faq', data.data);
-      $rootScope.isLoading = false;
-      return data.data;
-    }     
-  }
+    function sendQuestion(question) {
+      $rootScope.isLoading = true;
+      return $http.post(config.apiUrl + '/user/sendQuestion', question)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
 
-  function sendQuestion(question) {
-    $rootScope.isLoading = true;
-    return $http.post(config.apiUrl + '/user/sendQuestion', question)
-    .then(complete)
-    .catch(function(message) {
-      exception.catcher('XHR Failed')(message);
-      $rootScope.isLoading = false;
-    });
-
-    function complete(data) {
-      $rootScope.isLoading = false;
-      logger.success('Вопрос отправлен');
-      return data.data;
+      function complete(data) {
+        $rootScope.isLoading = false;
+        logger.success('Вопрос отправлен');
+        return data.data;
+      }
     }
   }
-}
+  
+})();

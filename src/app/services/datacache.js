@@ -1,9 +1,14 @@
-angular
-  .module('app.services')
-  .factory('datacache', datacache);
+(function() {
+  'use strict';
 
-datacache.$inject = ['$cacheFactory'];
+  angular
+    .module('app.services')
+    .factory('datacache', datacache);
 
-function datacache($cacheFactory) {
-	return $cacheFactory('cache', {});
-}
+  datacache.$inject = ['$cacheFactory'];
+
+  function datacache($cacheFactory) {
+    return $cacheFactory('cache', {});
+  }
+  
+})();

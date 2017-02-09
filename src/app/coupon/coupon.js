@@ -5,9 +5,9 @@
     .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$routeParams', '$timeout', '$location', '$uibModal', 'dataservice', 'colorThemes'];
+    Coupon.$inject = ['$routeParams', '$timeout', '$location', '$uibModal', 'dataservice', 'colorThemes', 'config'];
 
-    function Coupon($routeParams, $timeout, $location, $uibModal, dataservice, colorThemes) {
+    function Coupon($routeParams, $timeout, $location, $uibModal, dataservice, colorThemes, config) {
       var vm = this;
 
       activate();
@@ -48,9 +48,10 @@
       vm.addFile = function ($files, $event, $flow) {
         var fileReader = new FileReader();
           fileReader.onload = function (event) {
-            var dataUrl = event.target.result;
+            var dataUrl = event.target.result,
+                iconSize = config.iconSize;
 
-            resizeImage(dataUrl, 200, 200, function(dataUrl) {
+            resizeImage(dataUrl, iconSize[0], iconSize[1], function(dataUrl) {
               var base64 = dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
               vm.couponSettings.image = base64;
             });

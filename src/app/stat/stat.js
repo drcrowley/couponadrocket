@@ -21,14 +21,18 @@
         startingDay: 1,
         showWeeks: false
       };
-      vm.format = 'dd.MM.yyyy',
-      vm.labels = ['1995-12-21', '1995-12-22', '1995-12-23', '1995-12-25', '1995-12-26', '1995-12-27'];
-      vm.series = ['Показ купона', 'Посещаемость', 'Продажа купона'];
-      vm.data = [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90],
-        [10, 15, 20, 10, 19, 11, 12]
-      ];
+      vm.format = 'dd.MM.yyyy';
+
+      // vm.stat = {
+      //   labels: ['1995-12-21', '1995-12-22', '1995-12-23', '1995-12-25', '1995-12-26', '1995-12-27'],
+      //   series: ['Показ купона', 'Посещаемость', 'Продажа купона'],
+      //   data: [
+      //           [65, 59, 80, 81, 56, 55, 40],
+      //           [28, 48, 40, 19, 86, 27, 90],
+      //           [10, 15, 20, 10, 19, 11, 12]
+      //         ]
+      // };
+
       vm.options = {
         legend: { display: true },
         scales: {
@@ -75,10 +79,10 @@
 
           dataservice.getStatistics({
             couponId: site.id,
-            from: moment().subtract('days', 7).unix(),
+            from: moment().subtract(7, 'days').unix(),
             to: moment().unix()
           }).then(function(data) {
-            console.log(data);
+            vm.stat = data;
           });
 
         });

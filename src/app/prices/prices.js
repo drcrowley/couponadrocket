@@ -67,7 +67,26 @@ function Payment($location, $uibModalInstance, $uibModal, $q, dataservice, confi
           templateUrl: 'thank-popup.html',
           controller: function () {
             var vm = this;
-            vm.invoiceLink = config.apiUrl + '/buytarif/invoice/' + data.id;
+
+            vm.getInvoice = function(event) {
+              event.preventDefault();
+              dataservice.getInvoice(data.id).then(function(data, status, headers) {
+                var linkElement = document.createElement('a'),
+                    blob = data,
+                    url = window.URL.createObjectURL(blob);
+
+                linkElement.setAttribute('href', url);
+                linkElement.setAttribute("download", 'invoice');
+     
+                var clickEvent = new MouseEvent("click", {
+                    "view": window,
+                    "bubbles": true,
+                    "cancelable": false
+                });
+
+                linkElement.dispatchEvent(clickEvent);
+              });
+            };
           },
           controllerAs: 'vm'
         });
@@ -76,7 +95,6 @@ function Payment($location, $uibModalInstance, $uibModal, $q, dataservice, confi
     });  
   };
 
-
   function activate() {
     $q.all({
       orderData: dataservice.getOrderData(), 
@@ -84,7 +102,6 @@ function Payment($location, $uibModalInstance, $uibModal, $q, dataservice, confi
     }).then(function(data) {
       vm.orderData = data.orderData;
       vm.user = data.user;
-      // delete vm.user.companyType;
     });    
   }
 };
