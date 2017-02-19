@@ -10,7 +10,7 @@
   "engines": {
     "node": "6.9.1",
     "npm": "4.0.2"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": ""
@@ -34,6 +34,7 @@
     "gulp-csso": "^2.0.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.1",
     "gulp-newer": "^1.2.0",
     "gulp-ng-annotate": "^2.0.0",
@@ -41,6 +42,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.1.1",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.4"
+    "gulp-uglify": "^1.5.4",
+    "imagemin-pngquant": "^5.0.0"
   }
 }

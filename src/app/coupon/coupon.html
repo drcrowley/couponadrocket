@@ -8,10 +8,12 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="homepage-url" name="homepageUrl" placeholder="" 
             ng-required="true"
+            ng-maxlength="150"
             ng-model="vm.couponSettings.homepageUrl"
           >
           <div class="text-danger" ng-messages="couponForm.homepageUrl.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
+            <div ng-message="maxlength">Введите не больше 150 символов</div>
           </div>
         </div>
         <div class="form-group">
@@ -47,7 +49,7 @@
             ></textarea>
           <div class="text-danger" ng-messages="couponForm.conditions.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 105 символов</div>
+            <div ng-message="maxlength">Введите не больше 300 символов</div>
           </div>
         </div> 
       </div>
@@ -92,9 +94,13 @@
         <div class="form-group">
           <label for="limit-period">Лимит в месяц* <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="tel" class="form-control" id="limit-period" name="limitPeriod" placeholder="" ng-model="vm.couponSettings.limitPeriod" ng-required="true" >
+          <input type="tel" class="form-control" id="limit-period" name="limitPeriod" placeholder="" 
+          ng-model="vm.couponSettings.limitPeriod" 
+          ng-maxlength="4" 
+          ng-required="true" >
           <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
+            <div ng-message="maxlength">Введите не больше 4 символов</div>
           </div>
         </div>
         <div class="form-group">
@@ -112,7 +118,13 @@
         <div class="form-group">
           <label for="promo-code">Введите промо-код <span class="glyphicon glyphicon-question-sign faq-link" 
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="text" class="form-control" id="promo-code" placeholder="" ng-disabled="vm.couponSettings.couponCodeGenerate" ng-model="vm.couponSettings.couponCode">
+          <input type="text" class="form-control" id="promo-code" placeholder="" 
+          ng-disabled="vm.couponSettings.couponCodeGenerate" 
+          ng-maxlength="8" 
+          ng-model="vm.couponSettings.couponCode">
+          <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
+            <div ng-message="maxlength">Введите не больше 8 символов</div>
+          </div>          
         </div>       
       </div>
     </div>

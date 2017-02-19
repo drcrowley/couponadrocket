@@ -17,6 +17,8 @@ const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const htmlmin = require('gulp-htmlmin');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
 const ngAnnotate = require('gulp-ng-annotate');
 const templateCache = require('gulp-angular-templatecache');
 const del = require('del');
@@ -87,6 +89,17 @@ gulp.task('files', function () {
     .pipe(gulp.dest(dirs.build));
 });
 
+// Копирование и оптимизация изображений
+gulp.task('images', function () {
+  return gulp.src(dirs.source + '/images/*.{jpg,jpeg,gif,png,svg}', {since: gulp.lastRun('images')})
+    .pipe(newer(dirs.build + '/images'))
+    .pipe(imagemin({
+        progressive: true,
+        svgoPlugins: [{removeViewBox: false}],
+        use: [pngquant()]
+    }))
+    .pipe(gulp.dest(dirs.build + '/images'));
+});
 
 // Очистка папки сборки
 gulp.task('clean', function () {
@@ -108,7 +121,7 @@ gulp.task('serve', function () {
 // Сборка всего
 gulp.task('build', gulp.series(
   'clean',
-  gulp.parallel('styles', 'scripts','fonts', 'files')
+  gulp.parallel('styles', 'scripts','fonts', 'files', 'images')
 ));
 
 // Cлежение за изменениями

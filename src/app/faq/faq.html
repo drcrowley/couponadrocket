@@ -23,23 +23,23 @@
           <label for="title">Заголовок</label>
           <input type="text" id="subj" name="subj" class="form-control" placeholder="" 
           ng-model="vm.question.subj"
-          ng-maxlength="255" 
+          ng-maxlength="200" 
           ng-required="true">
           <div class="text-danger" ng-messages="feedbackForm.subj.$error" ng-if="feedbackForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 255 символов</div>
+            <div ng-message="maxlength">Введите не больше 200 символов</div>
           </div>
         </div>
         <div class="form-group">
           <label for="question">Вопрос</label>
           <textarea class="form-control" rows="3" 
           id="text" name="text"
-          ng-maxlength="5000" 
+          ng-maxlength="500" 
           ng-model="vm.question.text"
           ng-required="true"></textarea>
           <div class="text-danger" ng-messages="feedbackForm.text.$error" ng-if="feedbackForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 5000 символов</div>
+            <div ng-message="maxlength">Введите не больше 500 символов</div>
           </div>
         </div>
       </form>     
