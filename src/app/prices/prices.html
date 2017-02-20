@@ -1,6 +1,9 @@
 <h3>Тарифы</h3>
 <hr/>
-<div class="row price-row margin-top-15">
+<div class="margin-top-15">
+  <p>Отправьте своим друзьям эту ссылку <samp class="text-primary">couponadrocket.ru?ref={{vm.user.id}}</samp>, и если они подключат свой магазин в CouponAdRocket, то вы получите 50 купонов бесплатно.</p>
+</div>
+<div class="row price-row margin-top-20">
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-repeat="tariff in vm.tariffs">
     <div class="panel price panel-{{vm.classes[$index]}}">
       <div uib-tooltip="Enter something in this input field to disable this tooltip" class="panel-heading  text-center">
@@ -26,20 +29,14 @@
     </div>
   </div>
 </div>
-<div class="checkbox">
-  <label>
-    <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
-  </label>
-</div>
-
 <script type="text/ng-template" id="payment.html">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="modal-title">Покупка</h3>
     </div>
     <div class="modal-body" id="modal-body">
-        <form class="form-horizontal margin-top-10" novalidate name="buyForm" id="buyForm" ng-submit="buyForm.$valid ? vm.buy(vm.orderData.id) : ''">
-        
+        <p>Счет можно будет оплатить двумя способами, безналичиным переводом на расчетный счет или переводом на webmoney</p>
+        <form class="form-horizontal margin-top-20" novalidate name="buyForm" id="buyForm" ng-submit="buyForm.$valid ? vm.buy(vm.orderData.id) : ''">
           <div class="form-group">
             <div class="col-md-3 sum-label"><strong>Стоимость</strong>: </div>
             <div class="col-md-9">
@@ -148,9 +145,14 @@
           </div>          
         </form>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer">   
       <div class="clearfix">
-         <button type="submit" form="buyForm" class="btn btn-primary pull-right">Купить</button>        
+        <div class="checkbox pull-left">
+          <label>
+            <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
+          </label>
+        </div>
+        <button type="submit" form="buyForm" ng-disabled="!vm.agree" class="btn btn-primary pull-right">Купить</button>        
       </div>
     </div>
 </script>

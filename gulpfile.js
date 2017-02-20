@@ -91,7 +91,7 @@ gulp.task('files', function () {
 
 // Копирование и оптимизация изображений
 gulp.task('images', function () {
-  return gulp.src(dirs.source + '/images/*.{jpg,jpeg,gif,png,svg}', {since: gulp.lastRun('images')})
+  return gulp.src(dirs.source + '/images/*.{jpg,jpeg,gif,png,svg,ico}', {since: gulp.lastRun('images')})
     .pipe(newer(dirs.build + '/images'))
     .pipe(imagemin({
         progressive: true,

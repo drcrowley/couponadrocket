@@ -23,7 +23,10 @@
             resolve: {
               tariffs: ['dataservice' , function (dataservice) {
                 return dataservice.getTariffs();
-              }]
+              }],
+              user: ['dataservice' , function (dataservice) {
+                return dataservice.getUser();
+              }]              
             }
          }
         }
