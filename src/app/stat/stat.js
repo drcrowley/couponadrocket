@@ -43,6 +43,12 @@
               unitStepSize: 1
             }
           }],
+          yAxes: [{
+            type: 'linear',
+            ticks: {
+              beginAtZero: true
+            }
+          }]
         },
       };
 

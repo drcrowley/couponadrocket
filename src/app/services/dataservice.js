@@ -28,8 +28,6 @@
       getTariffs: getTariffs,
       buyTariff: buyTariff,
       getInvoice: getInvoice,
-      setOrderData: setOrderData,
-      getOrderData: getOrderData,
       getFaq: getFaq,
       sendQuestion: sendQuestion
     };
@@ -346,15 +344,6 @@
         $rootScope.isLoading = false;
         return data.data;
       }    
-    }
-
-    function getOrderData() {
-      var orderData = datacache.get('orderData');
-      return $q.when(orderData);
-    }
-
-    function setOrderData(data) {
-      datacache.put('orderData', data);
     }
 
     function getFaq() {

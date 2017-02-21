@@ -5,42 +5,26 @@
     .module('app.faq')
     .controller('Faq', Faq);
 
-    Faq.$inject = ['$uibModal', 'faq'];
+    Faq.$inject = ['$scope', '$uibModal', 'dataservice', 'faq'];
     
-    function Faq($uibModal, faq) {
+    function Faq($scope, $uibModal, dataservice, faq) {
       var vm = this;
-
-      vm.modalInstance = null;
 
       vm.faq = faq;
 
-      vm.open = function (size, parentSelector) {
+      vm.open = function () {
         vm.modalInstance = $uibModal.open({
           animation: true,
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
-          templateUrl: 'feedback.html',
-          controller: 'FaqFeedback', 
+          templateUrl: 'app/faq/faq-feedback.html',
+          scope: $scope,
           controllerAs: 'vm'
+        });
+      };
+
+      vm.sendQuestion = function () {
+        dataservice.sendQuestion(vm.question).then(function() {
+          vm.modalInstance.close();
         });
       };
     }
 })();
-
-angular.module('app.faq').controller('FaqFeedback', FaqFeedback);
-
-FaqFeedback.$inject = ['$uibModalInstance', 'dataservice'];
-
-function FaqFeedback($uibModalInstance, dataservice) {
-  var vm = this;
-
-  vm.sendQuestion = function () {
-    dataservice.sendQuestion(vm.question).then(function() {
-      $uibModalInstance.close();      
-    });
-  };
-
-  vm.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
-};
