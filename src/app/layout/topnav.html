@@ -22,12 +22,12 @@
                                   vm.isRoute('Мои сайты - Интеграция')
                           }">
                 <a class="dropdown-toggle"  uib-dropdown-toggle>
-                  {{'Sites' | translate}} <span class="caret"></span>
+                  {{'C_BTN_SITES' | translate}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
                   <li>
                     <a href="#/site/new/coupon">
-                      Добавить сайт <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span>
+                      {{'C_BTN_ADD_SITE' | translate}} <span class="glyphicon glyphicon-plus text-primary margin-left-05"></span>
                     </a>
                   </li>
                   <li class="divider" ng-if="vm.sites && vm.sites.length"></li>
@@ -36,25 +36,25 @@
                   </li>
                 </ul>                
               </li>
-              <li ng-class="{active: vm.isRoute('Настройки')}">
-                  <a href="#/settings">{{'Settings' | translate}}</a>
+              <li ng-class="{active: vm.isRoute('C_BTN_SETTINGS' | translate)}">
+                  <a href="#/settings">{{'C_BTN_SETTINGS' | translate}}</a>
               </li>
             </ul>
           </div>
           <div class="navbar-right">
             <ul class="nav navbar-nav">
-              <li ng-class="{active: vm.isRoute('Тарифы')}">
-                  <a href="#/prices">Тарифы</a>
+              <li ng-class="{active: vm.isRoute('C_BTN_TARIFFS' | translate)}">
+                  <a href="#/prices">{{'C_BTN_TARIFFS' | translate}}</a>
               </li>             
-              <li ng-class="{active: vm.isRoute('Faq')}">
-                  <a href="#/faq">FAQ</a>
+              <li ng-class="{active: vm.isRoute('C_BTN_FAQ' | translate)}">
+                  <a href="#/faq">{{'C_BTN_FAQ' | translate}}</a>
               </li>          
-              <li ng-class="{active: vm.isRoute('Стать партнёром')}">
-                  <a href="#/partner">{{'Partner' | translate}}</a>
+              <li ng-class="{active: vm.isRoute('C_BTN_PARTNER' | translate)}">
+                  <a href="#/partner">{{'C_BTN_PARTNER' | translate}}</a>
               </li>
               <li>
                 <button type="button" class="btn btn-default navbar-btn logout-button" ng-click="vm.logout()">
-                  <span class="glyphicon glyphicon-log-out"></span> Выйти
+                  <span class="glyphicon glyphicon-log-out"></span> {{'C_BTN_LOGOUT' | translate}}
                 </button> 
               </li>
             </ul>

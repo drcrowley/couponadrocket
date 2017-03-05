@@ -13,6 +13,5 @@
 
     $translate.use('ru');
     tmhDynamicLocale.set('ru');
-
 	}
 })();

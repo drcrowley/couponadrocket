@@ -5,9 +5,9 @@
     .module('app.services')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$rootScope', '$location', '$q', 'exception', 'logger', 'localStorageService', 'config', 'datacache', 'auth'];
+  dataservice.$inject = ['$http', '$rootScope', '$location', '$q', '$translate', 'exception', 'logger', 'localStorageService', 'config', 'datacache', 'auth'];
 
-  function dataservice($http, $rootScope, $location, $q, exception, logger, localStorageService, config, datacache, auth) {
+  function dataservice($http, $rootScope, $location, $q, $translate, exception, logger, localStorageService, config, datacache, auth) {
     
     var service = {
       getCoupons: getCoupons,
@@ -29,7 +29,8 @@
       buyTariff: buyTariff,
       getInvoice: getInvoice,
       getFaq: getFaq,
-      sendQuestion: sendQuestion
+      sendQuestion: sendQuestion,
+      getI18n: getI18n
     };
    
     return service;
@@ -377,6 +378,24 @@
         logger.success('Вопрос отправлен');
         return data.data;
       }
+    }
+
+    function getI18n() {
+      var lang = $translate.proposedLanguage().toUpperCase();
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/general/i18n/' + lang, {
+        cache: true
+      })
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        return data.data;
+      }      
     }
   }
   

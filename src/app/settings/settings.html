@@ -5,7 +5,7 @@
     <label for="email">Email*</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="" 
       ng-model="vm.user.email"
-      ng-maxlength="129"
+      maxlength="129"
       ng-required="true">
     <div class="text-danger" ng-messages="userInfoForm.email.$error" ng-if="userInfoForm.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -17,7 +17,7 @@
     <label for="tel">Телефон</label>
     <input type="tel" class="form-control" id="tel" name="tel" placeholder=""
       ng-model="vm.user.phone" 
-      ng-maxlength="14">
+      maxlength="14">
     <div class="text-danger" ng-messages="userInfoForm.tel.$error" ng-if="userInfoForm.$submitted">
       <div ng-message="maxlength">Введите не больше 14 символов</div>
     </div>
@@ -34,7 +34,7 @@
     <label for="old-password">Старый пароль*</label>
     <input type="password" class="form-control" id="old-password" name="oldPassword" placeholder=""
       ng-model="vm.password.oldPwd"
-      ng-maxlength="40"
+      maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.oldPassword.$error" ng-if="userPassword.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -45,7 +45,7 @@
     <label for="new-password">Новый пароль*</label>
     <input type="password" class="form-control" id="new-password" name="newPassword" placeholder=""
       ng-model="vm.password.newPwd"
-      ng-maxlength="40"
+      maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.newPassword.$error" ng-if="userPassword.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -56,7 +56,7 @@
     <label for="confirm-password">Подтвердить пароль*</label>
     <input type="password" class="form-control" id="confirm-password" name="confirmPassword" placeholder=""
       ng-model="vm.password.cnfPwd" 
-      ng-maxlength="40"
+      maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.confirmPassword.$error" ng-if="userPassword.$submitted">
       <div ng-message="required">Это поле обязательно для заполнения.</div>

@@ -8,7 +8,7 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="homepage-url" name="homepageUrl" placeholder="" 
             ng-required="true"
-            ng-maxlength="150"
+            maxlength="150"
             ng-model="vm.couponSettings.homepageUrl"
           >
           <div class="text-danger" ng-messages="couponForm.homepageUrl.$error" ng-if="couponForm.$submitted">
@@ -21,7 +21,7 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="text" class="form-control" id="titel" name="titel" placeholder="" 
             ng-required="true" 
-            ng-maxlength="40" 
+            maxlength="40" 
             ng-model="vm.couponSettings.titel">
           <div class="text-danger" ng-messages="couponForm.titel.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -33,7 +33,7 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <textarea class="form-control" rows="2" id="description" name="description"
             ng-required="true"
-            ng-maxlength="105" 
+            maxlength="105" 
             ng-model="vm.couponSettings.description"></textarea>
           <div class="text-danger" ng-messages="couponForm.description.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -45,7 +45,7 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <textarea class="form-control" rows="5" ng-model="vm.couponSettings.text" name="conditions" style="height: 128px;"
             ng-required="true"
-            ng-maxlength="300" 
+            maxlength="300"
             ></textarea>
           <div class="text-danger" ng-messages="couponForm.conditions.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>
@@ -96,7 +96,7 @@
           uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
           <input type="tel" class="form-control" id="limit-period" name="limitPeriod" placeholder="" 
           ng-model="vm.couponSettings.limitPeriod" 
-          ng-maxlength="4">
+          maxlength="4">
           <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
             <div ng-message="maxlength">Введите не больше 4 символов</div>
           </div>
@@ -119,7 +119,7 @@
           <input type="text" class="form-control" id="promo-code" placeholder="" 
           ng-disabled="vm.couponSettings.couponCodeGenerate"
           ng-required="!vm.couponSettings.couponCodeGenerate"
-          ng-maxlength="8" 
+          maxlength="8" 
           ng-model="vm.couponSettings.couponCode">
           <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">Это поле обязательно для заполнения.</div>

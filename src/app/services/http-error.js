@@ -10,6 +10,7 @@
     function httpErrorInterceptor($q, $location, $window, config) {
       return {
         'responseError': function(rejection) {
+          console.log(rejection);
           // permission denied, better login!
           if(rejection.status === 403) {
             $window.location.href = config.loginUrl;

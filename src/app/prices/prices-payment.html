@@ -38,7 +38,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="companyName" id="company-name" placeholder="" 
           ng-model="vm.user.companyName"
-          ng-maxlength="100" 
+          maxlength="100" 
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.companyName.$error" ng-if="buyForm.$submitted">
@@ -51,7 +51,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="country" id="country" placeholder="" 
           ng-model="vm.user.country"
-          ng-maxlength="50" 
+          maxlength="50" 
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.country.$error" ng-if="buyForm.$submitted">
@@ -64,7 +64,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="city" id="city" placeholder="" 
           ng-model="vm.user.city"
-          ng-maxlength="50" 
+          maxlength="50" 
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.city.$error" ng-if="buyForm.$submitted">
@@ -77,7 +77,7 @@
         <div class="col-md-9">
           <textarea class="form-control" rows="4" name="zip" id="zip" 
           ng-model="vm.user.zip"
-          ng-maxlength="150" 
+          maxlength="150" 
           ng-required="true"></textarea>
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.zip.$error" ng-if="buyForm.$submitted">
@@ -90,7 +90,7 @@
         <div class="col-md-9">
           <input type="tel" class="form-control" name="tel" id="tel" placeholder="" 
           ng-model="vm.user.phone"
-          ng-maxlength="14" 
+          maxlength="14" 
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.tel.$error" ng-if="buyForm.$submitted">
@@ -103,7 +103,7 @@
         <div class="col-md-9">
           <input type="email" class="form-control" id="email" placeholder="" 
           ng-model="vm.user.email"
-          ng-maxlength="129"
+          maxlength="129"
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.email.$error" ng-if="buyForm.$submitted">
