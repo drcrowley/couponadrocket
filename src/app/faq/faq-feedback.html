@@ -1,36 +1,34 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"  ng-click="$close()"><span aria-hidden="true">&times;</span></button>
-    <h3 class="modal-title" id="modal-title">Задать вопрос</h3>
+    <h3 class="modal-title" id="modal-title">{{'C_HEAD_ASK_QUESTION' | translate}}</h3>
 </div>
 <div class="modal-body" id="modal-body">
-  <p>Ответ на ваш вопрос вы получите по емайлу. Не забудьте просматривать спам папку на случай если наш емайл туда попадет.</p>
+  <p>{{'C_TEXT_QUESTION' | translate}}</p>
   <form name="feedbackForm" id="feedbackForm" novalidate ng-submit="feedbackForm.$valid ? vm.sendQuestion() : ''">
     <div class="form-group">
-      <label for="title">Заголовок</label>
+      <label for="title">{{'C_LABEL_TITEL' | translate}}</label>
       <input type="text" id="subj" name="subj" class="form-control" placeholder="" 
       ng-model="vm.question.subj"
-      ng-maxlength="200" 
+      maxlength="200" 
       ng-required="true">
       <div class="text-danger" ng-messages="feedbackForm.subj.$error" ng-if="feedbackForm.$submitted">
-        <div ng-message="required">Это поле обязательно для заполнения.</div>
-        <div ng-message="maxlength">Введите не больше 200 символов</div>
+        <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
       </div>
     </div>
     <div class="form-group">
-      <label for="question">Вопрос</label>
+      <label for="question">{{'C_LABEL_QUESTION' | translate}}</label>
       <textarea class="form-control" rows="3" 
       id="text" name="text"
-      ng-maxlength="500" 
+      maxlength="500" 
       ng-model="vm.question.text"
       ng-required="true"></textarea>
       <div class="text-danger" ng-messages="feedbackForm.text.$error" ng-if="feedbackForm.$submitted">
-        <div ng-message="required">Это поле обязательно для заполнения.</div>
-        <div ng-message="maxlength">Введите не больше 500 символов</div>
+        <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
       </div>
     </div>
   </form>     
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="submit" form="feedbackForm"">Отправить</button>
-    <button class="btn btn-default" type="button" ng-click="$close()">Отмена</button>
+    <button class="btn btn-primary" type="submit" form="feedbackForm"">{{'C_BTN_SEND' | translate}}</button>
+    <button class="btn btn-default" type="button" ng-click="$close()">{{'C_BTN_CANCEL' | translate}}</button>
 </div>

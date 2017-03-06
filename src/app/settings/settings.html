@@ -1,71 +1,67 @@
-<h3>Информация о пользователе</h3>
+<h3>{{'C_HEAD_USER_INFO' | translate}}</h3>
 <hr/>
 <form name="userInfoForm" novalidate ng-submit="userInfoForm.$valid ? vm.saveUser() : ''">
   <div class="form-group">
-    <label for="email">Email*</label>
+    <label for="email">{{'C_LABEL_EMAIL' | translate}}*</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="" 
       ng-model="vm.user.email"
       maxlength="129"
       ng-required="true">
     <div class="text-danger" ng-messages="userInfoForm.email.$error" ng-if="userInfoForm.$submitted">
-      <div ng-message="required">Это поле обязательно для заполнения.</div>
-      <div ng-message="email">Введите валидный Email.</div>
-      <div ng-message="maxlength">Введите не больше 129 символов</div>
+      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+      <div ng-message="email">{{'C_MESSAGE_ENTER_VALID_EMAIL' | translate}}.</div>
     </div>
   </div>
   <div class="form-group">
-    <label for="tel">Телефон</label>
+    <label for="tel">{{'C_LABEL_PHONE' | translate}}</label>
     <input type="tel" class="form-control" id="tel" name="tel" placeholder=""
       ng-model="vm.user.phone" 
       maxlength="14">
     <div class="text-danger" ng-messages="userInfoForm.tel.$error" ng-if="userInfoForm.$submitted">
-      <div ng-message="maxlength">Введите не больше 14 символов</div>
+      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
     </div>
   </div>   
   <div class="form-group margin-top-15">
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    <button type="button" class="btn btn-default" ng-click="vm.resetUser()">Отмена</button>
+    <button type="submit" class="btn btn-primary">{{'C_BTN_SAVE' | translate}}</button>
+    <button type="button" class="btn btn-default" ng-click="vm.resetUser()">{{'C_BTN_CANCEL' | translate}}</button>
   </div>
 </form>
-<h3 class="margin-top-20">Сменить пароль</h3>
+<h3 class="margin-top-20">{{'C_HEAD_CHANGE_PASSWORD' | translate}}</h3>
 <hr/>
 <form name="userPassword" novalidate ng-submit="vm.changePassword(userPassword)">
 	<div class="form-group">
-    <label for="old-password">Старый пароль*</label>
+    <label for="old-password">{{'C_LABEL_OLD_PASSWORD' | translate}}*</label>
     <input type="password" class="form-control" id="old-password" name="oldPassword" placeholder=""
       ng-model="vm.password.oldPwd"
       maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.oldPassword.$error" ng-if="userPassword.$submitted">
-      <div ng-message="required">Это поле обязательно для заполнения.</div>
-      <div ng-message="maxlength">Введите не больше 40 символов</div>
+      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
     </div>
   </div>
 	<div class="form-group">
-    <label for="new-password">Новый пароль*</label>
+    <label for="new-password">{{'C_LABEL_NEW_PASSWORD' | translate}}*</label>
     <input type="password" class="form-control" id="new-password" name="newPassword" placeholder=""
       ng-model="vm.password.newPwd"
       maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.newPassword.$error" ng-if="userPassword.$submitted">
-      <div ng-message="required">Это поле обязательно для заполнения.</div>
-      <div ng-message="maxlength">Введите не больше 40 символов</div>
+      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
     </div>
   </div>
 	<div class="form-group">
-    <label for="confirm-password">Подтвердить пароль*</label>
+    <label for="confirm-password">{{'C_LABEL_CONFIRM_PASSWORD' | translate}}*</label>
     <input type="password" class="form-control" id="confirm-password" name="confirmPassword" placeholder=""
       ng-model="vm.password.cnfPwd" 
       maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.confirmPassword.$error" ng-if="userPassword.$submitted">
-      <div ng-message="required">Это поле обязательно для заполнения.</div>
-      <div ng-message="confirmError">Пароли должны совпадать.</div>
-      <div ng-message="maxlength">Введите не больше 40 символов</div>
+      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+      <div ng-message="confirmError">{{'C_MESSAGE_PASSWORDS_MUST_MATCH' | translate}}.</div>
     </div>
   </div>  
   <div class="form-group margin-top-15">
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    <button type="button" class="btn btn-default" ng-click="vm.resetPassword()">Отмена</button>
+    <button type="submit" class="btn btn-primary">{{'C_BTN_SAVE' | translate}}</button>
+    <button type="button" class="btn btn-default" ng-click="vm.resetPassword()">{{'C_BTN_CANCEL' | translate}}</button>
   </div>
 </form>
