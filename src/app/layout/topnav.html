@@ -16,10 +16,10 @@
           <div class="main-menu navbar-left">
             <ul class="nav navbar-nav">
               <li class="dropdown" uib-dropdown 
-                ng-class="{active: vm.isRoute('Мои сайты - Купон') || 
-                                  vm.isRoute('Мои сайты - Статистика') ||
-                                  vm.isRoute('Мои сайты - Отправленные купоны') ||
-                                  vm.isRoute('Мои сайты - Интеграция')
+                ng-class="{active: vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_COUPON' | translate)) || 
+                                  vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_STAT' | translate)) ||
+                                  vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_SENT_COUPONS' | translate)) ||
+                                  vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_INTEGRATION' | translate))
                           }">
                 <a class="dropdown-toggle"  uib-dropdown-toggle>
                   {{'C_BTN_SITES' | translate}} <span class="caret"></span>

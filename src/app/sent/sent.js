@@ -5,9 +5,11 @@
     .module('app.sent')
     .controller('Sent', Sent);
 
-    Sent.$inject = ['$routeParams', 'dataservice'];
+    Sent.$inject = ['$rootScope', '$routeParams', 'translations', 'dataservice'];
     
-    function Sent($routeParams, dataservice) {
+    function Sent($rootScope, $routeParams, translations, dataservice) {
+
+      $rootScope.title = translations['C_HEAD_SITES'] + ' - ' + translations['C_HEAD_SENT_COUPONS'];
 
       var vm = this;
 

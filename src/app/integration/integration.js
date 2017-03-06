@@ -5,10 +5,12 @@
     .module('app.sent')
     .controller('Integration', Integration);
 
-    Integration.$inject = ['$routeParams', 'dataservice'];
+    Integration.$inject = ['$rootScope', '$routeParams', 'translations', 'dataservice'];
     
-    function Integration($routeParams, dataservice) {
+    function Integration($rootScope, $routeParams, translations, dataservice) {
       var vm = this;
+      $rootScope.title = translations['C_HEAD_SITES'] + ' - ' + translations['C_HEAD_INTEGRATION'];
+
       activate();
 
       function activate() {

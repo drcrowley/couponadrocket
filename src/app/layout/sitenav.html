@@ -1,22 +1,29 @@
 <ul class="nav nav-tabs" ng-controller="TopNav as vm">
-	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Купон')}">
+	<li class="nav-item" 
+			ng-class="{active: vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_COUPON' | translate))}">
 		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/coupon'}}" class="nav-link">
-			Купон
+			{{'C_BTN_COUPON' | translate}}
 		</a>
 	</li>
-	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Статистика')}" ng-if="vm.currentSite">
+	<li class="nav-item" 
+			ng-class="{active: vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_STAT' | translate))}" 
+			ng-if="vm.currentSite">
 		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/stat'}}" class="nav-link">
-			Статистика
+			{{'C_BTN_STAT' | translate}}
 		</a>
 	</li>
-	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Отправленные купоны')}" ng-if="vm.currentSite">
+	<li class="nav-item" 
+			ng-class="{active: vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_SENT_COUPONS' | translate))}" 
+			ng-if="vm.currentSite">
 		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/sent'}}" class="nav-link">
-			Отправленные купоны
+			{{'C_BTN_SENT_COUPONS' | translate}}
 		</a>
 	</li>
-	<li class="nav-item" ng-class="{active: vm.isRoute('Мои сайты - Интеграция')}" ng-if="vm.currentSite">
+	<li class="nav-item" 
+			ng-class="{active: vm.isRoute(('C_HEAD_SITES' | translate) + ' - ' + ('C_HEAD_INTEGRATION' | translate))}" 
+			ng-if="vm.currentSite">
 		<a ng-href="{{'#/site/'+ (vm.currentSite ? vm.currentSite.id : 'new') +'/integration'}}" class="nav-link">
-			Интеграция
+			{{'C_BTN_SENT_INTEGRATION' | translate}}
 		</a>
 	</li>	
 </ul>

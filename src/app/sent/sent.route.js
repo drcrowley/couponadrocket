@@ -19,7 +19,11 @@
             templateUrl: 'app/sent/sent.html',
             controller: 'Sent',
             controllerAs: 'vm',
-            title: 'Мои сайты - Отправленные купоны',
+            resolve: {
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_SITES', 'C_HEAD_SENT_COUPONS']);
+              }]
+            }
          }
         }
       ];

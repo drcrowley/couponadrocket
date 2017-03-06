@@ -19,7 +19,11 @@
             templateUrl: 'app/stat/stat.html', 
             controller: 'Stat',
             controllerAs: 'vm',
-            title: 'Мои сайты - Статистика'
+            resolve: {
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_SITES', 'C_HEAD_STAT']);
+              }]
+            }
          }
         }
       ];

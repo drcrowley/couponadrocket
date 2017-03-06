@@ -30,7 +30,7 @@
     }
 
     function isRoute(r) {
-      var title = $route.current.title;
+      var title = $rootScope.title;
       if (title) {
         return title.substr(0, r.length) === r;
       }

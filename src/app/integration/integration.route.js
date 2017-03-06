@@ -19,7 +19,11 @@
             templateUrl: 'app/integration/integration.html', 
             controller: 'Integration',
             controllerAs: 'vm',
-            title: 'Мои сайты - Интеграция',
+            resolve: {
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_SITES', 'C_HEAD_INTEGRATION']);
+              }]
+            }
          }
         }
       ];

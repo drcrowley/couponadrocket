@@ -4,136 +4,169 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
-          <label for="homepage-url">Адрес сайта* <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="homepage-url">{{'C_LABEL_SITE_ADDRESS' | translate}}* 
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_SITE_ADDRESS' | translate}}">
+            </span>
+          </label>
           <input type="text" class="form-control" id="homepage-url" name="homepageUrl" placeholder="" 
             ng-required="true"
             maxlength="150"
-            ng-model="vm.couponSettings.homepageUrl"
-          >
+            ng-model="vm.couponSettings.homepageUrl">
           <div class="text-danger" ng-messages="couponForm.homepageUrl.$error" ng-if="couponForm.$submitted">
-            <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 150 символов</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="titel">Заголовок* <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="titel">{{'C_LABEL_TITEL' | translate}}* 
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_TITEL' | translate}}">
+            </span>
+          </label>
           <input type="text" class="form-control" id="titel" name="titel" placeholder="" 
             ng-required="true" 
             maxlength="40" 
             ng-model="vm.couponSettings.titel">
           <div class="text-danger" ng-messages="couponForm.titel.$error" ng-if="couponForm.$submitted">
-            <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 40 символов</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="description">Описание купона* <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="description">{{'C_LABEL_COUPON_DESCRIPTION' | translate}}* 
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_COUPON_DESCRIPTION' | translate}}">
+            </span>
+          </label>
           <textarea class="form-control" rows="2" id="description" name="description"
             ng-required="true"
             maxlength="105" 
             ng-model="vm.couponSettings.description"></textarea>
           <div class="text-danger" ng-messages="couponForm.description.$error" ng-if="couponForm.$submitted">
-            <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 105 символов</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="conditions">Условия использования купона* <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="conditions">{{'C_LABEL_COUPON_TEXT' | translate}}*
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_COUPON_TEXT' | translate}}">
+            </span>
+          </label>
           <textarea class="form-control" rows="5" ng-model="vm.couponSettings.text" name="conditions" style="height: 128px;"
             ng-required="true"
             maxlength="300"
             ></textarea>
           <div class="text-danger" ng-messages="couponForm.conditions.$error" ng-if="couponForm.$submitted">
-            <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 300 символов</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>
-        </div> 
+        </div>
+
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="image">Иконка (макс. размер 1 мб.)<span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
-          <input type="hidden" class="form-control" id="image" name="image" placeholder="" 
-            ng-required="!vm.couponSettings.id" ng-model="vm.couponSettings.image">
+          <label for="image">{{'C_LABEL_COUPON_ICON' | translate}}
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_COUPON_ICON' | translate}}">
+            </span>
+          </label>
+          <input  type="hidden" class="form-control" id="image" name="image" placeholder="" 
+                  ng-required="!vm.couponSettings.id" ng-model="vm.couponSettings.image">
           <div class="site-icon" flow-init="{singleFile:true}"
-           flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
-           flow-files-submitted="vm.addFile( $files, $event, $flow )">
+               flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+               flow-files-submitted="vm.addFile( $files, $event, $flow )">
             <div class="site-icon-buttons">
-              <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn>Добавить изображение</span>
-              <span class="btn btn-info" ng-show="$flow.files.length" flow-btn>Изменить</span>
-              <span class="btn btn-danger" ng-show="$flow.files.length"
-                 ng-click="$flow.cancel()">
-                Удалить
+              <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn>{{'C_BTN_ADD_IMAGE' | translate}}</span>
+              <span class="btn btn-info" ng-show="$flow.files.length" flow-btn>{{'C_BTN_CHANGE' | translate}}</span>
+              <span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">
+                {{'C_BTN_DELETE' | translate}}
               </span>
             </div>
             <div class="site-icon-holder">
               <div class="thumbnail site-icon-preview" ng-show="$flow.files.length || vm.couponSettings.imgUrl">
                 <div class="site-icon-wrapper">
-                  <img  class="site-icon-image" ng-if="$flow.files.length" flow-img="$flow.files[0]" />
-                  <img  class="site-icon-image" ng-if="!$flow.files.length && vm.couponSettings.imgUrl" ng-src="{{vm.couponSettings.imgUrl}}" />
+                  <img class="site-icon-image" ng-if="$flow.files.length" flow-img="$flow.files[0]" />
+                  <img class="site-icon-image" ng-if="!$flow.files.length && vm.couponSettings.imgUrl" ng-src="{{vm.couponSettings.imgUrl}}" />
                 </div>
               </div>
             </div>
           </div>
           <div class="text-danger" ng-messages="couponForm.image.$error" ng-if="couponForm.$submitted">
-            <div ng-message="required">Это поле обязательно для заполнения.</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="color-theme">Цветовая тема <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="color-theme">{{'C_LABEL_COLOR_THEME' | translate}}
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_COLOR_THEME' | translate}}">
+            </span>
+          </label>
           <select class="form-control" name="color-theme" id="color-theme" 
-            ng-options="color.id as color.name for color in vm.colorThemes" 
-            ng-model="vm.couponSettings.colorTheme" convert-to-number>
+                  ng-options="color.id as color.name for color in vm.colorThemes" 
+                  ng-model="vm.couponSettings.colorTheme" convert-to-number>
           </select>
         </div>
+
         <div class="form-group">
-          <label for="limit-period">Лимит в месяц <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="limit-period">{{'C_LABEL_LIMIT_PERIOD' | translate}}
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_LIMIT_PERIOD' | translate}}">
+            </span>
+          </label>
           <input type="tel" class="form-control" id="limit-period" name="limitPeriod" placeholder="" 
-          ng-model="vm.couponSettings.limitPeriod" 
-          maxlength="4">
+                  ng-model="vm.couponSettings.limitPeriod" 
+                  maxlength="4">
           <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
-            <div ng-message="maxlength">Введите не больше 4 символов</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="promo-code-type">Промо-коды <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="promo-code-type">{{'C_LABEL_PROMO_CODE' | translate}}
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_PROMO_CODE' | translate}}">
+            </span>
+          </label>
           <div class="margin-top-03">
             <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-1" ng-value="true" ng-model="vm.couponSettings.couponCodeGenerate"> Сгенерировать системой
+              <input type="radio" name="promo-code-type" id="promo-code-type-1" ng-value="true" ng-model="vm.couponSettings.couponCodeGenerate">
+              {{'C_LABEL_GENERATE_SYSTEM' | translate}}
             </label>
             <label class="radio-inline">
-              <input type="radio" name="promo-code-type" id="promo-code-type-2" ng-value="false" ng-model="vm.couponSettings.couponCodeGenerate"> Загрузить вручную
-            </label>            
+              <input type="radio" name="promo-code-type" id="promo-code-type-2" ng-value="false" ng-model="vm.couponSettings.couponCodeGenerate"> {{'C_LABEL_MANUAL_UPLOAD' | translate}}
+            </label>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="promo-code">Введите промо-код<span ng-if="!vm.couponSettings.couponCodeGenerate">*</span> <span class="glyphicon glyphicon-question-sign faq-link" 
-          uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="promo-code">{{'C_LABEL_ENTER_PROMO_CODE' | translate}}
+            <span ng-if="!vm.couponSettings.couponCodeGenerate">*</span>
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_ENTER_PROMO_CODE' | translate}}">
+            </span>
+          </label>
           <input type="text" class="form-control" id="promo-code" placeholder="" 
-          ng-disabled="vm.couponSettings.couponCodeGenerate"
-          ng-required="!vm.couponSettings.couponCodeGenerate"
-          maxlength="8" 
-          ng-model="vm.couponSettings.couponCode">
+                  ng-disabled="vm.couponSettings.couponCodeGenerate"
+                  ng-required="!vm.couponSettings.couponCodeGenerate"
+                  maxlength="8" 
+                  ng-model="vm.couponSettings.couponCode">
           <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
-            <div ng-message="required">Это поле обязательно для заполнения.</div>
-            <div ng-message="maxlength">Введите не больше 8 символов</div>
+            <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
           </div>          
-        </div>       
+        </div>    
       </div>
     </div>
     <hr />
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="region">Регионы для которых показывать мой купон <span class="glyphicon glyphicon-question-sign faq-link" 
-              uib-tooltip="Enter something in this input field to disable this tooltip"></span></label>
+          <label for="region">{{'C_LABEL_COUPON_REGION' | translate}}
+            <span class="glyphicon glyphicon-question-sign faq-link" 
+                  uib-tooltip="{{'C_TOOLTIP_COUPON_REGION' | translate}}">
+            </span>
+          </label>
           <div class="input-group">
             <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:1">
             <span class="input-group-btn">
@@ -152,9 +185,9 @@
       </li>
     </ul>    
     <div class="form-group margin-top-15">
-      <button type="submit" class="btn btn-primary">Сохранить</button>
-      <button type="button" class="btn btn-danger" ng-click="vm.deleteCoupon()">Удалить</button>
-      <button type="button" class="btn btn-default" ng-click="vm.resetCoupon()">Отмена</button>
+      <button type="submit" class="btn btn-primary">{{'C_BTN_SAVE' | translate}}</button>
+      <button type="button" class="btn btn-danger" ng-click="vm.deleteCoupon()">{{'C_BTN_REMOVE' | translate}}</button>
+      <button type="button" class="btn btn-default" ng-click="vm.resetCoupon()">{{'C_BTN_CANCEL' | translate}}</button>
     </div>
   </form>
   <img alt="" width="125" height="125" class="img-thumbnail" ng-src="{{vm.couponSettings.icon}}" ng-if="vm.couponSettings.icon">

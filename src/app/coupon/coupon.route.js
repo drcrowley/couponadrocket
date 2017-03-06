@@ -19,10 +19,12 @@
             templateUrl: 'app/coupon/coupon.html',   
             controller: 'Coupon',
             controllerAs: 'vm',
-            title: 'Мои сайты - Купон',
             resolve: {
               colorThemes: ['dataservice' , function (dataservice) {
                 return dataservice.getColorThemes();
+              }],
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_SITES', 'C_HEAD_COUPON']);
               }]
             }
          }

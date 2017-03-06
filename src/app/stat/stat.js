@@ -5,10 +5,12 @@
     .module('app.stat')
     .controller('Stat', Stat);
 
-    Stat.$inject = ['$routeParams', '$location', 'dataservice'];
+    Stat.$inject = ['$rootScope', '$routeParams', '$location', 'translations', 'dataservice'];
     
-    function Stat($routeParams, $location, dataservice) {
+    function Stat($rootScope, $routeParams, $location, translations, dataservice) {
       var vm = this;
+
+      $rootScope.title = translations['C_HEAD_SITES'] + ' - ' + translations['C_HEAD_STAT'];
 
       activate();
 

@@ -5,14 +5,12 @@
     .module('app.coupon')
     .controller('Coupon', Coupon);
 
-    Coupon.$inject = ['$scope', '$routeParams', '$timeout', '$location', '$uibModal', '$rootScope', '$translate', 'dataservice', 'colorThemes', 'config'];
+    Coupon.$inject = ['$scope', '$routeParams', '$timeout', '$location', '$uibModal', '$rootScope', 'dataservice', 'colorThemes', 'translations', 'config'];
 
-    function Coupon($scope, $routeParams, $timeout, $location, $uibModal, $rootScope, $translate, dataservice, colorThemes, config) {
+    function Coupon($scope, $routeParams, $timeout, $location, $uibModal, $rootScope, dataservice, colorThemes, translations, config) {
       var vm = this;
 
-      // $translate(['C_HEAD_SITES', 'C_HEAD_COUPON']).then(function(translations) {
-      //   $rootScope.title = translations['C_HEAD_SITES'];
-      // });
+      $rootScope.title = translations['C_HEAD_SITES'] + ' - ' + translations['C_HEAD_COUPON'];
 
       activate();
 
