@@ -1,8 +1,7 @@
 <h3>{{'C_HEAD_TARIFFS' | translate}}</h3>
 <hr/>
 <div class="margin-top-15">
-  <p>Отправьте своим друзьям эту ссылку <samp class="text-primary">couponadrocket.ru?ref={{vm.user.id}}</samp>, и если они подключат свой магазин в CouponAdRocket, то вы получите 50 купонов бесплатно.</p>
-<!-- <p>{{'C_TXT_REFERRAL' | translate:'{ refLink: "couponadrocket.ru?ref=' + vm.user.id + '" }'}}</p> -->
+<p translate="C_TXT_REFERRAL" translate-values="{ refLink: '<samp class=\'text-primary\'>couponadrocket.ru?ref=' + vm.user.id + '</samp>'}"></p>
 </div>
 <div class="row price-row margin-top-20">
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-repeat="tariff in vm.tariffs">
@@ -16,16 +15,20 @@
           <strong>
             {{ tariff.couponsCount }}
           </strong>
-          <br> купонов
+          <br> {{'C_LABEL_COUPONS' | translate}}
         </p>
       </div>
       <ul class="list-group list-group-flush text-center">
-        <li class="list-group-item"><strong>{{tariff.price.price}} {{tariff.price.currency}}</strong><br>в месяц</li>
+        <li class="list-group-item">
+          <strong>{{tariff.price.price}} {{tariff.price.currency}}</strong>
+          <br>
+          {{'C_LABEL_IN_MONTH' | translate}}
+        </li>
       </ul>
       <div class="panel-footer">
         <button class="btn btn-block btn-{{vm.classes[$index]}}"
         ng-if="tariff.price.price > 0"
-        ng-click="vm.pay(tariff)">Оплатить</button>
+        ng-click="vm.pay(tariff)">{{'C_BTN_PAY' | translate}}</button>
       </div>
     </div>
   </div>

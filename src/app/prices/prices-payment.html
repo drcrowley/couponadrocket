@@ -1,40 +1,42 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
-    <h3 class="modal-title" id="modal-title">Покупка</h3>
+    <h3 class="modal-title" id="modal-title">{{'C_HEAD_PURCHASE' | translate}}</h3>
 </div>
 <div class="modal-body" id="modal-body">
-    <p>Счет можно будет оплатить двумя способами, безналичиным переводом на расчетный счет или переводом на webmoney</p>
+    <p>{{'C_TEXT_PAYMENT_METHODS' | translate}}</p>
     <form class="form-horizontal margin-top-20" novalidate name="buyForm" id="buyForm" ng-submit="buyForm.$valid ? vm.buy(vm.orderData.id) : ''">
       <div class="form-group">
-        <div class="col-md-3 sum-label"><strong>Стоимость</strong>: </div>
+        <div class="col-md-3 sum-label"><strong>{{'C_LABEL_COST' | translate}}</strong>: </div>
         <div class="col-md-9">
           {{vm.orderData.price.price}} руб.
         </div>
       </div>
       <div class="form-group">
-        <div class="col-md-3 sum-label"><strong>НДС</strong>: </div>
+        <div class="col-md-3 sum-label"><strong>{{'C_LABEL_VAT' | translate}}</strong>: </div>
         <div class="col-md-9">
           18%
         </div>
       </div>             
       <div class="form-group">
-        <div class="col-md-3 sum-label"><strong>Сумма</strong>: </div>
+        <div class="col-md-3 sum-label"><strong>{{'C_LABEL_AMOUNT' | translate}}</strong>: </div>
         <div class="col-md-9">
           {{vm.orderData.price.price + vm.orderData.price.price*0.18 | number:0}} руб.
         </div>
       </div>
       <div class="form-group">
-        <label for="company-type" class="col-md-3 control-label">Форма организации предприятия</label>
+        <label for="company-type" class="col-md-3 control-label">{{'C_LABEL_COMPANY_TYPE' | translate}}</label>
         <div class="col-md-9">
           <select class="form-control" name="companyType" id="company-type" 
             ng-model="vm.user.companyType">
-              <option ng-selected="vm.user.companyType == 'ООО' || !vm.user.companyType.length" value="ООО">ООО</option>
-              <option ng-selected="vm.user.companyType == 'ЗАО'" value="ЗАО">ЗАО</option>
+              <option ng-selected="vm.user.companyType == vm.companyTypes[0]" 
+                      value="{{vm.companyTypes[0]}}">{{vm.companyTypes[0]}}</option>
+              <option ng-selected="vm.user.companyType == vm.companyTypes[1]" 
+                      value="{{vm.companyTypes[1]}}">{{vm.companyTypes[1]}}</option>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label for="company-name" class="col-md-3 control-label">Название предприятия</label>
+        <label for="company-name" class="col-md-3 control-label">{{'C_LABEL_COMPANY_NAME' | translate}}</label>
         <div class="col-md-9">
           <input type="text" class="form-control" name="companyName" id="company-name" placeholder="" 
           ng-model="vm.user.companyName"
@@ -42,12 +44,11 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.companyName.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">Это поле обязательно для заполнения.</div>
-          <div ng-message="maxlength">Введите не больше 100 символов</div>
-        </div>            
+          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+        </div>
       </div>
       <div class="form-group">
-        <label for="country" class="col-md-3 control-label">Страна</label>
+        <label for="country" class="col-md-3 control-label">{{'C_LABEL_COUNTRY' | translate}}</label>
         <div class="col-md-9">
           <input type="text" class="form-control" name="country" id="country" placeholder="" 
           ng-model="vm.user.country"
@@ -55,12 +56,11 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.country.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">Это поле обязательно для заполнения.</div>
-          <div ng-message="maxlength">Введите не больше 50 символов</div>
+          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
         </div>              
       </div>
       <div class="form-group">
-        <label for="city" class="col-md-3 control-label">Город</label>
+        <label for="city" class="col-md-3 control-label">{{'C_LABEL_CITY' | translate}}</label>
         <div class="col-md-9">
           <input type="text" class="form-control" name="city" id="city" placeholder="" 
           ng-model="vm.user.city"
@@ -68,12 +68,11 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.city.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">Это поле обязательно для заполнения.</div>
-          <div ng-message="maxlength">Введите не больше 50 символов</div>
+          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
         </div>
       </div>
       <div class="form-group">
-        <label for="address" class="col-md-3 control-label">Почтовый адрес</label>
+        <label for="address" class="col-md-3 control-label">{{'C_LABEL_ADDRESS' | translate}}</label>
         <div class="col-md-9">
           <textarea class="form-control" rows="4" name="zip" id="zip" 
           ng-model="vm.user.zip"
@@ -81,12 +80,11 @@
           ng-required="true"></textarea>
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.zip.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">Это поле обязательно для заполнения.</div>
-          <div ng-message="maxlength">Введите не больше 150 символов</div>
+          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
         </div>  
       </div>
       <div class="form-group">
-        <label for="tel" class="col-md-3 control-label">Телефон</label>
+        <label for="tel" class="col-md-3 control-label">{{'C_LABEL_PHONE' | translate}}</label>
         <div class="col-md-9">
           <input type="tel" class="form-control" name="tel" id="tel" placeholder="" 
           ng-model="vm.user.phone"
@@ -94,12 +92,11 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.tel.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">Это поле обязательно для заполнения.</div>
-          <div ng-message="maxlength">Введите не больше 14 символов</div>
+          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
         </div>
       </div>
       <div class="form-group">
-        <label for="email" class="col-md-3 control-label">Email</label>
+        <label for="email" class="col-md-3 control-label">{{'C_LABEL_EMAIL' | translate}}</label>
         <div class="col-md-9">
           <input type="email" class="form-control" id="email" placeholder="" 
           ng-model="vm.user.email"
@@ -107,8 +104,7 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.email.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">Это поле обязательно для заполнения.</div>
-          <div ng-message="maxlength">Введите не больше 129 символов</div>
+          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
         </div>            
       </div>          
     </form>
@@ -120,6 +116,6 @@
         <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
       </label>
     </div>
-    <button type="submit" form="buyForm" ng-disabled="!vm.agree" class="btn btn-primary pull-right">Купить</button>        
+    <button type="submit" form="buyForm" ng-disabled="!vm.agree" class="btn btn-primary pull-right">{{'C_BTN_BUY' | translate}}</button>        
   </div>
 </div>

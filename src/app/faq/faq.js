@@ -5,10 +5,12 @@
     .module('app.faq')
     .controller('Faq', Faq);
 
-    Faq.$inject = ['$scope', '$uibModal', 'dataservice', 'faq'];
+    Faq.$inject = ['$rootScope', '$scope', '$uibModal', 'translations', 'dataservice', 'faq'];
     
-    function Faq($scope, $uibModal, dataservice, faq) {
+    function Faq($rootScope, $scope, $uibModal, translations, dataservice, faq) {
       var vm = this;
+
+      $rootScope.title = translations['C_HEAD_FAQ'];
 
       vm.faq = faq;
 

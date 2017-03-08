@@ -19,10 +19,12 @@
             templateUrl: 'app/faq/faq.html',    
             controller: 'Faq',
             controllerAs: 'vm',
-            title: 'FAQ',
             resolve: {
               faq: ['dataservice' , function (dataservice) {
                 return dataservice.getFaq();
+              }],
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_FAQ']);
               }]
             }
          }

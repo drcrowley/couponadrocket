@@ -5,11 +5,13 @@
     .module('app.settings')
     .controller('Settings', Settings);
 
-    Settings.$inject = ['dataservice'];  
+    Settings.$inject = ['$rootScope', 'translations', 'dataservice'];  
 
-    function Settings(dataservice) {
+    function Settings($rootScope, translations, dataservice) {
       var vm = this;
-      vm.title = 'Настройки';
+
+      $rootScope.title = translations['C_HEAD_SETTINGS'];
+
       activate();
 
       vm.saveUser = function() {

@@ -5,26 +5,32 @@
     .module('app.prices')
     .controller('Prices', Prices);
 
-    Prices.$inject = ['$scope', '$location', '$uibModal', 'dataservice', 'logger', 'tariffs', 'user'];
+    Prices.$inject = ['$rootScope', '$scope', '$location', '$uibModal', 'translations', 'dataservice', 'logger', 'tariffs', 'user'];
     
-    function Prices($scope, $location, $uibModal, dataservice, logger, tariffs, user) {
+    function Prices($rootScope, $scope, $location, $uibModal, translations, dataservice, logger, tariffs, user) {
       var vm = this;
 
+      $rootScope.title = translations['C_HEAD_TARIFFS'];
+
+
+      vm.companyTypes = [translations['C_CMB_COMPANY_TYPE_1'], translations['C_CMB_COMPANY_TYPE_2']];
       vm.classes = ['default', 'warning', 'success', 'danger'];
       vm.tariffs = tariffs;
       vm.user = user;
       vm.aggree = false;
 
+      vm.user.companyType = vm.companyTypes[0];
+
       vm.pay = function(tariff) {
         vm.orderData = tariff;
 
         if (tariff.price <= 0) return false;
-           vm.paymentModalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: 'app/prices/prices-payment.html',
-            scope: $scope,
-            controllerAs: 'vm'
-          });         
+        vm.paymentModalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'app/prices/prices-payment.html',
+          scope: $scope,
+          controllerAs: 'vm'
+        });
       };
 
       vm.showOffer = function(event) {

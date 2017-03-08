@@ -19,7 +19,11 @@
             templateUrl: 'app/partner/partner.html',    
             controller: 'Partner',
             controllerAs: 'vm',
-            title: 'Стать партнёром'
+            resolve: {
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_BECOME_A_PARTNER']);
+              }]
+            }
          }
         }
       ];

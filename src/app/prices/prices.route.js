@@ -26,7 +26,10 @@
               }],
               user: ['dataservice' , function (dataservice) {
                 return dataservice.getUser();
-              }]              
+              }],
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_TARIFFS', 'C_CMB_COMPANY_TYPE_1', 'C_CMB_COMPANY_TYPE_2']);
+              }]          
             }
          }
         }

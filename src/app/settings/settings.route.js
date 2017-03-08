@@ -19,7 +19,11 @@
             templateUrl: 'app/settings/settings.html', 
             controller: 'Settings',
             controllerAs: 'vm',
-            title: 'Настройки'
+            resolve: {
+              translations: ['$translate' , function ($translate) {
+                return $translate(['C_HEAD_SETTINGS']);
+              }]
+            }
          }
         }
       ];
