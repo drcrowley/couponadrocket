@@ -12,7 +12,7 @@
       maxlength="200" 
       ng-required="true">
       <div class="text-danger" ng-messages="feedbackForm.subj.$error" ng-if="feedbackForm.$submitted">
-        <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+        <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
       </div>
     </div>
     <div class="form-group">
@@ -23,7 +23,7 @@
       ng-model="vm.question.text"
       ng-required="true"></textarea>
       <div class="text-danger" ng-messages="feedbackForm.text.$error" ng-if="feedbackForm.$submitted">
-        <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+        <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
       </div>
     </div>
   </form>     

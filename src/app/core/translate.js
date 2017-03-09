@@ -11,25 +11,5 @@
       tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
       $translateProvider.preferredLanguage('ru');
       $translateProvider.useLoader('translateLoader');
-
-      // $translateProvider.translations('en', {
-      //   'Sites': 'My sites',
-      //   'Settings': 'Settings',
-      //   'Balance': 'Replenish the balance',
-      //   'Integration': 'Integration',
-      //   'Partner': 'Become a partner',
-      //   'Month': 'month'
-      // });
-
-      // $translateProvider.translations('ru', {
-      //   'Sites': 'Мои сайты',
-      //   'Settings': 'Настройки',
-      //   'Balance': 'Пополнить баланс',
-      //   'Integration': 'Интеграция',
-      //   'Partner': 'Стать партнёром',
-      //   'Month': 'месяц'
-      // });
-
-
     };
 })();

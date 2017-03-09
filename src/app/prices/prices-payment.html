@@ -44,7 +44,7 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.companyName.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+          <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
         </div>
       </div>
       <div class="form-group">
@@ -56,7 +56,7 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.country.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+          <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
         </div>              
       </div>
       <div class="form-group">
@@ -68,7 +68,7 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.city.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+          <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
         </div>
       </div>
       <div class="form-group">
@@ -80,7 +80,7 @@
           ng-required="true"></textarea>
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.zip.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+          <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
         </div>  
       </div>
       <div class="form-group">
@@ -92,7 +92,7 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.tel.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+          <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
         </div>
       </div>
       <div class="form-group">
@@ -104,7 +104,7 @@
           ng-required="true">
         </div>
         <div class="text-danger col-md-9 col-md-offset-3" ng-messages="buyForm.email.$error" ng-if="buyForm.$submitted">
-          <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+          <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
         </div>            
       </div>          
     </form>
@@ -113,7 +113,7 @@
   <div class="clearfix">
     <div class="checkbox pull-left">
       <label>
-        <input type="checkbox" ng-model="vm.agree"> Я согласен с договором <a href="#" ng-click="vm.showOffer($event)">оферты</a>
+        <input type="checkbox" ng-model="vm.agree">{{'C_LABEL_AGREE' | translate}} <a href="#" ng-click="vm.showOffer($event)">{{'C_LABEL_CONTRACT_OF_OFFER' | translate}}</a>
       </label>
     </div>
     <button type="submit" form="buyForm" ng-disabled="!vm.agree" class="btn btn-primary pull-right">{{'C_BTN_BUY' | translate}}</button>        

@@ -1,13 +1,14 @@
 <div class="modal-header">
     <button type="button" class="close" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
-    <h3 class="modal-title" id="modal-title">Спасибо за ваш заказ</h3>
+    <h3 class="modal-title">{{'C_HEAD_THANK' | translate}}}</h3>
 </div>
-<div class="modal-body" id="modal-body">
-  <p>Счет выслан на указанный вами e-mail или вы можете открыть его по <a href="#" ng-click="vm.getInvoice($event, vm.invoice.id)">ссылке</a>.</p>
-  <p>Счет оплатить можно переводом на расчетный счет или переводом на кошелек WM *номер*".</p>
+<div class="modal-body" 
+			translate="C_TXT_THANK" 
+			translate-compile
+			translate-values="{ clickFunc: 'ng-click=\'vm.getInvoice($event, vm.invoice.id)\''}">
 </div>
 <div class="modal-footer">
   <div class="clearfix">
-     <button type="button" class="btn btn-primary pull-right" data-dismiss="modal" ng-click="$close()">Закрыть</button>        
+     <button type="button" class="btn btn-primary pull-right" data-dismiss="modal" ng-click="$close()">{{'C_BTN_CLOSE' | translate}}</button>        
   </div>
 </div>

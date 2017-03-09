@@ -5,32 +5,32 @@
         <dd><a ng-href="{{'mailto:' + vm.user.email}}">{{vm.user.email}}</a></dd>
       </dl>
       <dl>
-        <dt>Остаток купонов: </dt>
+        <dt>{{'C_LABEL_COUPONS_BALANCE' | translate}}: </dt>
         <dd>{{vm.user.couponsCount}}</dd>
       </dl>
-      <a ng-href="#/prices" class="btn btn-primary">Пополнить баланс</a>  
+      <a ng-href="#/prices" class="btn btn-primary">{{'C_BTN_ADD_BALANCE' | translate}}</a>  
       <hr>
       <dl ng-if="vm.currentSite">
-        <dt>Сайт: </dt>
+        <dt>{{'C_LABEL_SITE' | translate}}: </dt>
         <dd><a ng-href="{{vm.currentSite.homepageUr}}">{{vm.currentSite.homepageUrl}}</a></dd>
       </dl>
       <div class="coupon-info" ng-if="vm.currentSite">
-        <h5><strong>Отправленных купонов:</strong></h5>
+        <h5><strong>{{'C_LABEL_SENT_COUPONS' | translate}}:</strong></h5>
         <dl>
-          <dt>За сутки: </dt>
+          <dt>{{'C_LABEL_PER_DAY' | translate}}: </dt>
           <dd>{{vm.currentSite.couponSellAtThisDay}}</dd>
         </dl>
         <dl>
-          <dt>За неделю: </dt>
+          <dt>{{'C_LABEL_PER_WEEK' | translate}}: </dt>
           <dd>{{vm.currentSite.couponSellAtThisWeek}}</dd>
         </dl>
         <dl>
-          <dt>За месяц: </dt>
+          <dt>{{'C_LABEL_PER_MONTH' | translate}}: </dt>
           <dd>{{vm.currentSite.couponSellAtThisMonth}}</dd>
         </dl>        
       </div>
       <dl class="coupon-status" ng-if="vm.currentSite.status">
-        <dt>Статус: </dt>
+        <dt>{{'C_LABEL_STATUS' | translate}}: </dt>
         <dd>
           <span class="label" ng-class="
           {
@@ -40,7 +40,14 @@
           }">{{vm.currentSite.status}}</span>
         </dd>
       </dl>  
-      <toggle ng-model="vm.currentSite.activeFlag" ng-if="vm.currentSite" ng-change="vm.toggleStatus()" on="Включен" off="Выключен" onstyle="btn-success" offstyle="btn-danger"></toggle>
+      <toggle 
+        ng-model="vm.currentSite.activeFlag" 
+        ng-if="vm.currentSite" 
+        ng-change="vm.toggleStatus()" 
+        on="{{'C_BTN_ON' | translate}}" off="{{'C_BTN_OFF' | translate}}" 
+        onstyle="btn-success" 
+        offstyle="btn-danger">
+      </toggle>
     </div>
   </div>
 </div>

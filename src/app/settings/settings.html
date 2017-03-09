@@ -8,8 +8,8 @@
       maxlength="129"
       ng-required="true">
     <div class="text-danger" ng-messages="userInfoForm.email.$error" ng-if="userInfoForm.$submitted">
-      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
-      <div ng-message="email">{{'C_MESSAGE_ENTER_VALID_EMAIL' | translate}}.</div>
+      <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
+      <div ng-message="email">{{'C_MSG_ENTER_VALID_EMAIL' | translate}}.</div>
     </div>
   </div>
   <div class="form-group">
@@ -18,7 +18,7 @@
       ng-model="vm.user.phone" 
       maxlength="14">
     <div class="text-danger" ng-messages="userInfoForm.tel.$error" ng-if="userInfoForm.$submitted">
-      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+      <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
     </div>
   </div>   
   <div class="form-group margin-top-15">
@@ -36,7 +36,7 @@
       maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.oldPassword.$error" ng-if="userPassword.$submitted">
-      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+      <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
     </div>
   </div>
 	<div class="form-group">
@@ -46,7 +46,7 @@
       maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.newPassword.$error" ng-if="userPassword.$submitted">
-      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
+      <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
     </div>
   </div>
 	<div class="form-group">
@@ -56,8 +56,8 @@
       maxlength="40"
       ng-required="true">
     <div class="text-danger" ng-messages="userPassword.confirmPassword.$error" ng-if="userPassword.$submitted">
-      <div ng-message="required">{{'C_MESSAGE_REQUIRED' | translate}}.</div>
-      <div ng-message="confirmError">{{'C_MESSAGE_PASSWORDS_MUST_MATCH' | translate}}.</div>
+      <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
+      <div ng-message="confirmError">{{'C_MSG_PASSWORDS_MUST_MATCH' | translate}}.</div>
     </div>
   </div>  
   <div class="form-group margin-top-15">
