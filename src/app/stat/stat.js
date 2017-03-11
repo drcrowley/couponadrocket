@@ -38,13 +38,7 @@
       vm.options = {
         legend: { display: true },
         scales: {
-          xAxes: [{
-            type: 'time',
-            time: {
-              unit: 'day',
-              unitStepSize: 1
-            }
-          }],
+          xAxes: [],
           yAxes: [{
             type: 'linear',
             ticks: {
@@ -87,8 +81,8 @@
 
           dataservice.getStatistics({
             couponId: site.id,
-            from: moment().subtract(7, 'days').unix(),
-            to: moment().unix()
+            from: moment().subtract(7, 'days').format('x'),
+            to: moment().format('x')
           }).then(function(data) {
             vm.stat = data;
           });

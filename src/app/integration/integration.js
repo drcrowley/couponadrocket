@@ -31,6 +31,8 @@
               dataservice.setCurrentSite(site.id);
               $location.path('/site/'+ site.id + '/coupon');
             }
+
+            vm.coupon = site;
           } else {
             dataservice.removeCurrentSite();
             $location.path('/site/new/coupon');

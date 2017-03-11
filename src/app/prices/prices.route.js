@@ -28,7 +28,7 @@
                 return dataservice.getUser();
               }],
               translations: ['$translate' , function ($translate) {
-                return $translate(['C_HEAD_TARIFFS', 'C_CMB_COMPANY_TYPE_1', 'C_CMB_COMPANY_TYPE_2']);
+                return $translate(['C_HEAD_TARIFFS', 'C_CMB_COMPANY_TYPE_1', 'C_CMB_COMPANY_TYPE_2', 'C_TOOLTIP_TARIFF_1', 'C_TOOLTIP_TARIFF_2', 'C_TOOLTIP_TARIFF_3', 'C_TOOLTIP_TARIFF_4']);
               }]          
             }
          }

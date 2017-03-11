@@ -6,7 +6,7 @@
 <div class="row price-row margin-top-20">
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-repeat="tariff in vm.tariffs">
     <div class="panel price panel-{{vm.classes[$index]}}">
-      <div uib-tooltip="Enter something in this input field to disable this tooltip" class="panel-heading  text-center">
+      <div uib-tooltip="{{vm.tooltips[$index]}}" class="panel-heading  text-center">
       <h4>{{tariff.name}} </h4> <span class="glyphicon glyphicon-question-sign faq-link" 
         ></span>
       </div>
