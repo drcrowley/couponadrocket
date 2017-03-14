@@ -55,8 +55,8 @@
             </span>
           </label>
           <textarea class="form-control" rows="5" ng-model="vm.couponSettings.text" name="conditions" style="height: 128px;"
-            ng-required="true"
-            maxlength="300"
+                    ng-required="true"
+                    maxlength="300"
             ></textarea>
           <div class="text-danger" ng-messages="couponForm.conditions.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
@@ -167,12 +167,10 @@
                   uib-tooltip="{{'C_TOOLTIP_COUPON_REGION' | translate}}">
             </span>
           </label>
-          <div class="input-group">
-            <input type="text" ng-model="vm.region" class="form-control" uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:1">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="button" ng-click="vm.addRegion()"><span class="glyphicon glyphicon-plus"></span></button>
-            </span>
-          </div>
+          <input type="text" ng-model="vm.region" class="form-control"
+                 ng-disabled="vm.couponSettings.showRegions.length >= 10"
+                 uib-typeahead="region as region.name for region in vm.getRegionList($viewValue) | limitTo:1"
+                 typeahead-on-select="vm.onRegionSelect($item)">
         </div>
       </div>
     </div>

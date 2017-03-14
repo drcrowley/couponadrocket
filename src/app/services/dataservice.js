@@ -349,7 +349,7 @@
 
     function getFaq() {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/general/faq/ru', {
+      return $http.get(config.apiUrl + '/general/faq/RU', {
         cache: true
       })
       .then(complete)
