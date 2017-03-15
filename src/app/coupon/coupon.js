@@ -62,7 +62,7 @@
           var dataUrl = event.target.result,
               iconSize = config.iconSize;
 
-          resizeImage(dataUrl, iconSize[0], iconSize[1], function(dataUrl) {
+          snapshotResize(dataUrl, iconSize[0], iconSize[1], function(dataUrl) {
             var base64 = dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
             vm.couponSettings.image = base64;
           });
@@ -80,19 +80,39 @@
         }
       }
 
-      function resizeImage(url, width, height, callback) {
-        var sourceImage = new Image();
+     function snapshotResize(srcData, width, height, callback) {
+        var imageObj = new Image(),
+            canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            xStart = 0,
+            yStart = 0,
+            aspectRadio,
+            newWidth,
+            newHeight;
+        
+        canvas.width  = width;
+        canvas.height = height;     
 
-        sourceImage.onload = function() {
-          var canvas = document.createElement("canvas");
-          canvas.width = width;
-          canvas.height = height;
-          canvas.getContext("2d").drawImage(sourceImage, 0, 0, width, height);
-          callback(canvas.toDataURL());
+        imageObj.onload = function() {
+          aspectRadio = imageObj.height / imageObj.width;
+
+          if(imageObj.height < imageObj.width) {
+             aspectRadio = imageObj.width / imageObj.height;
+             newHeight = height,
+             newWidth = aspectRadio * height;
+             xStart = -(newWidth - width) / 2;
+          } else {
+             newWidth  = width,
+             newHeight = aspectRadio * width;
+             yStart = -(newHeight - height) / 2;
+          }
+
+          ctx.drawImage(imageObj, xStart, yStart, newWidth, newHeight);
+          callback(canvas.toDataURL());         
         }
 
-        sourceImage.src = url;
-      }
+        imageObj.src  = srcData;
+      }      
 
       function isInclude(arr,obj) {
         return (arr.indexOf(obj) != -1);
