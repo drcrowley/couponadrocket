@@ -62,7 +62,6 @@
             <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
           </div>
         </div>
-
       </div>
       <div class="col-md-6">
         <div class="form-group">
@@ -155,8 +154,11 @@
                   ng-model="vm.couponSettings.couponCode">
           <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
-          </div>          
-        </div>    
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" ng-click="vm.showPreview(couponForm)">{{'C_BTN_PREVIEW' | translate}}</button>
+        </div>
       </div>
     </div>
     <hr />

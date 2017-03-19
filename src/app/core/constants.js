@@ -10,7 +10,8 @@
       return typeof couponConfig != 'undefined' ? couponConfig : {
         apiUrl: 'http://94.142.139.199:8080/coupon-web/rs',
         iconSize: [125, 125],
-        loginUrl: '/authorization.html'
+        loginUrl: '/authorization.html',
+        couponListScriptsUrl: '/coupon-list.js'
       };
     }
 })();

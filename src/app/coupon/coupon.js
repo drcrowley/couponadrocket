@@ -80,6 +80,30 @@
         }
       }
 
+      vm.showPreview = function(form) {
+        if(form.$valid) {
+          form.$submitted = false;
+          var testCoupon = {
+            id: 0,
+            titel: vm.couponSettings.titel,
+            url: vm.couponSettings.homepageUrl,
+            imgUrl: vm.couponSettings.imgUrl,
+            descr: vm.couponSettings.description,
+            text: vm.couponSettings.text,
+          };
+          var colorThemes = {
+            '1': 'red',
+            '2': 'green',
+            '3': 'blue',
+            '4': 'orange'
+          };
+          includeCoupons({colorTheme: colorThemes[vm.couponSettings.colorTheme], previewLink: '/show/couponsPreview', testCoupon: testCoupon});
+        } else {
+          form.$submitted = true;
+        }
+        function includeCoupons(params){var request=new XMLHttpRequest;request.open("GET",config.couponListScriptsUrl,!0),request.onload=function(){request.status>=200&&request.status<400&&eval(request.responseText.replace(/{{params}}/g,JSON.stringify(params)))},request.send()}
+      }
+
      function snapshotResize(srcData, width, height, callback) {
         var imageObj = new Image(),
             canvas = document.createElement('canvas'),
