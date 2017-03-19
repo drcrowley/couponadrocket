@@ -63,6 +63,7 @@
               iconSize = config.iconSize;
 
           snapshotResize(dataUrl, iconSize[0], iconSize[1], function(dataUrl) {
+            vm.couponSettings.previewImageUrl = dataUrl;
             var base64 = dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
             vm.couponSettings.image = base64;
           });
@@ -87,7 +88,7 @@
             id: 0,
             titel: vm.couponSettings.titel,
             url: vm.couponSettings.homepageUrl,
-            imgUrl: vm.couponSettings.imgUrl,
+            imgUrl: vm.couponSettings.previewImageUrl ? vm.couponSettings.previewImageUrl : vm.couponSettings.imgUrl,
             descr: vm.couponSettings.description,
             text: vm.couponSettings.text,
           };
