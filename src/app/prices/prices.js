@@ -47,7 +47,7 @@
 
       vm.buy = function(id) {
         vm.paymentModalInstance.close();
-
+        
         dataservice.updateUser(vm.user).then(function() {
           dataservice.buyTariff(id).then(function(data) {
             vm.invoice = data;

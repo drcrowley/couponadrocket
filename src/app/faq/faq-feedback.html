@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body" id="modal-body">
   <p>{{'C_TXT_QUESTION' | translate}}</p>
-  <form name="feedbackForm" id="feedbackForm" novalidate ng-submit="feedbackForm.$valid ? vm.sendQuestion() : ''">
+  <form name="feedbackForm" id="feedbackForm" novalidate>
     <div class="form-group">
       <label for="title">{{'C_LABEL_TITEL' | translate}}</label>
       <input type="text" id="subj" name="subj" class="form-control" placeholder="" 
@@ -29,6 +29,6 @@
   </form>     
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="submit" form="feedbackForm"">{{'C_BTN_SEND' | translate}}</button>
+    <button class="btn btn-primary" type="button" form="feedbackForm" ng-click="feedbackForm.$valid ? vm.sendQuestion() : ''">{{'C_BTN_SEND' | translate}}</button>
     <button class="btn btn-default" type="button" ng-click="$close()">{{'C_BTN_CANCEL' | translate}}</button>
 </div>

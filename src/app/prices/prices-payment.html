@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body" id="modal-body">
     <p>{{'C_TXT_PAYMENT_METHODS' | translate}}</p>
-    <form class="form-horizontal margin-top-20" novalidate name="buyForm" id="buyForm" ng-submit="buyForm.$valid ? vm.buy(vm.orderData.id) : ''">
+    <form class="form-horizontal margin-top-20" novalidate name="buyForm" id="buyForm">
       <div class="form-group">
         <div class="col-md-3 sum-label"><strong>{{'C_LABEL_COST' | translate}}</strong>: </div>
         <div class="col-md-9">
@@ -116,6 +116,6 @@
         <input type="checkbox" ng-model="vm.agree">{{'C_LABEL_AGREE' | translate}} <a href="#" ng-click="vm.showOffer($event)">{{'C_LABEL_CONTRACT_OF_OFFER' | translate}}</a>
       </label>
     </div>
-    <button type="submit" form="buyForm" ng-disabled="!vm.agree" class="btn btn-primary pull-right">{{'C_BTN_BUY' | translate}}</button>        
+    <button type="button" form="buyForm" ng-disabled="!vm.agree" ng-click="buyForm.$valid ? vm.buy(vm.orderData.id) : ''" class="btn btn-primary pull-right">{{'C_BTN_BUY' | translate}}</button>        
   </div>
 </div>
