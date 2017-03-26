@@ -333,6 +333,18 @@ html {
   padding-top: 12px;
   color: #fff; 
 }
+  .contacts__phone {
+    margin-bottom: rem(5px);
+  }
+  .contacts__phone-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  .contacts__phone-link:hover {
+    color: #fff;
+    border-color: transparent;
+    text-decoration: none;
+  }
   .contacts__email {
     color: #fff;
     text-decoration: none;
@@ -340,7 +352,9 @@ html {
     transition: border-color .2s; 
   }
   .contacts__email:hover {
-    border-color: transparent; 
+    border-color: transparent;
+    color: #fff;
+    text-decoration: none;
   }
 
 @-webkit-keyframes spin {
