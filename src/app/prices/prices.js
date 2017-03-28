@@ -5,23 +5,31 @@
     .module('app.prices')
     .controller('Prices', Prices);
 
-    Prices.$inject = ['$rootScope', '$scope', '$location', '$uibModal', 'translations', 'dataservice', 'logger', 'tariffs', 'user'];
+    Prices.$inject = ['$rootScope', '$scope', '$location', '$uibModal', 'translations', 'dataservice', 'logger', 'tariffs', 'user', 'auth', 'config'];
     
-    function Prices($rootScope, $scope, $location, $uibModal, translations, dataservice, logger, tariffs, user) {
+    function Prices($rootScope, $scope, $location, $uibModal, translations, dataservice, logger, tariffs, user, auth, config) {
       var vm = this;
 
       $rootScope.title = translations['C_HEAD_TARIFFS'];
 
-      vm.companyTypes = [translations['C_CMB_COMPANY_TYPE_1'], translations['C_CMB_COMPANY_TYPE_2']];
+      vm.companyTypes = [
+        translations['C_CMB_COMPANY_TYPE_1'], 
+        translations['C_CMB_COMPANY_TYPE_2'],
+        translations['C_CMB_COMPANY_TYPE_3'],
+        translations['C_CMB_COMPANY_TYPE_4']];
+
       vm.classes = ['default', 'warning', 'success', 'danger'];
       vm.tariffs = tariffs;
       vm.user = user;
       vm.aggree = false;
-      vm.user.companyType = vm.companyTypes[0];
-      vm.tooltips = [ translations['C_TOOLTIP_TARIFF_1'], 
-                      translations['C_TOOLTIP_TARIFF_2'], 
-                      translations['C_TOOLTIP_TARIFF_3'], 
-                      translations['C_TOOLTIP_TARIFF_4']];
+      if (!vm.user.companyType) {
+        vm.user.companyType = vm.companyTypes[0];
+      }
+      vm.tooltips = [ 
+        translations['C_TOOLTIP_TARIFF_1'], 
+        translations['C_TOOLTIP_TARIFF_2'], 
+        translations['C_TOOLTIP_TARIFF_3'], 
+        translations['C_TOOLTIP_TARIFF_4']];
                       
       vm.pay = function(tariff) {
         vm.orderData = tariff;
@@ -51,6 +59,7 @@
         dataservice.updateUser(vm.user).then(function() {
           dataservice.buyTariff(id).then(function(data) {
             vm.invoice = data;
+            vm.invoiceUrl = config.apiUrl + '/buytarif/invoice/' + vm.invoice.id + '/' + auth.get();
             $uibModal.open({
               animation: true,
               templateUrl: 'app/prices/prices-thank.html',
