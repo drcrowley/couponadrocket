@@ -113,7 +113,7 @@
   <div class="clearfix">
     <div class="checkbox pull-left">
       <label>
-        <input type="checkbox" ng-model="vm.agree">{{'C_LABEL_AGREE' | translate}} <a href="#" ng-click="vm.showOffer($event)">{{'C_LABEL_CONTRACT_OF_OFFER' | translate}}</a>
+        <input type="checkbox" ng-model="vm.agree">{{'C_LABEL_AGREE' | translate}} <a href="/contract-offer.html" target="_blank">{{'C_LABEL_CONTRACT_OF_OFFER' | translate}}</a>
       </label>
     </div>
     <button type="button" form="buyForm" ng-disabled="!vm.agree" ng-click="buyForm.$valid ? vm.buy(vm.orderData.id) : ''" class="btn btn-primary pull-right">{{'C_BTN_BUY' | translate}}</button>        

@@ -324,7 +324,7 @@
 
     function getInvoice(invoiceId) {
       $rootScope.isLoading = true;
-      return $http.get(config.apiUrl + '/buytarif/invoice/' + invoiceId, {
+      return $http.get(config.apiUrl + '/buytarif/invoice/' + invoiceId + '/' + auth.get(), {
         transformResponse: function (data, status, headers) {
           var pdf;
           if (data) {
