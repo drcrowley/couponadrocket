@@ -15,6 +15,7 @@
       deleteCoupon: deleteCoupon,
       activateCoupon: activateCoupon,
       deactivateCoupon: deactivateCoupon,
+      verifyIntegration: verifyIntegration,
       getStatistics: getStatistics,
       getCurrentSite: getCurrentSite,
       setCurrentSite: setCurrentSite,
@@ -157,6 +158,22 @@
         logger.success('Купон успешно деактивирован', couponId);
         return data.data;
       }    
+    }
+
+    function verifyIntegration(couponId) {
+      $rootScope.isLoading = true;
+      return $http.get(config.apiUrl + '/manage/verify/' + couponId)
+      .then(complete)
+      .catch(function(message) {
+        exception.catcher('XHR Failed')(message);
+        $rootScope.isLoading = false;
+      });
+
+      function complete(data) {
+        $rootScope.isLoading = false;
+        logger.success('Отправлен запрос на верификацию', couponId);
+        return data.data;
+      }
     }
 
     function getStatistics(params) {

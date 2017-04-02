@@ -13,6 +13,14 @@
 
       activate();
 
+      vm.verifyRequest = false;
+
+      vm.verify = function() {
+        dataservice.verifyIntegration(vm.coupon.id).then(function() {
+          vm.verifyRequest = true;
+        });
+      };
+
       function activate() {
         dataservice.getCoupons().then(function(coupons) {
           var siteId = $routeParams.siteId,

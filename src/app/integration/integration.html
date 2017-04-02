@@ -1,6 +1,12 @@
 <div ng-include="'app/layout/sitenav.html'"></div>
 <div class="margin-top-15">
 	<div translate="C_TXT_INTEGRATION"></div>
+	<button type="button" class="btn btn-primary margin-top-05" ng-click="vm.verify()">{{'C_BTN_CHECK_INTEGRATON' | translate}}</button>
+	<div class="panel panel-default margin-top-10" ng-if="vm.verifyRequest">
+	  <div class="panel-body text-danger">
+	    {{'C_MSG_VERIFY_REQUEST' | translate}}
+	  </div>
+	</div>
 	<pre class="margin-top-15">
 	  {{vm.coupon.codeIntegration}}
 	</pre>

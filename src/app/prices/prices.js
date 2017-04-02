@@ -18,7 +18,7 @@
         translations['C_CMB_COMPANY_TYPE_3'],
         translations['C_CMB_COMPANY_TYPE_4']];
 
-      vm.classes = ['default', 'warning', 'success', 'danger'];
+      vm.classes = ['default', 'info', 'success', 'warning'];
       vm.tariffs = tariffs;
       vm.user = user;
       vm.aggree = false;

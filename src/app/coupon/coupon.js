@@ -146,7 +146,7 @@
       function activate() {
         dataservice.getCoupons().then(function(coupons) {
           var couponSettingsDefault = {
-              couponCodeGenerate: true,
+              couponCodeGenerate: false,
               colorTheme: 1,
               showRegions: []
             },

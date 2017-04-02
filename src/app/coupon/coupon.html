@@ -147,12 +147,12 @@
                   uib-tooltip="{{'C_TOOLTIP_ENTER_PROMO_CODE' | translate}}">
             </span>
           </label>
-          <input type="text" class="form-control" id="promo-code" placeholder="" 
+          <input type="text" class="form-control" id="promo-code" name="promoCode" placeholder="" 
                   ng-disabled="vm.couponSettings.couponCodeGenerate"
                   ng-required="!vm.couponSettings.couponCodeGenerate"
                   maxlength="8" 
                   ng-model="vm.couponSettings.couponCode">
-          <div class="text-danger" ng-messages="couponForm.limitPeriod.$error" ng-if="couponForm.$submitted">
+          <div class="text-danger" ng-messages="couponForm.promoCode.$error" ng-if="couponForm.$submitted">
             <div ng-message="required">{{'C_MSG_REQUIRED' | translate}}.</div>
           </div>
         </div>
